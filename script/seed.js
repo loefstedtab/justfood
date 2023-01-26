@@ -2,7 +2,7 @@
 
 console.log('please work')
 
-const {db, models: {User} } = require('../server/db')
+const {db,User}  = require('../server/db')
 
 /**
  * seed - this function clears the database, updates tables to
