@@ -5,10 +5,6 @@ import AuthForm from '../components/AuthForm';
 import Home from '../components/Home';
 import { me } from './store';
 
-/**
- * COMPONENT
- */
-
 const AppRoutes = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const dispatch = useDispatch();

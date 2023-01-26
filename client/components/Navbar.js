@@ -14,11 +14,10 @@ const Navbar = () => {
 
   return (
     <div>
-      <h1>FS-App-Template</h1>
+      <h1>Just Food!</h1>
       <nav>
         {isLoggedIn ? (
           <div>
-            {/* The navbar will show these links after you log in */}
             <Link to="/home">Home</Link>
             <button type="button" onClick={logoutAndRedirectHome}>
               Logout
@@ -26,7 +25,6 @@ const Navbar = () => {
           </div>
         ) : (
           <div>
-            {/* The navbar will show these links before you log in */}
             <Link to="/login">Login</Link>
             <Link to="/signup">Sign Up</Link>
           </div>
