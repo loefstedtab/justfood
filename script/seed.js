@@ -1,5 +1,7 @@
 'use strict'
 
+console.log('please work')
+
 const {db, models: {User} } = require('../server/db')
 
 /**
