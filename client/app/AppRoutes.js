@@ -1,24 +1,24 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
-import AuthForm from '../components/AuthForm';
-import Home from '../components/Home';
-import { me } from './store';
+import React, { useEffect, useState } from "react";
+import { useSelector} from "react-redux";
+import { Route, Routes } from "react-router-dom";
+import AuthForm from "../components/AuthForm";
+import Home from "../components/Home";
+import { me } from "./store";
+import Login from "../components/Login";
+import Account from "../components/Account";
 
 const AppRoutes = () => {
-  // const isLoggedIn = useSelector((state) => !!state.auth.me.id);
-  const dispatch = useDispatch();
-  const isLoggedIn = true
-  useEffect(() => {
-    dispatch(me());
-  }, []);
+  const user = useSelector((state) => state.user)
+
 
   return (
     <div>
-      {isLoggedIn ? (
+      {user.loggedIn ? (
         <Routes>
           <Route path="/*" element={<Home />} />
           <Route to="/home" element={<Home />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/user/account' element={<Account />} />
         </Routes>
       ) : (
         <Routes>
@@ -30,13 +30,14 @@ const AppRoutes = () => {
             path="/login"
             element={<AuthForm name="login" displayName="Login" />}
           />
-          <Route
+       <Route
             path="/signup"
             element={<AuthForm name="signup" displayName="Sign Up" />}
           />
-          
-        </Routes>
+
+      </Routes>
       )}
+
     </div>
   );
 };

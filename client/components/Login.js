@@ -4,17 +4,28 @@ import { Link }from 'react-router-dom';
 
 
 const Login = () => {
-  const handleLogin = (e) => {
-    e.preventDefault();
-    const redirectToGoogle = `${process.env.CLIENT_URL}/auth/google`;
-    window.open(redirectToGoogle, '_self');
-  };
+
+  window.process = {
+    env: {
+        NODE_ENV: 'development',
+        GOOGLE_URL: 'http://localhost:8080/auth/google'
+
+    }
+}
+  const handleLogin = () => {
+      const redirectToGoogle = process.env.GOOGLE_URL;
+     console.log(redirectToGoogle)
+     window.open(redirectToGoogle, '_self');
+     };
+
+
 
   return (
-    <div className='Login'>
+    <div className='buttonDiv'>
       <GoogleButton onClick={handleLogin} />
     </div>
   );
 };
 
 export default Login
+
