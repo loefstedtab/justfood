@@ -3,11 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../app/store';
 
-const Navbar = () => {
-  //const isLoggedIn = useSelector((state) => !!state.auth.me.id);
-  const isLoggedIn = true
 
-  const username = useSelector((state) => state.auth.me.username);
+const Navbar = () => {
+  const user = useSelector((state) => state.user)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logoutAndRedirectHome = () => {
@@ -18,11 +16,11 @@ const Navbar = () => {
   return (
     <div>
       <Link to="/home"><h1>Just Food!</h1></Link>
-      
+
       <nav>
-        {isLoggedIn ? (
+        {user.loggedIn ? (
           <div>
-            <h3>Welcome, {username}!</h3>
+            <h3>Welcome, {user.firstName}!</h3>
             <Link to="/aboutus">About Us</Link>
             <Link to="/myaccount">My Account</Link>
             <Link to="/pantry">Pantry</Link>

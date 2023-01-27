@@ -13,9 +13,16 @@ router.get(
   "/google/callback",
   passport.authenticate("google", { session: true }),
   (_, res) => {
-    res.redirect(process.env.CLIENT_URL);
+    res.redirect(`/user/account`);
   }
 );
+
+router.post('/logout', function(req, res, next) {
+  req.logout(function(err) {
+    if (err) { return next(err); }
+    res.redirect('/');
+  });
+});
 
 module.exports = router;
 
