@@ -6,8 +6,8 @@ import Home from '../components/Home';
 import { me } from './store';
 
 const AppRoutes = () => {
-  //const isLoggedIn = useSelector((state) => !!state.auth.me.id);
-  const isLoggedIn = true
+  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+  //const isLoggedIn = true
   
   const dispatch = useDispatch();
 

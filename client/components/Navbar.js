@@ -4,8 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../app/store';
 
 const Navbar = () => {
-  // const isLoggedIn = useSelector((state) => !!state.auth.me.id);
-  const isLoggedIn = true
+  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+  //const isLoggedIn = true
 
   const username = useSelector((state) => state.auth.me.username);
   const dispatch = useDispatch();
