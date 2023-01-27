@@ -6,9 +6,9 @@ import Home from '../components/Home';
 import { me } from './store';
 
 const AppRoutes = () => {
-  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+  // const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const dispatch = useDispatch();
-
+  const isLoggedIn = true
   useEffect(() => {
     dispatch(me());
   }, []);
@@ -34,6 +34,7 @@ const AppRoutes = () => {
             path="/signup"
             element={<AuthForm name="signup" displayName="Sign Up" />}
           />
+          
         </Routes>
       )}
     </div>
