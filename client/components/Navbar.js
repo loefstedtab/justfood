@@ -20,7 +20,7 @@ const Navbar = () => {
       <nav>
         {user.loggedIn ? (
           <div>
-            <h3>Welcome, {username}!</h3>
+            <h3>Welcome, {user.firstName}!</h3>
             <Link to="/aboutus">About Us</Link>
             <Link to="/myaccount">My Account</Link>
             <Link to="/pantry">Pantry</Link>

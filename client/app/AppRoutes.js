@@ -7,18 +7,15 @@ import { me } from './store';
 import AboutUs from '../components/AboutUs';
 import MyAccount from '../components/MyAccount';
 import Pantry from '../components/Pantry';
+import Login from '../components/Login';
 
 const AppRoutes = () => {
-  const user = useSelector((state) => state.user)
-
-
   return (
     <div>
-      {user.loggedIn ? (
         <Routes>
           <Route path="/*" element={<Home />} />
           <Route to="/home" element={<Home />} />
-          <Route path="/login" element={<AuthForm name="login" displayName="Login" />}/>
+          <Route path="/login" element={<Login />}/>
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/myaccount" element={<MyAccount />} />
           <Route path="/pantry" element={<Pantry />} />
