@@ -9,8 +9,8 @@ import MyAccount from '../components/MyAccount';
 import Pantry from '../components/Pantry';
 
 const AppRoutes = () => {
-  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
-  //const isLoggedIn = true
+  //const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+  const isLoggedIn = true
   
   const dispatch = useDispatch();
 
