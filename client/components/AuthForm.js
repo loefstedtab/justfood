@@ -39,3 +39,4 @@ const AuthForm = ({ name, displayName }) => {
 };
 
 export default AuthForm;
+

@@ -1,9 +1,10 @@
 const passport = require("passport");
-const { Strategy: GoogleStrategy } = require("passport-google-oauth20");
 require("dotenv").config();
+const { Strategy: GoogleStrategy } = require("passport-google-oauth20");
 const db = require("../db");
 const { User } = require("../db");
 const sequelize = require("sequelize");
+
 
 passport.use(
   new GoogleStrategy(
