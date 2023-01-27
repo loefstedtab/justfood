@@ -17,12 +17,15 @@ const Navbar = () => {
 
   return (
     <div>
-      <h1>Just Food!</h1>
+      <Link to="/home"><h1>Just Food!</h1></Link>
+      <Link to="/aboutus">About Us</Link>
       <nav>
         {isLoggedIn ? (
           <div>
             <h3>Welcome, {username}!</h3>
             <Link to="/home">Home</Link>
+            <Link to="/myaccount">My Account</Link>
+            <Link to="/pantry">Pantry</Link>
             <button type="button" onClick={logoutAndRedirectHome}>
               Logout
             </button>
