@@ -20,7 +20,6 @@ const seed = require('../script/seed');
 
 // init()
 
-
 db.sync({force: true}).then(() => {
   seed()
   console.log("DB Synced!!!")

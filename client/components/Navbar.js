@@ -8,10 +8,6 @@ const Navbar = () => {
   const user = useSelector((state) => state.user)
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const logoutAndRedirectHome = () => {
-    dispatch(logout());
-    navigate('/login');
-  };
 
   return (
     <div>
@@ -24,9 +20,9 @@ const Navbar = () => {
             <Link to="/aboutus">About Us</Link>
             <Link to="/myaccount">My Account</Link>
             <Link to="/pantry">Pantry</Link>
-            <button type="button" onClick={logoutAndRedirectHome}>
-              Logout
-            </button>
+            <form action="/auth/logout" method="post">
+							<button className="logout" type="submit">Sign out</button>
+						</form>
           </div>
         ) : (
           <div>
