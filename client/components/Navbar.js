@@ -4,8 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../app/store';
 
 const Navbar = () => {
-  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
-  //const isLoggedIn = true
+  //const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+  const isLoggedIn = true
 
   const username = useSelector((state) => state.auth.me.username);
   const dispatch = useDispatch();
@@ -18,12 +18,12 @@ const Navbar = () => {
   return (
     <div>
       <Link to="/home"><h1>Just Food!</h1></Link>
-      <Link to="/aboutus">About Us</Link>
+      
       <nav>
         {isLoggedIn ? (
           <div>
             <h3>Welcome, {username}!</h3>
-            <Link to="/home">Home</Link>
+            <Link to="/aboutus">About Us</Link>
             <Link to="/myaccount">My Account</Link>
             <Link to="/pantry">Pantry</Link>
             <button type="button" onClick={logoutAndRedirectHome}>
@@ -34,6 +34,7 @@ const Navbar = () => {
           <div>
             <h3>Welcome, Guest!</h3>
             <Link to="/login">Login/Sign-up</Link>
+            <Link to="/aboutus">About Us</Link>
           </div>
         )}
       </nav>
