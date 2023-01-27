@@ -1,14 +1,12 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 
-const Home = (props) => {
-  const username = useSelector((state) => state.auth.me.username);
+const Home = () => {
 
   console.log()
 
   return (
     <div>
-      <h3>Welcome, {username}</h3>
+      <h3>NO LANDING PAGE YET!!!</h3>
     </div>
   );
 };

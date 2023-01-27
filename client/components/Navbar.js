@@ -15,18 +15,24 @@ const Navbar = () => {
 
   return (
     <div>
-      <h1>Just Food!</h1>
+      <Link to="/home"><h1>Just Food!</h1></Link>
+
       <nav>
         {user.loggedIn ? (
           <div>
-            <Link to="/home">Home</Link>
+            <h3>Welcome, {username}!</h3>
+            <Link to="/aboutus">About Us</Link>
+            <Link to="/myaccount">My Account</Link>
+            <Link to="/pantry">Pantry</Link>
             <button type="button" onClick={logoutAndRedirectHome}>
               Logout
             </button>
           </div>
         ) : (
           <div>
-            <Link to="/login">Login</Link>
+            <h3>Welcome, Guest!</h3>
+            <Link to="/login">Login/Sign-up</Link>
+            <Link to="/aboutus">About Us</Link>
           </div>
         )}
       </nav>

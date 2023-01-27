@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { useSelector} from "react-redux";
-import { Route, Routes } from "react-router-dom";
-import AuthForm from "../components/AuthForm";
-import Home from "../components/Home";
-import { me } from "./store";
-import Login from "../components/Login";
-import Account from "../components/Account";
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+import AuthForm from '../components/AuthForm';
+import Home from '../components/Home';
+import { me } from './store';
+import AboutUs from '../components/AboutUs';
+import MyAccount from '../components/MyAccount';
+import Pantry from '../components/Pantry';
 
 const AppRoutes = () => {
   const user = useSelector((state) => state.user)
@@ -17,29 +18,14 @@ const AppRoutes = () => {
         <Routes>
           <Route path="/*" element={<Home />} />
           <Route to="/home" element={<Home />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/user/account' element={<Account />} />
+          <Route path="/login" element={<AuthForm name="login" displayName="Login" />}/>
+          <Route path="/aboutus" element={<AboutUs />} />
+          <Route path="/myaccount" element={<MyAccount />} />
+          <Route path="/pantry" element={<Pantry />} />
         </Routes>
-      ) : (
-        <Routes>
-          <Route
-            path="/*"
-            element={<AuthForm name="login" displayName="Login" />}
-          />
-          <Route
-            path="/login"
-            element={<AuthForm name="login" displayName="Login" />}
-          />
-       <Route
-            path="/signup"
-            element={<AuthForm name="signup" displayName="Sign Up" />}
-          />
-
-      </Routes>
-      )}
-
     </div>
   );
 };
 
 export default AppRoutes;
+
