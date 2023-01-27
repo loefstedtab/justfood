@@ -2,12 +2,6 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { authenticate } from '../app/store';
 
-/**
-  The AuthForm component can be used for Login or Sign Up.
-  Props for Login: name="login", displayName="Login"
-  Props for Sign up: name="signup", displayName="Sign Up"
-**/
-
 const AuthForm = ({ name, displayName }) => {
   const { error } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -45,3 +39,4 @@ const AuthForm = ({ name, displayName }) => {
 };
 
 export default AuthForm;
+

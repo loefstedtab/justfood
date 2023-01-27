@@ -6,7 +6,9 @@ import Home from '../components/Home';
 import { me } from './store';
 
 const AppRoutes = () => {
-  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+  //const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+  const isLoggedIn = true
+  
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -15,29 +17,14 @@ const AppRoutes = () => {
 
   return (
     <div>
-      {isLoggedIn ? (
         <Routes>
           <Route path="/*" element={<Home />} />
           <Route to="/home" element={<Home />} />
+          <Route path="/login" element={<AuthForm name="login" displayName="Login" />}/>
         </Routes>
-      ) : (
-        <Routes>
-          <Route
-            path="/*"
-            element={<AuthForm name="login" displayName="Login" />}
-          />
-          <Route
-            path="/login"
-            element={<AuthForm name="login" displayName="Login" />}
-          />
-          <Route
-            path="/signup"
-            element={<AuthForm name="signup" displayName="Sign Up" />}
-          />
-        </Routes>
-      )}
     </div>
   );
 };
 
 export default AppRoutes;
+
