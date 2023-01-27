@@ -1,12 +1,21 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const fetchUser = createAsyncThunk('/user/account', async () => {
+export const fetchUser = createAsyncThunk('/loggedInUser/home', async () => {
   try{
-    const {data} = await axios.get('/api/user/account');
+    const {data} = await axios.get('/api/home');
     console.log("THIS IS MY THUNK DATA", data)
     return data
   } catch(err){
+    console.log(err)
+  }
+})
+
+export const fetchLogout = createAsyncThunk('/loggedInUser/logout', async () => {
+  try{
+    const {data} = await axios.get('/api/logout');
+    return data
+  }catch (err){
     console.log(err)
   }
 })

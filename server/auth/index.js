@@ -13,7 +13,7 @@ router.get(
   "/google/callback",
   passport.authenticate("google", { session: true }),
   (_, res) => {
-    res.redirect(`/user/account`);
+    res.redirect(`/home`);
   }
 );
 
