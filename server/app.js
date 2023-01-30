@@ -7,7 +7,6 @@ const session = require("express-session");
 const cors = require("cors");
 require("./auth/auth");
 
-
 // logging middleware
 app.use(morgan("dev"));
 

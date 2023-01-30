@@ -5,7 +5,6 @@ const db = require("../db");
 const { User } = require("../db");
 const sequelize = require("sequelize");
 
-
 passport.use(
   new GoogleStrategy(
     {

@@ -1,22 +1,23 @@
-const router = require('express').Router()
-module.exports = router
-const isAuth = require('../isAuth')
+const router = require("express").Router();
+const isAuth = require("../isAuth");
 
-router.get('/home', isAuth, async (req, res, next) => {
+router.get("/home", isAuth, async (req, res, next) => {
   try {
     const user = {
       ...req.user,
-      loggedIn: true
-    }
-    console.log("THIS IS MY USER API", user)
-    res.json(user)
+      loggedIn: true,
+    };
+    console.log("THIS IS MY USER API", user);
+    res.json(user);
   } catch (err) {
-    next(err)
+    next(err);
   }
-})
+});
 
 router.use((req, res, next) => {
-  const error = new Error('Not Found')
-  error.status = 404
-  next(error)
-})
+  const error = new Error("Not Found");
+  error.status = 404;
+  next(error);
+});
+
+module.exports = router;
