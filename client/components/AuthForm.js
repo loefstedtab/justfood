@@ -1,7 +1,7 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { authenticate } from '../app/store';
-import AddUserForm from './AddUserForm';
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { authenticate } from "../app/store";
+import AddUserForm from "./AddUserForm";
 
 const AuthForm = ({ name, displayName }) => {
   const { error } = useSelector((state) => state.auth);
@@ -35,10 +35,11 @@ const AuthForm = ({ name, displayName }) => {
         </div>
         {error && <div> {error} </div>}
       </form>
-      <div><AddUserForm /></div>
+      <div>
+        <AddUserForm />
+      </div>
     </div>
   );
 };
 
 export default AuthForm;
-

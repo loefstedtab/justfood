@@ -1,7 +1,7 @@
-const { db } = require('./db')
-const PORT = process.env.PORT || 8080
-const app = require('./app')
-const seed = require('../script/seed');
+const { db } = require("./db");
+const PORT = process.env.PORT || 8080;
+const app = require("./app");
+const seed = require("../script/seed");
 
 // const init = async () => {
 //   try {
@@ -20,9 +20,9 @@ const seed = require('../script/seed');
 
 // init()
 
-db.sync({force: true}).then(() => {
-  seed()
-  console.log("DB Synced!!!")
+db.sync({ force: true }).then(() => {
+  seed();
+  console.log("DB Synced!!!");
   app.listen(PORT, () =>
     console.log(
       `listening on port ${PORT}

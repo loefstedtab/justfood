@@ -9,18 +9,19 @@ const Context = ({ children }) => {
     loggedIn: null,
   }));
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const user = useSelector(selectUser)
-  console.log("THIS IS MY USER IN MY REACT COMPONENT", user)
+  const user = useSelector(selectUser);
+  console.log("THIS IS MY USER IN MY REACT COMPONENT", user);
 
   useEffect(() => {
     dispatch(fetchUser()).then(setAccount(user));
   }, []);
 
-
   //   get the user
-  return <UserContext.Provider value={account}>{children}</UserContext.Provider>;
+  return (
+    <UserContext.Provider value={account}>{children}</UserContext.Provider>
+  );
 };
 
 export default Context;

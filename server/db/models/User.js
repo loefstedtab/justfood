@@ -1,32 +1,32 @@
-const Sequelize = require('sequelize')
-const db = require('../db')
+const Sequelize = require("sequelize");
+const db = require("../db");
 // const jwt = require('jsonwebtoken')
 // const bcrypt = require('bcrypt');
 
 // const SALT_ROUNDS = 5;
 
-const User = db.define('user', {
+const User = db.define("user", {
   firstName: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
   },
   lastName: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
   },
   email: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
   },
-  phoneNumber:{
-    type:Sequelize.INTEGER
+  phoneNumber: {
+    type: Sequelize.INTEGER,
   },
   googleId: {
     type: Sequelize.STRING,
   },
-})
+});
 
-module.exports = User
+module.exports = User;
 
 /**
  * instanceMethods

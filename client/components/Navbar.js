@@ -1,17 +1,18 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { logout } from '../app/store';
-
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { logout } from "../app/store";
 
 const Navbar = () => {
-  const user = useSelector((state) => state.user)
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   return (
     <div>
-      <Link to="/home"><h1>Just Food!</h1></Link>
+      <Link to="/home">
+        <h1>Just Food!</h1>
+      </Link>
 
       <nav>
         {user.loggedIn ? (
@@ -21,8 +22,10 @@ const Navbar = () => {
             <Link to="/myaccount">My Account</Link>
             <Link to="/pantry">Pantry</Link>
             <form action="/auth/logout" method="post">
-							<button className="logout" type="submit">Sign out</button>
-						</form>
+              <button className="logout" type="submit">
+                Sign out
+              </button>
+            </form>
           </div>
         ) : (
           <div>
