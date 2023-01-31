@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const db = require("../db");
-// const jwt = require('jsonwebtoken')
-// const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken')
+const bcrypt = require('js');
 
 // const SALT_ROUNDS = 5;
 
@@ -24,10 +24,100 @@ const User = db.define("user", {
   googleId: {
     type: Sequelize.STRING,
   },
+  password: {
+    type: Sequelize.STRING,
+  }
 });
 
-module.exports = User;
+//register new user
+const registerUser = async(req,res) => {
+  const { email, password, firstName, lastName, phoneNumber } = req.body;
 
+  //validation
+  if(!email || !password) {
+    res.status(400);
+    throw new Error('Please include all fields');
+  }
+
+  //Find if user exists
+  const userExists = await User.findOne({ email });
+  if(userExists){
+    res.status(400);
+    throw new Error('User already exists');
+  }
+
+  //Hash
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  //Create user
+  const user = await User.create({
+    firstName,
+    lastName,
+    email,
+    phoneNumber,
+    password: hashedPassword,
+  });
+
+  if(user){
+    res.status(201).json({
+      id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      phoneNumber: user.phoneNumber,
+      token: generateToken(user.id),
+    });
+  }else{
+    res.status(400);
+    throw new Error ('Invalid user data');
+  }
+};
+  //Login a new user
+  const loginUser = async(req,res) => {
+    const { email, password } = req.body;
+    const user = await user.findOne({ email });
+
+    //check user passwords match
+    if(user && (await bcrypt.compare(password, user.password))) {
+      res.status(200).json({
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        phoneNumber: user.phoneNumber,
+        token: generateToken(user.id),
+      });
+    } else{
+      res.status(401);
+      throw new Error('Invalid credentials');
+    }
+  };
+
+  //Get current user
+  const getMe = async(req,res) => {
+    const user = {
+      id: req.user.id,
+      firstName: req.user.firstName,
+      lastName: req.user.lastName,
+      email: req.user.email,
+      phoneNumber: req.user.phoneNumber,
+    };
+    res.status(200).json(user);
+  };
+
+const generateToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: '30d',
+  });
+};
+
+
+module.exports = {
+  User,
+  registerUser,
+  loginUser,
+  getMe,
+};
 /**
  * instanceMethods
  */
