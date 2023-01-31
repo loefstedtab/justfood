@@ -1,6 +1,7 @@
 import React from "react";
 import GoogleButton from "react-google-button";
 import { Link } from "react-router-dom";
+import AuthForm from "./AuthForm";
 
 const Login = () => {
   window.process = {
@@ -16,9 +17,14 @@ const Login = () => {
   };
 
   return (
-    <div className="buttonDiv">
-      <GoogleButton onClick={handleLogin} />
-    </div>
+    <>
+      <div className="form">
+        <AuthForm />
+      </div>
+        <div className="buttonDiv">
+          <GoogleButton onClick={handleLogin} />
+        </div>
+    </>
   );
 };
 

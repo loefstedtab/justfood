@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
-import AuthForm from "../components/AuthForm";
 import Home from "../components/Home";
 import { me } from "./store";
 import AboutUs from "../components/AboutUs";

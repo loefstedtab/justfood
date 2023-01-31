@@ -103,7 +103,13 @@ const registerUser = async(req,res) => {
     res.status(200).json(user);
   };
 
-// const generateToken = (id) => {
+  const generateToken = ( id ) => {
+    return jwt.sign( id, process.env.JWT_SECRET, {
+      //expiresIn: '30d',
+    });
+  };
+
+  // const generateToken = (id) => {
 //   return jwt.sign({ id }, process.env.JWT_SECRET, {
 //     expiresIn: '30d',
 //   });
@@ -115,6 +121,7 @@ module.exports = {
   registerUser,
   loginUser,
   getMe,
+  generateToken
 };
 /**
  * instanceMethods

@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import { fetchUser, selectUser } from "../slices/userSlice";
+import { fetchGoogleUser, selectUser } from "../slices/userSlice";
 import { useSelector, useDispatch } from "react-redux";
 
 export const UserContext = createContext();
@@ -15,7 +15,7 @@ const Context = ({ children }) => {
   console.log("THIS IS MY USER IN MY REACT COMPONENT", user);
 
   useEffect(() => {
-    dispatch(fetchUser()).then(setAccount(user));
+    dispatch(fetchGoogleUser()).then(setAccount(user));
   }, []);
 
   //   get the user

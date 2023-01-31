@@ -46,14 +46,6 @@ passport.deserializeUser((user, done) => {
   done(null, user);
 });
 
-//Auth middleware for routes
-// const isAuth = (req, res, next) => {
-//   if (req.user) next();
-//   else {
-//     res.json({ loggedIn: false });
-//   }
-// };
-
 //Protect routes function
 const protect = async(req,res,next) => {
   let token

@@ -2,25 +2,19 @@ const router = require("express").Router();
 const { protect, isAuth } = require('../auth/auth');
 const jwt = require('jsonwebtoken');
 const { User } = require("../db");
+const { generateToken } = require('../db/models/User');
 
 //JWT routes
-router.get('/test',
+router.get('/jwtUser',
 protect,
 async(req,res,next) => {
   try{
-    res.json('TEST')
-
-    //res.json(user);
+    const user = req.user;
+    res.json(user);
   }catch(err){
     console.log(err)
   }
-} ); 
-
-const generateToken = ( id ) => {
-  return jwt.sign( id, process.env.JWT_SECRET, {
-    //expiresIn: '30d',
-  });
-};
+});
 
 router.post('/createNewUser',
 async(req, res) => {
@@ -38,7 +32,6 @@ async (req, res, next) => {
       ...req.user,
       loggedIn: true,
     };
-    console.log("THIS IS MY USER API", user);
     res.json(user);
   } catch (err) {
     next(err);
