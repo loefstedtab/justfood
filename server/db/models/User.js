@@ -1,25 +1,23 @@
 const Sequelize = require("sequelize");
 const db = require("../db");
 const jwt = require('jsonwebtoken')
-const bcrypt = require('js');
-
-// const SALT_ROUNDS = 5;
+const bcrypt = require('bcrypt');
 
 const User = db.define("user", {
   firstName: {
     type: Sequelize.STRING,
-    allowNull: false,
+    //allowNull: false,
   },
   lastName: {
     type: Sequelize.STRING,
-    allowNull: false,
+    //allowNull: false,
   },
   email: {
     type: Sequelize.STRING,
-    allowNull: false,
+    //allowNull: false,
   },
   phoneNumber: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
   },
   googleId: {
     type: Sequelize.STRING,
@@ -105,11 +103,11 @@ const registerUser = async(req,res) => {
     res.status(200).json(user);
   };
 
-const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: '30d',
-  });
-};
+// const generateToken = (id) => {
+//   return jwt.sign({ id }, process.env.JWT_SECRET, {
+//     expiresIn: '30d',
+//   });
+// };
 
 
 module.exports = {
