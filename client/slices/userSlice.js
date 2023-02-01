@@ -10,15 +10,15 @@ export const fetchGoogleUser = createAsyncThunk("/googleUser", async () => {
   }
 });
 
-export const fetchJwtUser = createAsyncThunk('/jwtUser',
-async () => {
-  try{
-    const { data } = await axios.get('/api/jwtUser');
-    return data;
-  }catch(err){
-    console.log(err);
-  }
-});
+// export const fetchJwtUser = createAsyncThunk('/jwtUser',
+// async () => {
+//   try{
+//     const { data } = await axios.get('/api/jwtUser');
+//     return data;
+//   }catch(err){
+//     console.log(err);
+//   }
+// });
 
 const userSlice = createSlice({
   name: "user",
