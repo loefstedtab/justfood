@@ -1,27 +1,25 @@
-const sequelize = require("sequelize")
-const db = require("../db")
+const sequelize = require("sequelize");
+const db = require("../db");
 
 const Ingredient = db.define("ingredient", {
-    id(findByPk) {
-        type: sequelize.INTEGER,
-        primaryKey; true,
-        autoIncrement; true,
-        allowNull; false
-
-    },
-user_id: {
+  id(findByPk) {
+    type: sequelize.INTEGER, primaryKey;
+    true, autoIncrement;
+    true, allowNull;
+    false;
+  },
+  user_id: {
     type: sequelize.INTEGER,
-    allowNull: false
-},
-name: {
+    allowNull: false,
+  },
+  name: {
     type: sequelize.STRING,
-    allowNull: false
-},
-quantity: {
+    allowNull: false,
+  },
+  quantity: {
     type: sequelize.INTEGER,
-    allowNull: false
-},
+    allowNull: false,
+  },
+});
 
-})
-
-module.exports = Ingredient
+module.exports = Ingredient;

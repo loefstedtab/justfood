@@ -1,10 +1,9 @@
 const passport = require("passport");
+const jwt = require('jsonwebtoken');
 require("dotenv").config();
 const { Strategy: GoogleStrategy } = require("passport-google-oauth20");
-const db = require("../db");
 const { User } = require("../db");
-const sequelize = require("sequelize");
-
+const sequelize = require('sequelize');
 
 passport.use(
   new GoogleStrategy(
@@ -46,3 +45,39 @@ passport.deserializeUser((user, done) => {
   // loads into req.user
   done(null, user);
 });
+
+//Protect routes function
+const protect = async(req,res,next) => {
+  let token
+  if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
+    try{
+      //Get token from user
+      token = req.headers.authorization.split(' ')[1];
+      //verify token
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      console.log(decoded, 'DECODED')
+      //get user from token
+      req.user = await User.findByPk(decoded)
+      console.log(req.user, 'REQ USER');
+      //.select('-password');
+      next()
+    }catch(err){
+      console.log(err);
+      res.status(401);
+      throw new Error('Not authorized');
+    }
+  }
+  if(!token){
+    res.status(401);
+    throw new Error('Not authorized');
+  }
+};
+const isAuth = (req, res, next) => {
+  if (req.user)
+  next();
+  else {
+    res.json({ loggedIn: false });
+  }
+};
+
+module.exports =  { protect, isAuth }

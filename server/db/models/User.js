@@ -1,33 +1,131 @@
-const Sequelize = require('sequelize')
-const db = require('../db')
-// const jwt = require('jsonwebtoken')
-// const bcrypt = require('bcrypt');
+const Sequelize = require("sequelize");
+const db = require("../db");
+const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt');
 
-// const SALT_ROUNDS = 5;
-
-const User = db.define('user', {
+const User = db.define("user", {
   firstName: {
     type: Sequelize.STRING,
-    allowNull: false
+    //allowNull: false,
   },
   lastName: {
     type: Sequelize.STRING,
-    allowNull: false
+    //allowNull: false,
   },
   email: {
     type: Sequelize.STRING,
-    allowNull: false
+    //allowNull: false,
   },
-  phoneNumber:{
-    type:Sequelize.INTEGER
+  phoneNumber: {
+    type: Sequelize.STRING,
   },
   googleId: {
     type: Sequelize.STRING,
   },
-})
+  password: {
+    type: Sequelize.STRING,
+  }
+});
 
-module.exports = User
+//register new user
+const registerUser = async(req,res) => {
+  const { email, password, firstName, lastName, phoneNumber } = req.body;
 
+  //validation
+  if(!email || !password) {
+    res.status(400);
+    throw new Error('Please include all fields');
+  }
+
+  //Find if user exists
+  const userExists = await User.findOne({ email });
+  if(userExists){
+    res.status(400);
+    throw new Error('User already exists');
+  }
+
+  //Hash
+  const hashedPassword =  bcrypt.hash(password, 10);
+
+  //Create user
+  const user = await User.create({
+    firstName,
+    lastName,
+    email,
+    phoneNumber,
+    password: hashedPassword,
+  });
+
+  if(user){
+    res.status(201).json({
+      id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      phoneNumber: user.phoneNumber,
+      token: generateToken(user.id),
+    });
+  }else{
+    res.status(400);
+    throw new Error ('Invalid user data');
+  }
+};
+  //Login a new user
+  const loginUser = async(req,res) => {
+    console.log('REQ BODY', req.body)
+    const { email, password } = req.body;
+    console.log('EMAIL', email, 'PWD', password)
+    const user = await User.findOne({ where:{email: email }});
+    console.log('USER FROM LOGIN FUNC', user)
+
+    //check user passwords match
+    if(user && (await bcrypt.compare(password, user.password))) {
+      res.status(200).json({
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        phoneNumber: user.phoneNumber,
+        token: generateToken(user.id),
+      });
+    } else{
+      res.status(401);
+      throw new Error('Invalid credentials');
+    }
+  };
+
+  //Get current user
+  const getMe = async(req,res) => {
+    const user = {
+      id: req.user.id,
+      firstName: req.user.firstName,
+      lastName: req.user.lastName,
+      email: req.user.email,
+      phoneNumber: req.user.phoneNumber,
+    };
+    res.status(200).json(user);
+  };
+
+  const generateToken = ( id ) => {
+    return jwt.sign( id, process.env.JWT_SECRET, {
+      //expiresIn: '30d',
+    });
+  };
+
+  // const generateToken = (id) => {
+//   return jwt.sign({ id }, process.env.JWT_SECRET, {
+//     expiresIn: '30d',
+//   });
+// };
+
+
+module.exports = {
+  User,
+  registerUser,
+  loginUser,
+  getMe,
+  generateToken
+};
 /**
  * instanceMethods
  */
@@ -71,13 +169,13 @@ module.exports = User
 // /**
 //  * hooks
 //  */
-// const hashPassword = async(user) => {
-//   //in case the password has been changed, we want to encrypt it with bcrypt
-//   if (user.changed('password')) {
-//     user.password = await bcrypt.hash(user.password, SALT_ROUNDS);
-//   }
-// }
+const hashPassword = async(user) => {
+  //in case the password has been changed, we want to encrypt it with bcrypt
+  if (user.changed('password')) {
+    user.password = await bcrypt.hash(user.password, 10);
+  }
+}
 
-// User.beforeCreate(hashPassword)
+ User.beforeCreate(hashPassword)
 // User.beforeUpdate(hashPassword)
 // User.beforeBulkCreate(users => Promise.all(users.map(hashPassword)))

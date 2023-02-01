@@ -162,14 +162,14 @@ const Home = () => {
           {ingredients.map((ingredient) => (
             <li key={ingredient}>{ingredient}</li>
           ))}
-        </ul>  
+        </ul>
         <ul>
         {ingredients.map((ingredient, index) => (
     <li key={index}>
       {ingredient} <button onClick={() => handleIngredientRemove(ingredient)}>Delete</button>
     </li>
   ))}
-          </ul>     
+          </ul>
         <label>
           <input
 
@@ -195,6 +195,7 @@ const Home = () => {
 
 
 export default Home;
+
 
 
 

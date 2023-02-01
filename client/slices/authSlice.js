@@ -1,24 +1,30 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 /*
   CONSTANT VARIABLES
 */
-const TOKEN = 'token';
+const TOKEN = "token";
 
 /*
   THUNKS
 */
-export const me = createAsyncThunk('auth/me', async () => {
+export const getMe = createAsyncThunk(
+  "jwt/getMe",
+  async (thunkAPI) => {
   const token = window.localStorage.getItem(TOKEN);
+  console.log('TOKEN FROM GETME', token)
   try {
+    console.log('TOKEN INSIDE TRY CATCH THING', token)
     if (token) {
-      const res = await axios.get('/auth/me', {
+      console.log('TOKEN INSIDE IF INSIDE TRY CATCH THING', token)
+      const response = await axios.get("/api/jwtUser", {
         headers: {
-          authorization: token,
+          authorization: `Bearer ${token}`
         },
       });
-      return res.data;
+      console.log('response from getMe thunk', response)
+      return response.data;
     } else {
       return {};
     }
@@ -26,23 +32,25 @@ export const me = createAsyncThunk('auth/me', async () => {
     if (err.response.data) {
       return thunkAPI.rejectWithValue(err.response.data);
     } else {
-      return 'There was an issue with your request.';
+      return "There was an issue with your request.";
     }
   }
 });
 
 export const authenticate = createAsyncThunk(
-  'auth/authenticate',
-  async ({ username, password, method }, thunkAPI) => {
+  "jwt/authenticate",
+  async ({ email, password }, thunkAPI) => {
     try {
-      const res = await axios.post(`/auth/${method}`, { username, password });
-      window.localStorage.setItem(TOKEN, res.data.token);
-      thunkAPI.dispatch(me());
+      console.log('EMAIL FROM THUNK', email, 'PASSWORD FROM THUNK', password)
+      const response = await axios.post(`/api/jwtLogin`, { email, password });
+      console.log('THIS IS RESPONSE FROM THUNK', response)
+      window.localStorage.setItem(TOKEN, response.data.token);
+      thunkAPI.dispatch(getMe());
     } catch (err) {
       if (err.response.data) {
         return thunkAPI.rejectWithValue(err.response.data);
       } else {
-        return 'There was an issue with your request.';
+        return "There was an issue with your request.";
       }
     }
   }
@@ -52,7 +60,7 @@ export const authenticate = createAsyncThunk(
   SLICE
 */
 export const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState: {
     me: {},
     error: null,
@@ -65,10 +73,10 @@ export const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(me.fulfilled, (state, action) => {
-      state.me = action.payload;
+    builder.addCase(getMe.fulfilled, (state, action) => {
+      state.getMe = action.payload;
     });
-    builder.addCase(me.rejected, (state, action) => {
+    builder.addCase(getMe.rejected, (state, action) => {
       state.error = action.error;
     });
     builder.addCase(authenticate.rejected, (state, action) => {
