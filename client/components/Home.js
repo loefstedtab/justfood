@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import react, { useState } from 'react';
 import axios from 'axios';
 
 const Home = () => {
@@ -59,6 +59,11 @@ const Home = () => {
     setMissingIngredients(e.target.value);
   };
 
+  const handleIngredientRemove = (ingredient) => {
+    setIngredients(ingredients.filter((i) => i !== ingredient));
+  };
+
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     const restrictionsQuery = Object.keys(restrictions)
@@ -66,14 +71,14 @@ const Home = () => {
       .map((restriction) => restriction + '=true')
       .join('&');
     let res;
-    if (pantryIngredients.length === 0 || missingIngredientsCount === 0) {
+    if (ingredients.length === 0 || missingIngredients === 0) {
       res = await axios.get(
         `https://api.spoonacular.com/recipes/complexSearch?query=${searchTerm}&${restrictionsQuery}&apiKey=67f2eb38dc7441189476c0fd3fb74863`
       );
     } else {
-      const ingredientsQuery = pantryIngredients.map((ingredient) => `ingredients=${ingredient}`).join('&');
+      const ingredientsQuery = ingredients.map((ingredient) => `ingredients=${ingredient}`).join('&');
       res = await axios.get(
-        `https://api.spoonacular.com/recipes/complexSearch?query=${searchTerm}&${ingredientsQuery}&numberOfMissingIngredients=${missingIngredientsCount}&${restrictionsQuery}&apiKey=67f2eb38dc7441189476c0fd3fb74863`
+        `https://api.spoonacular.com/recipes/complexSearch?query=${searchTerm}&${ingredientsQuery}&numberOfMissingIngredients=${missingIngredients}&${restrictionsQuery}&apiKey=67f2eb38dc7441189476c0fd3fb74863`
       );
     }
     console.log(res.data.results);
@@ -157,7 +162,14 @@ const Home = () => {
           {ingredients.map((ingredient) => (
             <li key={ingredient}>{ingredient}</li>
           ))}
-        </ul>
+        </ul>  
+        <ul>
+        {ingredients.map((ingredient, index) => (
+    <li key={index}>
+      {ingredient} <button onClick={() => handleIngredientRemove(ingredient)}>Delete</button>
+    </li>
+  ))}
+          </ul>     
         <label>
           <input
 
@@ -183,3 +195,9 @@ const Home = () => {
 
 
 export default Home;
+
+
+
+
+
+
