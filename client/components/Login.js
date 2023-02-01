@@ -12,7 +12,6 @@ const Login = () => {
   };
   const handleLogin = () => {
     const redirectToGoogle = process.env.GOOGLE_URL;
-    console.log(redirectToGoogle);
     window.open(redirectToGoogle, "_self");
   };
 

@@ -71,15 +71,12 @@ const registerUser = async(req,res) => {
   }
 };
   //Login a new user
-  const loginUser = async(req,res) => {
-    console.log('REQ BODY', req.body)
+  const loginUser = async(req,res, next) => {
     const { email, password } = req.body;
-    console.log('EMAIL', email, 'PWD', password)
     const user = await User.findOne({ where:{email: email }});
-    console.log('USER FROM LOGIN FUNC', user)
-
+    try{
     //check user passwords match
-    if(user && (await bcrypt.compare(password, user.password))) {
+      if(user && (await bcrypt.compare(password, user.password))) {
       res.status(200).json({
         id: user.id,
         firstName: user.firstName,
@@ -91,7 +88,10 @@ const registerUser = async(req,res) => {
     } else{
       res.status(401);
       throw new Error('Invalid credentials');
+    }} catch(err){
+      next(err)
     }
+
   };
 
   //Get current user
