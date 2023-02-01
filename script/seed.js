@@ -8,14 +8,7 @@ const { db, User } = require("../server/db");
  */
 async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
-  console.log("db synced!")
-
-  // User.create({
-  //   firstName: "cody",
-  //     lastName: "boner",
-  //     email: "thisisanemail@gmail.com",
-  //     phoneNumber: '5055555555',
-  // })
+  console.log("db synced!");
 
   //Creating Users
   const users = await Promise.all([
@@ -23,14 +16,14 @@ async function seed() {
       firstName: "cody",
       lastName: "boner",
       email: "thisisanemail@gmail.com",
-      phoneNumber: '5055555555',
+      phoneNumber: "5055555555",
     }),
     User.create({
       firstName: "donny",
       lastName: "donowitz",
       email: "don@gmail.com",
-      phoneNumber: '5055555555',
-      password: "abc123"
+      phoneNumber: "5055555555",
+      password: "abc123",
     }),
   ]);
 
@@ -42,7 +35,7 @@ async function seed() {
       murphy: users[1],
     },
   };
- }
+}
 
 // /*
 //  We've separated the `seed` function from the `runSeed` function.
@@ -73,4 +66,4 @@ async function seed() {
 // }
 
 // // we export the seed function for testing purposes (see `./seed.spec.js`)
- module.exports = seed;
+module.exports = seed;

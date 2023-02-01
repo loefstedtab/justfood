@@ -2,11 +2,11 @@ const sequelize = require("sequelize");
 const db = require("../db");
 
 const Ingredient = db.define("ingredient", {
-  id(findByPk) {
-    type: sequelize.INTEGER, primaryKey;
-    true, autoIncrement;
-    true, allowNull;
-    false;
+  id: {
+    type: sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+    allowNull: false,
   },
   user_id: {
     type: sequelize.INTEGER,
