@@ -45,7 +45,7 @@ const registerUser = async(req,res) => {
   }
 
   //Hash
-  const hashedPassword = await bcrypt.hash(password, 10);
+  const hashedPassword =  bcrypt.hash(password, 10);
 
   //Create user
   const user = await User.create({
@@ -72,8 +72,11 @@ const registerUser = async(req,res) => {
 };
   //Login a new user
   const loginUser = async(req,res) => {
+    console.log('REQ BODY', req.body)
     const { email, password } = req.body;
-    const user = await user.findOne({ email });
+    console.log('EMAIL', email, 'PWD', password)
+    const user = await User.findOne({ where:{email: email }});
+    console.log('USER FROM LOGIN FUNC', user)
 
     //check user passwords match
     if(user && (await bcrypt.compare(password, user.password))) {
@@ -166,13 +169,13 @@ module.exports = {
 // /**
 //  * hooks
 //  */
-// const hashPassword = async(user) => {
-//   //in case the password has been changed, we want to encrypt it with bcrypt
-//   if (user.changed('password')) {
-//     user.password = await bcrypt.hash(user.password, SALT_ROUNDS);
-//   }
-// }
+const hashPassword = async(user) => {
+  //in case the password has been changed, we want to encrypt it with bcrypt
+  if (user.changed('password')) {
+    user.password = await bcrypt.hash(user.password, 10);
+  }
+}
 
-// User.beforeCreate(hashPassword)
+ User.beforeCreate(hashPassword)
 // User.beforeUpdate(hashPassword)
 // User.beforeBulkCreate(users => Promise.all(users.map(hashPassword)))

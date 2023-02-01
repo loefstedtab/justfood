@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { protect, isAuth } = require('../auth/auth');
 const jwt = require('jsonwebtoken');
 const { User } = require("../db");
-const { generateToken } = require('../db/models/User');
+const { generateToken, loginUser, registerUser, getMe  } = require('../db/models/User');
 
 //JWT routes
 router.get('/jwtUser',
@@ -15,6 +15,11 @@ async(req,res,next) => {
     console.log(err)
   }
 });
+
+router.post('/jwtLogin',
+loginUser,
+
+);
 
 router.post('/createNewUser',
 async(req, res) => {
