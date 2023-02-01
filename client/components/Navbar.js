@@ -4,7 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../app/store";
 
 const Navbar = () => {
-  const user = useSelector((state) => state.user);
+  const googleUser = useSelector((state) => state.user);
+  const jwtUser = useSelector((state) => state.auth.getMe)
+  console.log("this is the jwt user from navbar", jwtUser)
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -15,9 +17,9 @@ const Navbar = () => {
       </Link>
 
       <nav>
-        {user.loggedIn ? (
+        {googleUser.loggedIn || jwtUser ? (
           <div>
-            <h3>Welcome, {user.firstName}!</h3>
+            <h3>Welcome, {googleUser.firstName || jwtUser.firstName}!</h3>
             <Link to="/aboutus">About Us</Link>
             <Link to="/myaccount">My Account</Link>
             <Link to="/pantry">Pantry</Link>

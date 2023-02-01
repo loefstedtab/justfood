@@ -2,11 +2,11 @@ const sequelize = require("sequelize");
 const db = require("../db");
 
 const Pantry = db.define("pantry", {
-  Pantry_id(findByPk) {
-    type: sequelize.INTEGER, primaryKey;
-    true, autoIncrement;
-    true, allowNull;
-    false;
+  Pantry_id: {
+    type: sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+    allowNull: false,
   },
   user_id: {
     type: sequelize.INTEGER,

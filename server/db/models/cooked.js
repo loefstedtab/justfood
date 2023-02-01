@@ -1,13 +1,13 @@
 const sequelize = require("sequelize");
-const { model } = require("../db");
+
 const db = require("../db");
 
 const isCooked = db.define("isCooked", {
-  id(findByPk) {
-    type: sequelize.INTEGER, primaryKey;
-    true, autoIncrement;
-    true, allowNull;
-    false;
+  id: {
+    type: sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+    allowNull: false,
   },
   user_id: {
     type: sequelize.INTEGER,

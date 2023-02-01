@@ -1,37 +1,34 @@
 const router = require("express").Router();
-const { protect, isAuth } = require('../auth/auth');
-const jwt = require('jsonwebtoken');
+const { protect, isAuth } = require("../auth/auth");
+const jwt = require("jsonwebtoken");
 const { User } = require("../db");
-const { generateToken, loginUser, registerUser, getMe  } = require('../db/models/User');
+const {
+  generateToken,
+  loginUser,
+  registerUser,
+  getMe,
+} = require("../db/models/User");
 
 //JWT routes
-router.get('/jwtUser',
-protect,
-async(req,res,next) => {
-  try{
+router.get("/jwtUser", protect, async (req, res, next) => {
+  try {
     const user = req.user;
     res.json(user);
-  }catch(err){
-    console.log(err)
+  } catch (err) {
+    console.log(err);
   }
 });
 
-router.post('/jwtLogin',
-loginUser,
+router.post("/jwtLogin", loginUser);
 
-);
-
-router.post('/createNewUser',
-async(req, res) => {
-  const user = await User.findOne({where: {email:req.body.email}})
-  const token = generateToken( user.dataValues.id )
+router.post("/createNewUser", async (req, res) => {
+  const user = await User.findOne({ where: { email: req.body.email } });
+  const token = generateToken(user.dataValues.id);
   res.json(token);
 });
 
 //Google Routes
-router.get("/googleUser",
-isAuth,
-async (req, res, next) => {
+router.get("/googleUser", isAuth, async (req, res, next) => {
   try {
     const user = {
       ...req.user,

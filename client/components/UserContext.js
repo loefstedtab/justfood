@@ -12,7 +12,7 @@ const Context = ({ children }) => {
   const dispatch = useDispatch();
 
   const user = useSelector(selectUser);
-  console.log("THIS IS MY USER IN MY REACT COMPONENT", user);
+  console.log("THIS IS MY GOOGLE USER IN MY REACT COMPONENT", user);
 
   useEffect(() => {
     dispatch(fetchGoogleUser()).then(setAccount(user));
