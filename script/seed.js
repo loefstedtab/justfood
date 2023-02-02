@@ -23,7 +23,7 @@ async function seed() {
       lastName: "donowitz",
       email: "don@gmail.com",
       phoneNumber: "5055555555",
-      password: "abc123",
+      password: "password",
     }),
   ]);
 

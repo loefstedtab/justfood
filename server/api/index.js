@@ -1,13 +1,9 @@
 const router = require("express").Router();
-const { protect, isAuth } = require("../auth/auth");
+const { protect } = require("../auth/jwtAuth");
+const { isAuth } = require("../auth/googleAuth");
 const jwt = require("jsonwebtoken");
 const { User } = require("../db");
-const {
-  generateToken,
-  loginUser,
-  registerUser,
-  getMe,
-} = require("../db/models/User");
+const { generateToken, registerUser, getMe } = require("../auth/jwtAuth");
 
 //JWT routes
 router.get("/jwtUser", protect, async (req, res, next) => {
@@ -18,8 +14,6 @@ router.get("/jwtUser", protect, async (req, res, next) => {
     console.log(err);
   }
 });
-
-router.post("/jwtLogin", loginUser);
 
 router.post("/createNewUser", async (req, res) => {
   const user = await User.findOne({ where: { email: req.body.email } });

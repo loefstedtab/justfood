@@ -37,7 +37,7 @@ export const authenticate = createAsyncThunk(
   "jwt/authenticate",
   async ({ email, password }, thunkAPI) => {
     try {
-      const response = await axios.post(`/api/jwtLogin`, { email, password });
+      const response = await axios.post(`/auth/jwtLogin`, { email, password });
       window.localStorage.setItem(TOKEN, response.data.token);
       thunkAPI.dispatch(getMe());
     } catch (err) {
