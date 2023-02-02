@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
+import { Button, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 
 const AboutUs = () => {
 
@@ -18,16 +18,16 @@ const AboutUs = () => {
 
             <Button >Hello!</Button>
 
-            <Dropdown className="d-flex align-items-center" >
-                <DropdownToggle className="font-weight-bold">Learn</DropdownToggle>
+            <UncontrolledDropdown className="d-flex align-items-center" >
+                <DropdownToggle className="font-weight-bold" >Learn</DropdownToggle>
                 <DropdownMenu end>
-                  <DropdownItem className="font-weight-bold text-secondary text-uppercase">Learn React</DropdownItem>
+                  <DropdownItem className="font-weight-bold text-secondary text-uppercase" >Learn React</DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem>Documentation</DropdownItem>
                   <DropdownItem>Tutorials</DropdownItem>
                   <DropdownItem>Courses</DropdownItem>
                 </DropdownMenu>
-            </Dropdown>
+            </UncontrolledDropdown>
         </>
 
     )
