@@ -6,14 +6,16 @@ const { User } = require("../db");
 const { generateToken, registerUser, getMe } = require("../auth/jwtAuth");
 
 //JWT routes
-router.get("/jwtUser", protect, async (req, res, next) => {
-  try {
-    const user = req.user;
-    res.json(user);
-  } catch (err) {
-    console.log(err);
-  }
-});
+// router.get("/jwtUser", protect, async (req, res, next) => {
+//   try {
+//     const user = req.user;
+//     res.json(user);
+//   } catch (err) {
+//     console.log(err);
+//   }
+// });
+
+router.get("/jwtUser", protect, getMe);
 
 router.post("/createNewUser", async (req, res) => {
   const user = await User.findOne({ where: { email: req.body.email } });

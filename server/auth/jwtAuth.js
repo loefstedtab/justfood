@@ -101,15 +101,19 @@ const loginUser = async (req, res, next) => {
 };
 
 //Get current user
-const getMe = async (req, res) => {
-  const user = {
-    id: req.user.id,
-    firstName: req.user.firstName,
-    lastName: req.user.lastName,
-    email: req.user.email,
-    phoneNumber: req.user.phoneNumber,
-  };
-  res.status(200).json(user);
+const getMe = async (req, res, next) => {
+  try {
+    const user = {
+      id: req.user.id,
+      firstName: req.user.firstName,
+      lastName: req.user.lastName,
+      email: req.user.email,
+      phoneNumber: req.user.phoneNumber,
+    };
+    res.status(200).json(user);
+  } catch (err) {
+    next(err);
+  }
 };
 
 const generateToken = (id) => {
