@@ -23,13 +23,11 @@ const protect = async (req, res, next) => {
       next();
     } catch (err) {
       console.log(err);
-      res.status(401);
-      throw new Error("Not authorized");
+      res.status(401).json("Not authorized");
     }
   }
   if (!token) {
-    res.status(401);
-    throw new Error("Not authorized");
+    res.status(401).json("Not authorized");
   }
 };
 
@@ -39,15 +37,13 @@ const registerUser = async (req, res, next) => {
   try {
     //validation
     if (!email || !password) {
-      res.status(400);
-      throw new Error("Please include all fields");
+      res.status(400).json("Please include all fields");
     }
 
     //Find if user exists
     const userExists = await User.findOne({ where: { email: email } });
     if (userExists) {
-      res.status(400);
-      throw new Error("User already exists");
+      res.status(400).json("User already exists");
     }
 
     //Hash
@@ -72,15 +68,14 @@ const registerUser = async (req, res, next) => {
         token: generateToken(user.id),
       });
     } else {
-      res.status(400);
-      throw new Error("Invalid user data");
+      res.status(400).json("Invalid user data");
     }
   } catch (err) {
     next(err);
   }
 };
 
-//Login a new user
+//Login a user
 const loginUser = async (req, res, next) => {
   const { email, password } = req.body;
   const user = await User.findOne({ where: { email: email } });
@@ -96,8 +91,7 @@ const loginUser = async (req, res, next) => {
         token: generateToken(user.id),
       });
     } else {
-      res.status(401);
-      throw new Error("Invalid credentials");
+      res.status(400).json("Invalid Credentials");
     }
   } catch (err) {
     next(err);
