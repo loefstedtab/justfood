@@ -42,9 +42,9 @@ const AuthForm = () => {
         </div>
         {error && <div> {error} </div>}
       </form>
-      {/* <div>
+      <div>
         <AddUserForm />
-      </div> */}
+      </div>
     </div>
   );
 };

@@ -34,46 +34,49 @@ const protect = async (req, res, next) => {
 };
 
 //register new user
-const registerUser = async (req, res) => {
+const registerUser = async (req, res, next) => {
   const { email, password, firstName, lastName, phoneNumber } = req.body;
+  try {
+    //validation
+    if (!email || !password) {
+      res.status(400);
+      throw new Error("Please include all fields");
+    }
 
-  //validation
-  if (!email || !password) {
-    res.status(400);
-    throw new Error("Please include all fields");
-  }
+    //Find if user exists
+    const userExists = await User.findOne({ where: { email: email } });
+    if (userExists) {
+      res.status(400);
+      throw new Error("User already exists");
+    }
 
-  //Find if user exists
-  const userExists = await User.findOne({ email });
-  if (userExists) {
-    res.status(400);
-    throw new Error("User already exists");
-  }
+    //Hash
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-  //Hash
-  const hashedPassword = bcrypt.hash(password, 10);
-
-  //Create user
-  const user = await User.create({
-    firstName,
-    lastName,
-    email,
-    phoneNumber,
-    password: hashedPassword,
-  });
-
-  if (user) {
-    res.status(201).json({
-      id: user.id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      phoneNumber: user.phoneNumber,
-      token: generateToken(user.id),
+    //Create user
+    const user = await User.create({
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      password: hashedPassword,
     });
-  } else {
-    res.status(400);
-    throw new Error("Invalid user data");
+
+    if (user) {
+      res.status(201).json({
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        phoneNumber: user.phoneNumber,
+        token: generateToken(user.id),
+      });
+    } else {
+      res.status(400);
+      throw new Error("Invalid user data");
+    }
+  } catch (err) {
+    next(err);
   }
 };
 
@@ -130,8 +133,8 @@ const hashPassword = async (user) => {
   }
 };
 
-User.beforeCreate(hashPassword);
-// User.beforeUpdate(hashPassword)
+// User.beforeCreate(hashPassword);
+User.beforeUpdate(hashPassword);
 
 module.exports = {
   registerUser,

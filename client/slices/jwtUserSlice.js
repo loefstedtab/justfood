@@ -11,7 +11,7 @@ const TOKEN = "token";
 */
 export const getMe = createAsyncThunk(
   "jwt/getMe",
-  async (thunkAPI) => {
+  async () => {
   const token = window.localStorage.getItem(TOKEN);
   try {
     if (token) {
@@ -50,6 +50,21 @@ export const authenticate = createAsyncThunk(
   }
 );
 
+export const createUser = createAsyncThunk("jwt/createUser", async({email, password, firstName, lastName, phoneNumber}, thunkAPI) => {
+  try{
+    const response = await axios.post('/api/jwtRegister', {email, password, firstName, lastName, phoneNumber});
+    window.localStorage.setItem(TOKEN, response.data.token);
+      thunkAPI.dispatch(getMe());
+  } catch(err) {
+    if (err.response.data) {
+      return thunkAPI.rejectWithValue(err.response.data);
+    } else {
+      return "There was an issue with your request.";
+    }
+  }
+  }
+)
+
 /*
   SLICE
 */
@@ -65,6 +80,7 @@ export const authSlice = createSlice({
       window.localStorage.removeItem(TOKEN);
       state.me = {};
       state.error = null;
+      state.status = 'idle'
     },
   },
   extraReducers: (builder) => {
@@ -87,6 +103,17 @@ export const authSlice = createSlice({
       state.status = "Succeeded"
       return action.payload
     });
+    builder.addCase(createUser.fulfilled, (state, action) => {
+      state.status = "Succeeded"
+      return action.payload
+    });
+    builder.addCase(createUser.rejected, (state, action) => {
+      state.status = "Failed"
+      state.error = action.payload;
+    });
+    builder.addCase(createUser.pending, (state, action) => {
+      state.status= "Loading"
+    })
   },
 });
 

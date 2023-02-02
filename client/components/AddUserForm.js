@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-//import { addUserAsync } from "../slices/allUsersSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { createUser } from "../slices/jwtUserSlice";
 
 const AddUserForm = () => {
-  const [username, setUsername] = useState("");
+  const { status } = useSelector((state) => state.auth);
+
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
 
   const dispatch = useDispatch();
@@ -17,29 +17,32 @@ const AddUserForm = () => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    let addUser = {
-      username: username,
+    let newUser = {
       password: password,
       firstName: firstName,
       lastName: lastName,
       email: email,
-      address: address,
       phone: phone,
     };
-    dispatch(addUserAsync(addUser));
-    navigate("/");
+    dispatch(createUser(newUser));
   };
+
+  useEffect(() => {
+    if (status === "Succeeded") {
+      navigate("/home");
+    }
+  }, [status]);
 
   return (
     <div>
       <form id="add-user-form" onSubmit={handleSubmit}>
         <h3>Create Account: </h3>
 
-        <label htmlFor="username">User Name:</label>
+        <label htmlFor="email">Email:</label>
         <input
-          name="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          name="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
 
         <label htmlFor="password">Password:</label>
@@ -61,20 +64,6 @@ const AddUserForm = () => {
           name="lastName"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
-        />
-
-        <label htmlFor="email">Email:</label>
-        <input
-          name="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-
-        <label htmlFor="address">Home Address:</label>
-        <input
-          name="address"
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
         />
 
         <label htmlFor="phone">Phone Number:</label>
