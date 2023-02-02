@@ -6,13 +6,11 @@ import AddUserForm from "./AddUserForm";
 
 const AuthForm = () => {
   const { error, status } = useSelector((state) => state.auth);
-  console.log("THIS IS THE AUTH STATUS", status)
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-   // const formName = evt.target.name;
     const email = evt.target.email.value;
     const password = evt.target.password.value;
     dispatch(authenticate({ email, password }));

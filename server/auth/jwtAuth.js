@@ -76,6 +76,7 @@ const registerUser = async (req, res) => {
     throw new Error("Invalid user data");
   }
 };
+
 //Login a new user
 const loginUser = async (req, res, next) => {
   const { email, password } = req.body;
