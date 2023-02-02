@@ -58,6 +58,7 @@ export const authSlice = createSlice({
   initialState: {
     me: {},
     error: null,
+    status: 'idle'
   },
   reducers: {
     logout(state, action) {
@@ -68,15 +69,23 @@ export const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(getMe.fulfilled, (state, action) => {
+      state.status = 'Succeeded'
       state.getMe = action.payload;
     });
     builder.addCase(getMe.rejected, (state, action) => {
-      console.log("THIS IS THE GET ME BUILDER REJECTED ERROR", action.error)
-      state.error = action.error;
+      state.status = "Failed"
+      state.error = action.error.message;
     });
+    builder.addCase(authenticate.pending, (state, action) => {
+      state.status= "Loading"
+    })
     builder.addCase(authenticate.rejected, (state, action) => {
-      // action.error.message = "NOT AUTHORIZED"
-      state.error = action.error.message
+      state.status = "Rejected"
+      state.error = action.payload
+    });
+    builder.addCase(authenticate.fulfilled, (state, action) => {
+      state.status = "Succeeded"
+      return action.payload
     });
   },
 });
