@@ -3,7 +3,6 @@ const passport = require("passport");
 const { loginUser } = require("./jwtAuth");
 
 //Google Login Auth Routes
-
 router.get(
   "/google",
   passport.authenticate("google", {
@@ -28,8 +27,7 @@ router.post("/logout", function (req, res, next) {
   });
 });
 
-//JWT Login Auth Routes
-
+//JWT Login Auth Route
 router.post("/jwtLogin", loginUser);
 
 module.exports = router;
