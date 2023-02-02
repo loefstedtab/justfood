@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import logger from "redux-logger";
-import authReducer from "../slices/authSlice";
-import userSlice from "../slices/userSlice";
+import authReducer from "../slices/jwtUserSlice";
+import userSlice from "../slices/googleUserSlice";
 
 const store = configureStore({
   reducer: {
@@ -12,4 +12,4 @@ const store = configureStore({
 });
 
 export default store;
-export * from "../slices/authSlice";
+export * from "../slices/jwtUserSlice";

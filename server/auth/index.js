@@ -1,5 +1,8 @@
 const router = require("express").Router();
 const passport = require("passport");
+const { loginUser } = require("./jwtAuth");
+
+//Google Login Auth Routes
 
 router.get(
   "/google",
@@ -24,5 +27,9 @@ router.post("/logout", function (req, res, next) {
     res.redirect("/");
   });
 });
+
+//JWT Login Auth Routes
+
+router.post("/jwtLogin", loginUser);
 
 module.exports = router;

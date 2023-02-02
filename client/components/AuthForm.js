@@ -1,22 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { redirect, useNavigate } from "react-router-dom";
 import { authenticate } from "../app/store";
 import AddUserForm from "./AddUserForm";
 
 const AuthForm = () => {
-  const { error } = useSelector((state) => state.auth);
+  const { error, status } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-   // const formName = evt.target.name;
     const email = evt.target.email.value;
     const password = evt.target.password.value;
     dispatch(authenticate({ email, password }));
-    navigate('/home')
   };
+
+  useEffect(() => {
+    if (status === "Succeeded"){
+      navigate('/home')
+    }
+  },[status])
 
   return (
     <div>
