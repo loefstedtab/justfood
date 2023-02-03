@@ -1,4 +1,5 @@
 "use strict";
+const bcrypt = require('bcrypt');
 
 const { db, User } = require("../server/db");
 //const User = require('../server/db/models/User');
@@ -17,13 +18,14 @@ async function seed() {
       lastName: "boner",
       email: "thisisanemail@gmail.com",
       phoneNumber: "5055555555",
+      password: await bcrypt.hash('cody', 10)
     }),
     User.create({
       firstName: "donny",
       lastName: "donowitz",
       email: "don@gmail.com",
       phoneNumber: "5055555555",
-      password: "don",
+      password: await bcrypt.hash('don', 10)
     }),
   ]);
 

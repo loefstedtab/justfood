@@ -18,6 +18,9 @@ router.get(
   }
 );
 
+//JWT Login Auth Route
+router.post("/jwtLogin", loginUser);
+
 router.post("/logout", function (req, res, next) {
   req.logout(function (err) {
     if (err) {
@@ -27,7 +30,5 @@ router.post("/logout", function (req, res, next) {
   });
 });
 
-//JWT Login Auth Route
-router.post("/jwtLogin", loginUser);
 
 module.exports = router;
