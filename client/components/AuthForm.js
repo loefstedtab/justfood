@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { redirect, useNavigate } from "react-router-dom";
 import { authenticate } from "../app/store";
-import AddUserForm from "./AddUserForm";
+import AddUser from "./AddUser";
 
 const AuthForm = () => {
   const { error, status } = useSelector((state) => state.auth);
@@ -43,7 +43,7 @@ const AuthForm = () => {
         {error && <div> {error} </div>}
       </form>
       <div>
-        <AddUserForm />
+        <AddUser />
       </div>
     </div>
   );

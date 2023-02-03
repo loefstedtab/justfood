@@ -1,7 +1,8 @@
 import React from "react";
+import AddUser from "./AddUser";
 
 const MyAccount = () => {
-  return <h3>NO My Account Info yet!</h3>;
+  return <AddUser /> ;
 };
 
 export default MyAccount;

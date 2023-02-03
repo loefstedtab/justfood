@@ -15,14 +15,11 @@ const protect = async (req, res, next) => {
       token = req.headers.authorization.split(" ")[1];
       //verify token
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      console.log(decoded, "DECODED");
       //get user from token
       req.user = await User.findByPk(decoded);
-      console.log(req.user, "REQ USER");
       //.select('-password');
       next();
     } catch (err) {
-      console.log(err);
       res.status(401).json("Not authorized");
     }
   }
@@ -79,7 +76,6 @@ const registerUser = async (req, res, next) => {
 const loginUser = async (req, res, next) => {
   const { email, password } = req.body;
   const user = await User.findOne({ where: { email: email } });
-  console.log('USER FROM JWTAUTH', user)
   try {
     //check user passwords match
     if (user && (await bcrypt.compare(password, user.password))) {

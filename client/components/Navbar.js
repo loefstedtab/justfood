@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const googleUser = useSelector((state) => state.user);
-  const jwtUser = useSelector((state) => state.auth.getMe)
+  const jwtUser = useSelector((state) => state.auth.me)
+  console.log('ME FROM NAVBAR', jwtUser);
   return (
     <div>
       <Link to="/home">

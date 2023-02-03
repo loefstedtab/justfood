@@ -9,15 +9,13 @@ const TOKEN = "token";
 /*
   THUNKS
 */
-export const getMe = createAsyncThunk(
-  "jwt/getMe",
-  async () => {
+export const getMe = createAsyncThunk("jwt/getMe", async () => {
   const token = window.localStorage.getItem(TOKEN);
   try {
     if (token) {
       const response = await axios.get("/api/jwtUser", {
         headers: {
-          authorization: `Bearer ${token}`
+          authorization: `Bearer ${token}`,
         },
       });
       return response.data;
@@ -26,7 +24,7 @@ export const getMe = createAsyncThunk(
     }
   } catch (err) {
     if (err.response.data) {
-      return ("ERROR" , err.response.data);
+      return "ERROR", err.response.data;
     } else {
       return "There was an issue with your request.";
     }
@@ -50,20 +48,47 @@ export const authenticate = createAsyncThunk(
   }
 );
 
-export const createUser = createAsyncThunk("jwt/createUser", async({email, password, firstName, lastName, phoneNumber}, thunkAPI) => {
-  try{
-    const response = await axios.post('/api/jwtRegister', {email, password, firstName, lastName, phoneNumber});
-    window.localStorage.setItem(TOKEN, response.data.token);
+export const createUser = createAsyncThunk(
+  "jwt/createUser",
+  async ({ email, password, firstName, lastName, phoneNumber }, thunkAPI) => {
+    try {
+      const response = await axios.post("/api/jwtRegister", {
+        email,
+        password,
+        firstName,
+        lastName,
+        phoneNumber,
+      });
+      window.localStorage.setItem(TOKEN, response.data.token);
       thunkAPI.dispatch(getMe());
-  } catch(err) {
-    if (err.response.data) {
-      return thunkAPI.rejectWithValue(err.response.data);
-    } else {
-      return "There was an issue with your request.";
+    } catch (err) {
+      if (err.response.data) {
+        return thunkAPI.rejectWithValue(err.response.data);
+      } else {
+        return "There was an issue with your request.";
+      }
     }
   }
+);
+
+export const editUser = createAsyncThunk(
+  "jwt/editUser",
+  async (updatedUser) => {
+    try {
+      const id = updatedUser.id;
+      const { data } = await axios.put(`/api/jwtUser/${id}`, {
+        first_Name: updatedUser.firstName,
+        last_Name: updatedUser.lastName,
+        password: updatedUser.password,
+        email: updatedUser.email,
+        phoneNumber: updatedUser.phoneNumber,
+      });
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
   }
-)
+);
 
 /*
   SLICE
@@ -71,49 +96,52 @@ export const createUser = createAsyncThunk("jwt/createUser", async({email, passw
 export const authSlice = createSlice({
   name: "auth",
   initialState: {
-    me: {},
+    me: null,
     error: null,
-    status: 'idle'
+    status: "idle",
   },
   reducers: {
     logout(state, action) {
       window.localStorage.removeItem(TOKEN);
-      state.me = {};
+      state.me = null;
       state.error = null;
-      state.status = 'idle'
+      state.status = "idle";
     },
   },
   extraReducers: (builder) => {
     builder.addCase(getMe.fulfilled, (state, action) => {
-      state.status = 'Succeeded'
-      state.getMe = action.payload;
+      state.status = "Succeeded";
+      state.me = action.payload;
     });
     builder.addCase(getMe.rejected, (state, action) => {
-      state.status = "Failed"
+      state.status = "Failed";
       state.error = action.error.message;
     });
     builder.addCase(authenticate.pending, (state, action) => {
-      state.status= "Loading"
-    })
+      state.status = "Loading";
+    });
     builder.addCase(authenticate.rejected, (state, action) => {
-      state.status = "Rejected"
-      state.error = action.payload
+      state.status = "Rejected";
+      state.error = action.payload;
     });
     builder.addCase(authenticate.fulfilled, (state, action) => {
-      state.status = "Succeeded"
-      return action.payload
+      state.status = "Succeeded";
+      return action.payload;
     });
     builder.addCase(createUser.fulfilled, (state, action) => {
-      state.status = "Succeeded"
-      return action.payload
+      state.status = "Succeeded";
+      return action.payload;
     });
     builder.addCase(createUser.rejected, (state, action) => {
-      state.status = "Failed"
+      state.status = "Failed";
       state.error = action.payload;
     });
     builder.addCase(createUser.pending, (state, action) => {
-      state.status= "Loading"
-    })
+      state.status = "Loading";
+    });
+    builder.addCase(editUser.fulfilled, (state, action) => {
+      return action.payload;
+    });
   },
 });
 
