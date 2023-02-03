@@ -61,3 +61,13 @@ a:visited {
   margin: 1em;
   padding: 5px;
 }
+
+.GoogleBtn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 2;
+  margin: 1em;
+  padding: 5px;
+}

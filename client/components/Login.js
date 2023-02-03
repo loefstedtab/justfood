@@ -21,6 +21,9 @@ const Login = () => {
 
       <div>
         <AuthForm />
+      </div>
+
+      <div className="GoogleBtn">
         <GoogleButton onClick={handleLogin} />
       </div>
 
