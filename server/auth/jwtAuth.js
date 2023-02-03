@@ -128,7 +128,7 @@ const hashPassword = async (user) => {
   }
 };
 
- User.beforeCreate(hashPassword);
+ //User.beforeCreate(hashPassword);
 User.beforeUpdate(hashPassword);
 
 module.exports = {
