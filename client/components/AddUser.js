@@ -15,16 +15,15 @@ const AddUser = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const newUser = {
+    password: password,
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+    phone: phone,
+  };
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    //console.log('ME FROM HANDLESUBMIT', me);
-    let newUser = {
-      password: password,
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      phone: phone,
-    };
     dispatch(createUser(newUser));
   };
 
@@ -36,7 +35,7 @@ const AddUser = () => {
 
   return (
     <div>
-      <form id="add-user-form" onSubmit={handleSubmit}>
+      <form className="form" id="add-user-form" onSubmit={handleSubmit}>
         <h3>Create Account: </h3>
 
         <label htmlFor="email">Email:</label>
@@ -50,6 +49,7 @@ const AddUser = () => {
         <input
           name="password"
           value={password}
+          type='password'
           onChange={(e) => setPassword(e.target.value)}
         />
 
