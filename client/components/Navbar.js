@@ -17,8 +17,10 @@ const Navbar = () => {
           <div>
             <h3>Welcome, {googleUser.firstName || jwtUser.firstName}!</h3>
             <Link to="/aboutus">About Us</Link>
-            <Link to="/myaccount">My Account</Link>
             <Link to="/pantry">Pantry</Link>
+            <Link to="/cookinghistory">Cooking History</Link>
+            <Link to="/bookmarks">Bookmarks</Link>
+            <Link to="/myaccount">My Account</Link>
             <form action="/auth/logout" method="post">
               <button className="logout" type="submit">
                 Sign out

@@ -7,6 +7,8 @@ import AboutUs from "../components/AboutUs";
 import MyAccount from "../components/MyAccount";
 import Pantry from "../components/Pantry";
 import Login from "../components/Login";
+import CookingHistory from "../components/CookingHistory";
+import Bookmarks from "../components/Bookmarks";
 
 const AppRoutes = () => {
   return (
@@ -18,6 +20,8 @@ const AppRoutes = () => {
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/myaccount" element={<MyAccount />} />
         <Route path="/pantry" element={<Pantry />} />
+        <Route path="/cookinghistory" element={<CookingHistory />} />
+        <Route path="/bookmarks" element={<Bookmarks />} />
       </Routes>
     </div>
   );
