@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createUser } from "../slices/jwtUserSlice";
 
-const AddUserForm = () => {
+const AddUser = () => {
   const { status } = useSelector((state) => state.auth);
 
   const [password, setPassword] = useState("");
@@ -17,6 +17,7 @@ const AddUserForm = () => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
+    //console.log('ME FROM HANDLESUBMIT', me);
     let newUser = {
       password: password,
       firstName: firstName,
@@ -79,4 +80,4 @@ const AddUserForm = () => {
   );
 };
 
-export default AddUserForm;
+export default AddUser;
