@@ -4,8 +4,34 @@ body {
 }
 
 /* ----------Navbar.js Styling ----------*/
+a:link { 
+  text-decoration: none; 
+}
+
+a:visited { 
+  text-decoration: none;
+  color: inherit; 
+}
+
 .WebsiteTitle {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.NavbarLinks {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.WelcomeElement {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.logoutButton {
+  position: absolute;
+  top: 30px;
+  right: 10px;
 }
