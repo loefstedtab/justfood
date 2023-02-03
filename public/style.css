@@ -25,3 +25,10 @@
   margin: 0px;
   border-bottom: none;
 }
+
+/* ----------Navbar.js Styling ----------*/
+.WebsiteTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
