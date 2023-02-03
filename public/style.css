@@ -1,29 +1,6 @@
-/* ----------AboutUs.js Accordian Styling ----------*/
-.AccordionStyling {
-  border: 3px solid black;
-}
-
-.AccordionHeaderStyling {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 5px;
-  margin: 0px;
-  border-bottom: 3px solid black;
-}
-
-.AccordionBodyStyling {
-  padding-left: 5px;
-  border-bottom: 3px solid black;
-}
-
-.AccordionHeaderStylingSteph {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 5px;
-  margin: 0px;
-  border-bottom: none;
+/* ----------FONT Styling ----------*/
+body {
+  font-family: 'Itim', cursive;
 }
 
 /* ----------Navbar.js Styling ----------*/
