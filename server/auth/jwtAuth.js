@@ -79,6 +79,7 @@ const registerUser = async (req, res, next) => {
 const loginUser = async (req, res, next) => {
   const { email, password } = req.body;
   const user = await User.findOne({ where: { email: email } });
+  console.log('USER FROM JWTAUTH', user)
   try {
     //check user passwords match
     if (user && (await bcrypt.compare(password, user.password))) {
@@ -127,7 +128,7 @@ const hashPassword = async (user) => {
   }
 };
 
-// User.beforeCreate(hashPassword);
+ //User.beforeCreate(hashPassword);
 User.beforeUpdate(hashPassword);
 
 module.exports = {
