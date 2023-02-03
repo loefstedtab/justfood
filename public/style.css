@@ -1,6 +1,11 @@
-/* ----------FONT Styling ----------*/
+/* ----------GLOBAL TAG Styling ----------*/
 body {
   font-family: 'Itim', cursive;
+}
+
+button {
+  padding: 2px;
+  margin: 5px;
 }
 
 /* ----------Navbar.js Styling ----------*/
@@ -32,6 +37,27 @@ a:visited {
 
 .logoutButton {
   position: absolute;
-  top: 30px;
+  top: 20px;
   right: 10px;
+}
+
+/* ----------AddUserForm.js / AuthForm.js Styling ----------*/
+.CreateUserForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 2;
+  margin: 1em;
+  padding: 5px;
+}
+
+.LoginForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 2;
+  margin: 1em;
+  padding: 5px;
 }
