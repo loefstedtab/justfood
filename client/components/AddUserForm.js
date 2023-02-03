@@ -35,7 +35,7 @@ const AddUserForm = () => {
 
   return (
     <div>
-      <form id="add-user-form" onSubmit={handleSubmit}>
+      <form className="CreateUserForm" onSubmit={handleSubmit}>
         <h3>Create Account: </h3>
 
         <label htmlFor="email">Email:</label>
