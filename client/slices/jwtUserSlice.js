@@ -140,7 +140,6 @@ export const authSlice = createSlice({
       state.status = "Loading";
     });
     builder.addCase(editUser.fulfilled, (state, action) => {
-      state.status = "Succeeded"
       return action.payload;
     });
   },
@@ -150,9 +149,6 @@ export const authSlice = createSlice({
   ACTIONS
 */
 export const { logout } = authSlice.actions;
-export const selectAuth = (state) => {
-  return state.auth.me
-}
 
 /*
   REDUCER

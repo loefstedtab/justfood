@@ -7,6 +7,7 @@ const EditUser = () => {
   const { status, me } = useSelector((state) => state.auth);
   console.log('status from edit user', status)
   console.log('ME FROM EDIT USER', me)
+  console.log('ID FROM ME', me.id)
 
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -18,6 +19,7 @@ const EditUser = () => {
   const navigate = useNavigate();
 
   const updatedUser = {
+    id: me.id,
     password: password,
     firstName: firstName,
     lastName: lastName,
