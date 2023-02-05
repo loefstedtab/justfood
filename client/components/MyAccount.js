@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { editUser } from "../slices/jwtUserSlice";
+import { editUser, getMe } from "../slices/jwtUserSlice";
 
 const EditUser = () => {
   const { status, me } = useSelector((state) => state.auth);
   console.log('status from edit user', status)
   console.log('ME FROM EDIT USER', me)
-  console.log('ID FROM ME', me.id)
+  //console.log('ID FROM ME', me.id)
 
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -23,12 +23,13 @@ const EditUser = () => {
     password: password,
     firstName: firstName,
     lastName: lastName,
-    email: email,
+    email: me.email,
     phone: phone,
   };
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
+    //dispatch(getMe)
     dispatch(editUser(updatedUser));
   };
 

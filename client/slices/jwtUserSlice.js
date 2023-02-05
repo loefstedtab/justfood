@@ -76,6 +76,7 @@ export const editUser = createAsyncThunk(
   async (updatedUser) => {
     try {
       const id = updatedUser.id;
+      console.log('ID FROM EDIT USER THUNK', id)
       const { data } = await axios.put(`/api/jwtUser/${id}`, {
         first_Name: updatedUser.firstName,
         last_Name: updatedUser.lastName,
@@ -83,6 +84,7 @@ export const editUser = createAsyncThunk(
         email: updatedUser.email,
         phoneNumber: updatedUser.phoneNumber,
       });
+      console.log('DATA',data)
       return data;
     } catch (err) {
       console.log(err);
