@@ -17,6 +17,7 @@ const protect = async (req, res, next) => {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
       //get user from token
       req.user = await User.findByPk(decoded);
+      console.log('USER FROM PROTECT', req.user)
       //.select('-password');
       next();
     } catch (err) {
@@ -105,6 +106,7 @@ const getMe = async (req, res, next) => {
       email: req.user.email,
       phoneNumber: req.user.phoneNumber,
     };
+    console.log('USER FROM GET ME middleware', user)
     res.status(200).json(user);
   } catch (err) {
     next(err);

@@ -8,7 +8,15 @@ const { generateToken, registerUser, getMe } = require("../auth/jwtAuth");
 //JWT routes
 router.route('/jwtUser')
 .get(protect, getMe)
-.put(protect, getMe)
+
+router.put('/jwtUser/:id', async(req,res,next) => {
+  const user = await User.findByPk(req.params.id);
+  console.log('USER FROM PUT ENDPOINT', user);
+  const updatedUser = await user.update(req.body);
+  console.log('UPDATED USER FROM ENDPOINT', updatedUser);
+  res.json(updatedUser);
+})
+// .put(protect, getMe)
 //   async (req, res, next) => {
 //   try{
 //     const user = await User.findByPk(req.body.id);
