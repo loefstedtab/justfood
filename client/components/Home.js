@@ -53,6 +53,7 @@ const navigate = useNavigate();
           onChange={handleSearchTermChange}
           placeholder="Search for a meal"
         />
+
         <button type="submit">Search</button>
       </form>
       {suggestions.length > 0 && (
@@ -71,8 +72,3 @@ const navigate = useNavigate();
 };
 
 export default Home;
-
-
-
-
-

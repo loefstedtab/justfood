@@ -5,8 +5,7 @@ const app = express();
 const passport = require("passport");
 const session = require("express-session");
 const cors = require("cors");
-require("./auth/auth");
-
+require("./auth/googleAuth");
 
 // logging middleware
 app.use(morgan("dev"));

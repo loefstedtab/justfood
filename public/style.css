@@ -1,21 +1,73 @@
+/* ----------GLOBAL TAG Styling ----------*/
 body {
-  font-family: sans-serif;
+  font-family: 'Itim', cursive;
 }
 
-a {
+button {
+  padding: 2px;
+  margin: 5px;
+}
+
+/* ----------Navbar.js Styling ----------*/
+a:link { 
+  text-decoration: none; 
+}
+
+a:visited { 
   text-decoration: none;
+  color: inherit; 
 }
 
-label {
-  display: block;
+.WebsiteTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-nav a {
-  display: inline-block;
+.NavbarLinks {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.WelcomeElement {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.logoutButton {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+}
+
+/* ----------AddUserForm.js / AuthForm.js Styling ----------*/
+.CreateUserForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 2;
   margin: 1em;
+  padding: 5px;
 }
 
-form div {
+.LoginForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 2;
   margin: 1em;
-  display: inline-block;
+  padding: 5px;
+}
+
+.GoogleBtn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 2;
+  margin: 1em;
+  padding: 5px;
 }

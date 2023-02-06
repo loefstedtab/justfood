@@ -1,24 +1,15 @@
-import React from "react";
+import { all } from "axios";
+import React, { useState } from "react";
 
 const AboutUs = () => {
 
     return (
-        <>
-            <h2>We are all about food! </h2>
-            <h3>Mission Statement: </h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nulla at volutpat diam ut venenatis. Vitae nunc sed velit dignissim sodales ut eu sem. Convallis posuere morbi leo urna molestie at elementum. Aliquam sem fringilla ut morbi tincidunt. Fringilla urna porttitor rhoncus dolor purus. Eget est lorem ipsum dolor sit amet. Scelerisque eu ultrices vitae auctor eu augue ut lectus arcu. Leo vel orci porta non pulvinar neque laoreet suspendisse interdum. Integer quis auctor elit sed vulputate mi sit amet mauris. Dui vivamus arcu felis bibendum ut. Pretium lectus quam id leo in vitae turpis. Parturient montes nascetur ridiculus mus mauris vitae ultricies leo integer. Nullam ac tortor vitae purus faucibus ornare.</p>
-
-            <h4>About Us: </h4>
-            <p>Armand Arslanian: </p>
-            <p>Stephanie Kwong: </p>
-            <p>Arthur Loefstedt: </p>
-            <p>Salvador Fierro: </p>
-            <p>Lionel Verrier: </p>
-        </>
-
-
-
+      <div>
+        <h2>About Just Food: </h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mi bibendum neque egestas congue quisque egestas. Eu volutpat odio facilisis mauris sit amet massa vitae tortor. Venenatis lectus magna fringilla urna porttitor rhoncus dolor. Magna etiam tempor orci eu lobortis elementum nibh. Amet aliquam id diam maecenas. Nunc aliquet bibendum enim facilisis gravida. Volutpat commodo sed egestas egestas fringilla phasellus faucibus scelerisque. Massa placerat duis ultricies lacus sed turpis. Sollicitudin tempor id eu nisl nunc mi. Ullamcorper morbi tincidunt ornare massa eget egestas purus viverra accumsan. Tellus id interdum velit laoreet id donec ultrices. Integer enim neque volutpat ac tincidunt vitae semper quis. Nunc vel risus commodo viverra. Elementum eu facilisis sed odio. Odio euismod lacinia at quis risus sed vulputate odio ut. Sed turpis tincidunt id aliquet risus.</p>
+        <h2>Meet the Team: </h2>
+    </div>
     )
 }
 
-export default AboutUs
+export default AboutUs;

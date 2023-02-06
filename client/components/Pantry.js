@@ -53,3 +53,4 @@ const Pantry = ({ingredients,setIngredients}) => {
 };
 
 export default Pantry;
+

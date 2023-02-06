@@ -1,93 +1,82 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-//import { addUserAsync } from "../slices/allUsersSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { createUser } from "../slices/jwtUserSlice";
 
 const AddUserForm = () => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [address, setAddress] = useState('');
-    const [phone, setPhone] = useState('');
+  const { status } = useSelector((state) => state.auth);
 
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+  const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
 
-    const handleSubmit = (evt) => {
-        evt.preventDefault()
-        let addUser = {
-            username: username,
-            password: password,
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            address: address,
-            phone: phone
-        }
-        dispatch(addUserAsync(addUser))
-        navigate('/')
-      }
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    return(
-        <div>
-                <form id="add-user-form" onSubmit={handleSubmit}>
-                <h3>Create Account: </h3>
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    let newUser = {
+      password: password,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      phone: phone,
+    };
+    dispatch(createUser(newUser));
+  };
 
-                    <label htmlFor="username">User Name:</label>
-                    <input
-                    name="username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    />
+  useEffect(() => {
+    if (status === "Succeeded") {
+      navigate("/home");
+    }
+  }, [status]);
 
-                    <label htmlFor="password">Password:</label>
-                    <input
-                    name="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    />
+  return (
+    <div>
+      <form className="CreateUserForm" onSubmit={handleSubmit}>
+        <h3>Create Account: </h3>
 
-                    <label htmlFor="firstName">First Name:</label>
-                    <input
-                    name="firstName"
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                    />
+        <label htmlFor="email">Email:</label>
+        <input
+          name="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-                    <label htmlFor="lastName">Last Name:</label>
-                    <input
-                    name="lastName"
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
-                    />
+        <label htmlFor="password">Password:</label>
+        <input
+          name="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-                    <label htmlFor="email">Email:</label>
-                    <input
-                    name="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    />
+        <label htmlFor="firstName">First Name:</label>
+        <input
+          name="firstName"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+        />
 
-                    <label htmlFor="address">Home Address:</label>
-                    <input
-                    name="address"
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)}
-                    />
+        <label htmlFor="lastName">Last Name:</label>
+        <input
+          name="lastName"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+        />
 
-                    <label htmlFor="phone">Phone Number:</label>
-                    <input
-                    name="phone"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    />
+        <label htmlFor="phone">Phone Number:</label>
+        <input
+          name="phone"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+        />
 
-                    <button type="submit">Create Account</button>
-                </form>
-      </div>
-    )
-}
+        <button type="submit">Create Account</button>
+      </form>
+    </div>
+  );
+};
 
-export default AddUserForm
+export default AddUserForm;

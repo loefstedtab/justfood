@@ -10,6 +10,8 @@ import Pantry from '../components/Pantry';
 import Login from '../components/Login';
 import AllMeals from '../components/allRecipes';
 import MealDetail from '../components/recipe';
+import CookingHistory from "../components/CookingHistory";
+import Bookmarks from "../components/Bookmarks";
 
 const AppRoutes = () => {
   return (
@@ -21,6 +23,8 @@ const AppRoutes = () => {
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/myaccount" element={<MyAccount />} />
           <Route path="/pantry" element={<Pantry />} />
+          <Route path="/cookinghistory" element={<CookingHistory />} />
+          <Route path="/bookmarks" element={<Bookmarks />} />
           <Route path="/allrecipes" element={<AllMeals />} />
           <Route path="/recipe" element={<MealDetail />} />
         </Routes>

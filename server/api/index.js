@@ -1,22 +1,38 @@
-const router = require('express').Router()
-module.exports = router
-const isAuth = require('../isAuth')
+const router = require("express").Router();
+const { protect } = require("../auth/jwtAuth");
+const { isAuth } = require("../auth/googleAuth");
+const jwt = require("jsonwebtoken");
+const { User } = require("../db");
+const { generateToken, registerUser, getMe } = require("../auth/jwtAuth");
 
-router.get('/home', isAuth, async (req, res, next) => {
+//JWT routes
+router.get("/jwtUser", protect, getMe);
+
+// router.post("/jwtRegister", async (req, res) => {
+//   const user = await User.findOne({ where: { email: req.body.email } });
+//   const token = generateToken(user.dataValues.id);
+//   res.json(token);
+// });
+
+router.post("/jwtRegister", registerUser)
+
+//Google Routes
+router.get("/googleUser", isAuth, async (req, res, next) => {
   try {
     const user = {
       ...req.user,
-      loggedIn: true
-    }
-    console.log("THIS IS MY USER API", user)
-    res.json(user)
+      loggedIn: true,
+    };
+    res.json(user);
   } catch (err) {
-    next(err)
+    next(err);
   }
-})
+});
 
 router.use((req, res, next) => {
-  const error = new Error('Not Found')
-  error.status = 404
-  next(error)
-})
+  const error = new Error("Not Found");
+  error.status = 404;
+  next(error);
+});
+
+module.exports = router;
