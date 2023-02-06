@@ -3,14 +3,17 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Pantry from './Pantry';
 import Filter from './filters';
-
+import HomeDropdown from './HomeDropdown';
 
 
 const Home = () => {
   const [ingredients, setIngredients] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [suggestions, setSuggestions] = useState([]);
-const navigate = useNavigate();
+  const [selected, setSelected] = useState('Choose One:');
+
+  const navigate = useNavigate();
+
   const handleSearchTermChange = async (e) => {
     setSearchTerm(e.target.value);
     if (e.target.value.length === 0) {
@@ -46,6 +49,7 @@ const navigate = useNavigate();
 
   return (
     <div>
+      <HomeDropdown selected={selected} setSelected={setSelected}/>
       <form onSubmit={handleFormSubmit}>
         <input
           type="text"
