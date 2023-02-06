@@ -8,6 +8,7 @@ const { generateToken, registerUser, getMe } = require("../auth/jwtAuth");
 //JWT routes
 router.route('/jwtUser')
 .get(protect, getMe)
+.put(protect, updateUser)
 //This route works
 // router.put(`/jwtUser/:id`, async(req,res,next) => {
 //   try{
@@ -32,7 +33,6 @@ router.route('/jwtUser')
 //   }
 // });
 
-.put(protect, updateUser)
 //.put(protect, getMe)
 //   async (req, res, next) => {
 //   try{

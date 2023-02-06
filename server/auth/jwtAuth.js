@@ -17,7 +17,6 @@ const protect = async (req, res, next) => {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
       //get user from token
       req.user = await User.findByPk(decoded);
-      console.log('USER FROM PROTECT controller', req.user)
       //.select('-password');
       next();
     } catch (err) {
@@ -115,11 +114,20 @@ const getMe = async (req, res, next) => {
 };
 
 const updateUser = async(req,res,next) => {
-  console.log('REQ BOYD ID', req.body.id)
   try{
-    const user = await User.findByPk(req.body.id);
+    const user = req.user;
+    const updatedUser = await user.update(req.body);
+    res.json(updatedUser);
+ }catch(err){
+   next(err);
+  }
+    // const user =  req.user.id
+    // console.log('USER FROM ENDPOINT', user);
+    // const updatedUser = await user.update(req.body);
+    // console.log('UPDATED USER FROM ENDPOINT', updatedUser)
+    // res.json(updatedUser);
+    //const user = await User.findByPk(req.body.id);
 
-   // const user = req.user;
     // const user = {
     //   id: req.user.id,
     //   firstName: req.user.firstName,
@@ -128,12 +136,6 @@ const updateUser = async(req,res,next) => {
     //   phoneNumber: req.user.phoneNumber,
     // }
     //const user = await User.findByToken(req.headers.authorization)
-    console.log('USER FROM ENDPOINT', user)
-    const updatedUser = await user.update(req.body);
-    res.json(updatedUser);
-  }catch(err){
-    next(err);
-  }
 };
 
 const generateToken = (id) => {

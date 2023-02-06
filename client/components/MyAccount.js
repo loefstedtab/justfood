@@ -12,7 +12,7 @@ const EditUser = () => {
   //const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(me.email);
   const [phone, setPhone] = useState("");
 
   const dispatch = useDispatch();
