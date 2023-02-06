@@ -11,9 +11,14 @@ const Recipe = require("./models/Recipe");
 
 module.exports = {
   db,
+<<<<<<< HEAD
+  User,
+  
+=======
   Cooked,
   Ingredient,
   Pantry,
   Recipe,
   User
+>>>>>>> origin
 };
