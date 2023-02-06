@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
+import Pantry from './Pantry';
 
 const AllMeals = ({ history, location }) => {
   const [meals, setMeals] = useState([]);
@@ -32,26 +33,19 @@ const AllMeals = ({ history, location }) => {
 
   return (
     <div>
-      {/* {meals.length > 0 ? (
-        <ul>
-          {meals.map((meal) => (
-            <li key={meal.id}>{meal.title}</li>
-          ))}
-        </ul>
-      ) : (
-        <p>No meals to display</p>
-      )} */} 
+      <h1>Search Results</h1>
       <ul>
           {suggestions.map((suggestion) => (
            <li> 
             <a href={`/recipe?recipeId=${suggestion.id}`}  key={suggestion.id}>{suggestion.title}  </a>
             <img src={suggestion.image} />
-            <p>Ready in {suggestion.readyInMinutes} minutes</p> 
-            {/* <p>Servings: {suggestion.servings}</p> add all recipes info here */}
+            
+            
 
             </li>
           ))}
         </ul>
+       
     </div>
   );
 };

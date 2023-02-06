@@ -20,7 +20,7 @@ const Pantry = ({ingredients,setIngredients}) => {
   };
 
   const handleAddIngredient = (ingredient) => {
-    setIngredients([...ingredients, ingredient]);
+    setIngredients([...ingredients, { id: ingredient.id, name: ingredient.name }]);
     setSearchTerm('');
     setSuggestions([]);
   };

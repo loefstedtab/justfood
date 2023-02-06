@@ -38,21 +38,6 @@ const MealDetail = ({ match }) => {
         {meal?.cuisines?.map((cuisine) => (
           <p>{cuisine}</p>
         ))}
-
-
-        
-        
-        {/* <p>{meal.occasions}</p>
-        <p>{meal.winePairing}</p>
-        
-        <p>{meal.nutrition}</p>
-        <p>{meal.nutrition.nutrients}</p>    
-      <p>{meal.instructions}</p>
-        <p>Servings: {meal.servings}</p>
-        <p>Health Score: {meal.healthScore}</p>
-      <p>Cooking Time: {meal.cookingMinutes} minutes</p>
-      <p>Preparation Time: {meal.preparationMinutes} minutes</p>
-      <p>Ready In: {meal.readyInMinutes} minutes</p> */} 
     </div>
   );
 };
