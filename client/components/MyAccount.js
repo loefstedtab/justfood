@@ -5,15 +5,12 @@ import { editUser, getMe } from "../slices/jwtUserSlice";
 
 const EditUser = () => {
   const { status, me } = useSelector((state) => state.auth);
-  console.log('status from edit user', status)
-  console.log('ME FROM EDIT USER', me)
-  //console.log('ID FROM ME', me.id)
 
   //const [password, setPassword] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [firstName, setFirstName] = useState(me.firstName);
+  const [lastName, setLastName] = useState(me.lastName);
   const [email, setEmail] = useState(me.email);
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState(me.phone);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -23,7 +20,7 @@ const EditUser = () => {
     password: me.password,
     firstName: firstName,
     lastName: lastName,
-    email: me.email,
+    email: email,
     phone: phone,
   };
 
@@ -49,7 +46,6 @@ const EditUser = () => {
 	// };
 
   return (
-
     <div className="myProfile">
       <section className="myProfileHeading">
         <h3>Edit Your Information Below</h3>
@@ -59,8 +55,8 @@ const EditUser = () => {
           <label htmlFor="email">Email:</label>
           <input
             name="email"
-            value={[me.email]}
-            placeholder={[me.email]}
+            value={email}
+            placeholder={email}
             onChange={(e) => setEmail(e.target.value)}
           />
 
