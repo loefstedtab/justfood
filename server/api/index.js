@@ -8,15 +8,32 @@ const { generateToken, registerUser, getMe } = require("../auth/jwtAuth");
 //JWT routes
 router.route('/jwtUser')
 .get(protect, getMe)
+//This route works
+// router.put(`/jwtUser/:id`, async(req,res,next) => {
+//   try{
+//     const user = await User.findByPk(req.body.id);
+//     console.log('USER FROM ENDPOINT', user);
+//     const updatedUser = await user.update(req.body);
+//     res.json(updatedUser);
+//   }catch(err){
+//     next(err)
+//   }
+// });
 
-// router.put('/jwtUser/:id', async(req,res,next) => {
-//   const user = await User.findByPk(req.params.id);
-//   console.log('USER FROM PUT ENDPOINT', user);
-//   const updatedUser = await user.update(req.body);
-//   console.log('UPDATED USER FROM ENDPOINT', updatedUser);
-//   res.json(updatedUser);
-//})
- .put( updateUser);
+//This route works
+// .put(async(req,res,next) => {
+//   try{
+//     const user = await User.findByPk(req.body.id);
+//     console.log('USER FROM ENDPOINT', user);
+//     const updatedUser = await user.update(req.body);
+//     res.json(updatedUser);
+//   }catch(err){
+//     next(err)
+//   }
+// });
+
+.put(updateUser)
+//.put(protect, getMe)
 //   async (req, res, next) => {
 //   try{
 //     const user = await User.findByPk(req.body.id);
