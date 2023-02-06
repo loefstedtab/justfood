@@ -35,16 +35,6 @@ const Home = () => {
     if (ingredients.length > 0) {
       navigate(`/allrecipes?ingredients=${ingredients.map(ingredient => ingredient.name).join(',')}`)
     }
-
-
-
-    // const res = await axios.get(
-    //   `https://api.spoonacular.com/recipes/complexSearch?query=${searchTerm}&apiKey=67f2eb38dc7441189476c0fd3fb74863`
-    // );
-    // history.push ({
-    //   pathname: '/allRecipes',
-    //   state: { meals: res.data.results }
-    // });
   };
 
   return (
