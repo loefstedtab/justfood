@@ -1,6 +1,9 @@
 /* ----------GLOBAL TAG Styling ----------*/
 body {
+  background: url(JustFoodBackground.webp);
+  background-size: cover;
   font-family: 'Itim', cursive;
+  color: white
 }
 
 button {
@@ -10,7 +13,9 @@ button {
 
 /* ----------Navbar.js Styling ----------*/
 a:link { 
-  text-decoration: none; 
+  text-decoration: none;
+  font-weight: bold; 
+  
 }
 
 a:visited { 
