@@ -10,6 +10,7 @@ const Home = () => {
   const [ingredients, setIngredients] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [suggestions, setSuggestions] = useState([]);
+
 const navigate = useNavigate();
   const handleSearchTermChange = async (e) => {
     setSearchTerm(e.target.value);
