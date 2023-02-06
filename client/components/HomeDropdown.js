@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const HomeDropdown = ({selected, setSelected}) => {
     const [isActive, setIsActive] = useState(false)
-    const options = ['Search Ingredients!', 'Search Meals/Recipes!']
+    const options = ['Search By Ingredients!', 'Search For Meals!']
 
     return (
         <div className="DropdownContainer">
