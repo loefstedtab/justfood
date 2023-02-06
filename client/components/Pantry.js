@@ -20,13 +20,15 @@ const Pantry = ({ingredients,setIngredients}) => {
   };
 
   const handleAddIngredient = (ingredient) => {
-    setIngredients([...ingredients, { id: ingredient.id, name: ingredient.name }]);
+    setIngredients([...ingredients, ingredient]); 
     setSearchTerm('');
     setSuggestions([]);
   };
 
   const handleRemoveIngredient = (ingredientToRemove) => {
-    setIngredients(ingredients.filter((ingredient) => ingredient.id != ingredientToRemove.id));
+    console.log(ingredientToRemove)
+    const filteredIngredients = ingredients.filter((ingredient) => ingredient.name !== ingredientToRemove.name)
+    setIngredients(filteredIngredients);
   };
 
   return (
@@ -41,13 +43,13 @@ const Pantry = ({ingredients,setIngredients}) => {
         ))}
       </form>
       <ul>
-        {ingredients.map((ingredient) => (
-          <li key={ingredient}>
-            {ingredient.name}
-            <button onClick={() => handleRemoveIngredient(ingredient)}>Remove</button>
-          </li>
-        ))}
-      </ul>
+    {ingredients.map((ingredient) => (
+      <li key={ingredient.name}>
+        {ingredient.name}
+        <button onClick={() => handleRemoveIngredient(ingredient)}>Remove</button>
+      </li>
+    ))}
+  </ul>
     </div>
   );
 };
