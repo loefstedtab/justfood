@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { protect } = require("../auth/jwtAuth");
+const { protect, updateUser } = require("../auth/jwtAuth");
 const { isAuth } = require("../auth/googleAuth");
 const jwt = require("jsonwebtoken");
 const { User } = require("../db");
@@ -9,14 +9,14 @@ const { generateToken, registerUser, getMe } = require("../auth/jwtAuth");
 router.route('/jwtUser')
 .get(protect, getMe)
 
-router.put('/jwtUser/:id', async(req,res,next) => {
-  const user = await User.findByPk(req.params.id);
-  console.log('USER FROM PUT ENDPOINT', user);
-  const updatedUser = await user.update(req.body);
-  console.log('UPDATED USER FROM ENDPOINT', updatedUser);
-  res.json(updatedUser);
-})
-// .put(protect, getMe)
+// router.put('/jwtUser/:id', async(req,res,next) => {
+//   const user = await User.findByPk(req.params.id);
+//   console.log('USER FROM PUT ENDPOINT', user);
+//   const updatedUser = await user.update(req.body);
+//   console.log('UPDATED USER FROM ENDPOINT', updatedUser);
+//   res.json(updatedUser);
+//})
+ .put( updateUser);
 //   async (req, res, next) => {
 //   try{
 //     const user = await User.findByPk(req.body.id);

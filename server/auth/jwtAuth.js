@@ -17,7 +17,7 @@ const protect = async (req, res, next) => {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
       //get user from token
       req.user = await User.findByPk(decoded);
-      console.log('USER FROM PROTECT', req.user)
+      console.log('USER FROM PROTECT controller', req.user)
       //.select('-password');
       next();
     } catch (err) {
@@ -99,16 +99,36 @@ const loginUser = async (req, res, next) => {
 //Get current user
 const getMe = async (req, res, next) => {
   try {
-    const user = {
-      id: req.user.id,
-      firstName: req.user.firstName,
-      lastName: req.user.lastName,
-      email: req.user.email,
-      phoneNumber: req.user.phoneNumber,
-    };
-    console.log('USER FROM GET ME middleware', user)
-    res.status(200).json(user);
+    const user = req.user
+    //const user = await User.findByToken(req.headers.authorization)
+    // const user = {
+    //   id: req.user.id,
+    //   firstName: req.user.firstName,
+    //   lastName: req.user.lastName,
+    //   email: req.user.email,
+    //   phoneNumber: req.user.phoneNumber,
+    // };
+    res.json(user);
   } catch (err) {
+    next(err);
+  }
+};
+
+const updateUser = async(req,res,next) => {
+  try{
+    const user = req.user;
+    // const user = {
+    //   id: req.user.id,
+    //   firstName: req.user.firstName,
+    //   lastName: req.user.lastName,
+    //   email: req.user.email,
+    //   phoneNumber: req.user.phoneNumber,
+    // }
+    //const user = await User.findByToken(req.headers.authorization)
+    console.log('USER FROM ENDPOINT', user)
+    const updatedUser = await user.update(req.body);
+    res.json(updatedUser);
+  }catch(err){
     next(err);
   }
 };
@@ -132,6 +152,7 @@ User.beforeUpdate(hashPassword);
 module.exports = {
   registerUser,
   loginUser,
+  updateUser,
   getMe,
   generateToken,
   protect,

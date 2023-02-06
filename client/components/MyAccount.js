@@ -9,7 +9,7 @@ const EditUser = () => {
   console.log('ME FROM EDIT USER', me)
   //console.log('ID FROM ME', me.id)
 
-  const [password, setPassword] = useState("");
+  //const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -20,7 +20,7 @@ const EditUser = () => {
 
   const updatedUser = {
     id: me.id,
-    password: password,
+    password: me.password,
     firstName: firstName,
     lastName: lastName,
     email: me.email,
@@ -63,14 +63,14 @@ const EditUser = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <label htmlFor="password">Password:</label>
+          {/* <label htmlFor="password">Password:</label>
           <input
             name="password"
             value={password}
             placeholder='password'
             type='password'
             onChange={(e) => setPassword(e.target.value)}
-          />
+          /> */}
 
           <label htmlFor="firstName">First Name:</label>
           <input
@@ -83,7 +83,7 @@ const EditUser = () => {
           <label htmlFor="lastName">Last Name:</label>
           <input
             name="lastName"
-            value={[me.lastName]}
+            value={lastName}
             placeholder={[me.lastName]}
             onChange={(e) => setLastName(e.target.value)}
           />
