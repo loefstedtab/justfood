@@ -15,6 +15,21 @@ const EditUser = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // const [user, setUser] = useState({
+  //   email: "",
+  //   password: "",
+  //   confirmPassword: "",
+  // });
+  // useEffect(() => {
+  //   user.password && user.password === user.confirmPassword
+  //     ? setPasswordsDontMatch(false)
+  //     : setPasswordsDontMatch(true);
+  //     console.log(loading, "loading", passwordsDontMatch, "passwords match")
+  // }, [user, updated]);
+  // const [loading, setLoading] = useState(false);
+  // const [passwordsDontMatch, setPasswordsDontMatch] = useState(true);
+  // const [updated, setUpdated] = useState(false);
+
   const updatedUser = {
     id: me.id,
     password: me.password,
@@ -45,6 +60,7 @@ const EditUser = () => {
 	// 	}));
 	// };
 
+
   return (
     <div className="myProfile">
       <section className="myProfileHeading">
@@ -73,7 +89,7 @@ const EditUser = () => {
           <input
             name="firstName"
             value={firstName}
-            placeholder={[me.firstName]}
+            placeholder={firstName}
             onChange={(e) => setFirstName(e.target.value)}
           />
 
@@ -81,15 +97,15 @@ const EditUser = () => {
           <input
             name="lastName"
             value={lastName}
-            placeholder={[me.lastName]}
+            placeholder={lastName}
             onChange={(e) => setLastName(e.target.value)}
           />
 
           <label htmlFor="phone">Phone Number:</label>
           <input
             name="phone"
-            value={[me.phone]}
-            placeholder={[me.phone]}
+            value={phone}
+            placeholder={phone}
             onChange={(e) => setPhone(e.target.value)}
           />
 
