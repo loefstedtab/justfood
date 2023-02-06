@@ -78,13 +78,14 @@ export const editUser = createAsyncThunk(
       const id = updatedUser.id;
       console.log('ID FROM EDIT USER THUNK', id)
       const { data } = await axios.put(`/api/jwtUser`, {
-        id: updatedUser.id,
+        //id: updatedUser.id,
         firstName: updatedUser.firstName,
         lastName: updatedUser.lastName,
         password: updatedUser.password,
         email: updatedUser.email,
         phoneNumber: updatedUser.phoneNumber,
       });
+
       console.log('DATA',data)
       return data;
     } catch (err) {
@@ -143,7 +144,8 @@ export const authSlice = createSlice({
       state.status = "Loading";
     });
     builder.addCase(editUser.fulfilled, (state, action) => {
-      return action.payload;
+      state.status = "Succeeded";
+      state.me = action.payload;
     });
   },
 });
