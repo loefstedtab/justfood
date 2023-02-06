@@ -30,6 +30,7 @@ const EditUser = () => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     //dispatch(getMe)
+    console.log('UPDATED USER FROM HANDLESUBMIT', updatedUser)
     dispatch(editUser(updatedUser));
   };
 

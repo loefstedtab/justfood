@@ -115,6 +115,7 @@ const getMe = async (req, res, next) => {
 };
 
 const updateUser = async(req,res,next) => {
+  console.log('REQ BOYD ID', req.body.id)
   try{
     const user = await User.findByPk(req.body.id);
 

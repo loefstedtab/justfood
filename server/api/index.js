@@ -32,7 +32,7 @@ router.route('/jwtUser')
 //   }
 // });
 
-.put(updateUser)
+.put(protect, updateUser)
 //.put(protect, getMe)
 //   async (req, res, next) => {
 //   try{

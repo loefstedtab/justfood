@@ -74,17 +74,22 @@ export const createUser = createAsyncThunk(
 export const editUser = createAsyncThunk(
   "jwt/editUser",
   async (updatedUser) => {
+    const token = window.localStorage.getItem(TOKEN);
+    const config = {
+      headers: {
+         authorization: `Bearer ${token}`
+    }};
     try {
       const id = updatedUser.id;
       console.log('ID FROM EDIT USER THUNK', id)
       const { data } = await axios.put(`/api/jwtUser`, {
-        //id: updatedUser.id,
+        id: updatedUser.id,
         firstName: updatedUser.firstName,
         lastName: updatedUser.lastName,
         password: updatedUser.password,
         email: updatedUser.email,
         phoneNumber: updatedUser.phoneNumber,
-      });
+      }, config);
 
       console.log('DATA',data)
       return data;
