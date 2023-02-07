@@ -61,3 +61,52 @@ a:visited {
   margin: 1em;
   padding: 5px;
 }
+
+/*accordion*/
+
+.accordion {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.accordion-item {
+  background-color: #fafafa;
+  color: #444;
+  cursor: pointer;
+  display: flex;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  position: relative;
+  transition: all 0.4s;
+}
+
+.accordion-header {
+  background-color: #ddd;
+  border-radius: 10px 10px 0 0;
+  color: #444;
+  display: block;
+  padding: 10px;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+/* .accordion-content {
+  background-color: #fafafa;
+  display: block;
+  padding: 10px;
+  overflow: hidden;
+  height: 0;
+  transition: all 0.4s;
+} */
+
+.accordionContent {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  }
+  
+  .accordionContent.active {
+  max-height: 500px;
+  }
