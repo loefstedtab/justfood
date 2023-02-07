@@ -31,7 +31,7 @@ const Home = () => {
     e.preventDefault();
     if (ingredients.length === 0) {
     navigate(`/allrecipes?searchTerm=${searchTerm}`)
-    } 
+    }
     if (ingredients.length > 0) {
       navigate(`/allrecipes?ingredients=${ingredients.map(ingredient => ingredient.name).join(',')}`)
     }

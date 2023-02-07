@@ -1,5 +1,5 @@
 "use strict";
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 
 const { db, User } = require("../server/db");
 //const User = require('../server/db/models/User');
@@ -14,18 +14,18 @@ async function seed() {
   //Creating Users
   const users = await Promise.all([
     User.create({
-      firstName: "cody",
-      lastName: "boner",
-      email: "thisisanemail@gmail.com",
+      firstName: "Phil",
+      lastName: "McCraken",
+      email: "phil@gmail.com",
       phoneNumber: "5055555555",
-      password: await bcrypt.hash('cody', 10)
+      password: await bcrypt.hash("phil", 10),
     }),
     User.create({
       firstName: "donny",
       lastName: "donowitz",
       email: "don@gmail.com",
       phoneNumber: "5055555555",
-      password: await bcrypt.hash('don', 10)
+      password: await bcrypt.hash("don", 10),
     }),
   ]);
 

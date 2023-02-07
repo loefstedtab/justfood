@@ -15,14 +15,11 @@ const protect = async (req, res, next) => {
       token = req.headers.authorization.split(" ")[1];
       //verify token
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      console.log(decoded, "DECODED");
       //get user from token
       req.user = await User.findByPk(decoded);
-      console.log(req.user, "REQ USER");
       //.select('-password');
       next();
     } catch (err) {
-      console.log(err);
       res.status(401).json("Not authorized");
     }
   }
@@ -47,7 +44,7 @@ const registerUser = async (req, res, next) => {
     }
 
     //Hash
-    const hashedPassword = await bcrypt.hash(password, 10);
+     const hashedPassword = await bcrypt.hash(password, 10);
 
     //Create user
     const user = await User.create({
@@ -79,7 +76,6 @@ const registerUser = async (req, res, next) => {
 const loginUser = async (req, res, next) => {
   const { email, password } = req.body;
   const user = await User.findOne({ where: { email: email } });
-  console.log('USER FROM JWTAUTH', user)
   try {
     //check user passwords match
     if (user && (await bcrypt.compare(password, user.password))) {
@@ -102,38 +98,50 @@ const loginUser = async (req, res, next) => {
 //Get current user
 const getMe = async (req, res, next) => {
   try {
-    const user = {
-      id: req.user.id,
-      firstName: req.user.firstName,
-      lastName: req.user.lastName,
-      email: req.user.email,
-      phoneNumber: req.user.phoneNumber,
-    };
-    res.status(200).json(user);
+    const user = req.user;
+    res.json(user);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const updateUser = async (req, res, next) => {
+  const { password } = req.body;
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = {...req.body, password: hashedPassword};
+    console.log('user',user)
+    // const updatedUser = await req.user.update({
+    //   firstName,
+    //   lastName,
+    //   email,
+    //   phoneNumber,
+    //   password: hashedPassword,
+    // });
+    res.json(user);
   } catch (err) {
     next(err);
   }
 };
 
 const generateToken = (id) => {
-  return jwt.sign(id, process.env.JWT_SECRET, {
-    //expiresIn: '30d',
-  });
+  return jwt.sign(id, process.env.JWT_SECRET);
 };
 
-const hashPassword = async (user) => {
+//const hashPassword = async (user) => {
   //in case the password has been changed, we want to encrypt it with bcrypt
-  if (user.changed("password")) {
-    user.password = await bcrypt.hash(user.password, 10);
-  }
-};
+  //if (user.changed("password")) {
+    //user.password = await bcrypt.hash(user.password, 10);
+ // }
+//};
 
- //User.beforeCreate(hashPassword);
-User.beforeUpdate(hashPassword);
+//User.beforeCreate(hashPassword);
+//User.beforeUpdate(hashPassword);
 
 module.exports = {
   registerUser,
   loginUser,
+  updateUser,
   getMe,
   generateToken,
   protect,
