@@ -18,13 +18,13 @@ const Login = () => {
 
   return (
     <div className="LoginContainer">
+      
+      <div className="GoogleBtn">
+        <GoogleButton onClick={handleLogin} />
+      </div>
 
       <div>
         <AuthForm />
-      </div>
-
-      <div className="GoogleBtn">
-        <GoogleButton onClick={handleLogin} />
       </div>
 
       <div>
