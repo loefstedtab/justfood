@@ -71,25 +71,6 @@ export const createUser = createAsyncThunk(
 export const editUser = createAsyncThunk(
   "jwt/editUser",
   async (updatedUser) => {
-    try {
-      const id = updatedUser.id;
-      const { data } = await axios.put(`/api/jwtUser/${id}`, {
-        first_Name: updatedUser.firstName,
-        last_Name: updatedUser.lastName,
-        password: updatedUser.password,
-        email: updatedUser.email,
-        phoneNumber: updatedUser.phoneNumber,
-      });
-      return data;
-    } catch (err) {
-      console.log(err);
-    }
-  }
-);
-
-export const editUser = createAsyncThunk(
-  "jwt/editUser",
-  async (updatedUser) => {
     const token = window.localStorage.getItem(TOKEN);
     const config = {
       headers: {
@@ -149,11 +130,11 @@ export const authSlice = createSlice({
       state.error = action.payload;
     });
     builder.addCase(createUser.pending, (state, action) => {
-      state.status  = "Loading";;
+      state.status = "Loading";
     });
     builder.addCase(editUser.fulfilled, (state, action) => {
       return action.payload;
-    });;
+    });
     builder.addCase(editUser.pending, (state, action) => {
       state.status = "Loading";
     });
