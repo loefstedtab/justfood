@@ -106,18 +106,19 @@ const getMe = async (req, res, next) => {
 };
 
 const updateUser = async (req, res, next) => {
-  const { email, password, firstName, lastName, phoneNumber } = req.body;
+  const { password } = req.body;
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
-    console.log('req user', req.user)
-    const updatedUser = await req.user.update({
-      firstName,
-      lastName,
-      email,
-      phoneNumber,
-      password: hashedPassword,
-    });
-    res.json(updatedUser);
+    const user = {...req.body, password: hashedPassword};
+    console.log('user',user)
+    // const updatedUser = await req.user.update({
+    //   firstName,
+    //   lastName,
+    //   email,
+    //   phoneNumber,
+    //   password: hashedPassword,
+    // });
+    res.json(user);
   } catch (err) {
     next(err);
   }
