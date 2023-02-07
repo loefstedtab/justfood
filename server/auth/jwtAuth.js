@@ -17,7 +17,6 @@ const protect = async (req, res, next) => {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
       //get user from token
       req.user = await User.findByPk(decoded);
-      //.select('-password');
       next();
     } catch (err) {
       res.status(401).json("Not authorized");
@@ -98,8 +97,8 @@ const loginUser = async (req, res, next) => {
 //Get current user
 const getMe = async (req, res, next) => {
   try {
-    const user = req.user;
-    res.json(user);
+    const user = req.user.dataValues;
+    res.json({...user, loggedIn: true});
   } catch (err) {
     next(err);
   }

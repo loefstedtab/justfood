@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { redirect, useNavigate } from "react-router-dom";
-import { authenticate } from "../app/store";
+import { authenticate } from "../slices/googleUserSlice";
 import AddUser from "./AddUser";
 
 const AuthForm = () => {
-  const { error, status } = useSelector((state) => state.auth);
+  const { error, status } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

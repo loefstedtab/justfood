@@ -1,13 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { selectUser } from "../slices/googleUserSlice";
 const Navbar = () => {
-  const googleUser = useSelector((state) => state.user);
-  const jwtUser = useSelector((state) => state.auth.me)
-  console.log('ME FROM NAVBAR', jwtUser);
+  const {user} = useSelector(selectUser)
+  
   return (
     <div>
-        {googleUser.loggedIn || jwtUser ? (
+        {user && user.loggedIn ? (
           <div>
             <Link to="/home"><h1 className="WebsiteTitle">Just Food!</h1> </Link>
             <div className='NavbarLinks'>
@@ -17,7 +17,7 @@ const Navbar = () => {
               <Link to="/myaccount">My Account</Link>
             </div>
             <div>
-              <h3 className="WelcomeElement">Welcome, {googleUser.firstName || jwtUser.firstName}!</h3>
+              <h3 className="WelcomeElement">Welcome, {user.firstName}!</h3>
               <form className='logoutButton' action="/auth/logout" method="post">
                 <button className="logout" type="submit">
                   Sign out
