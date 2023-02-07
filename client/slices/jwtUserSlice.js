@@ -132,9 +132,6 @@ export const authSlice = createSlice({
     builder.addCase(createUser.pending, (state, action) => {
       state.status = "Loading";
     });
-    builder.addCase(editUser.fulfilled, (state, action) => {
-      return action.payload;
-    });
     builder.addCase(editUser.pending, (state, action) => {
       state.status = "Loading";
     });
