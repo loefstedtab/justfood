@@ -2,7 +2,7 @@ import React from "react";
 import GoogleButton from "react-google-button";
 import { Link } from "react-router-dom";
 import AuthForm from "./AuthForm";
-import AddUserForm from "./AddUserForm";
+import AddUser from "./AddUser";
 
 const Login = () => {
   window.process = {
@@ -28,7 +28,7 @@ const Login = () => {
       </div>
 
       <div>
-        <AddUserForm />
+        <AddUser />
       </div>
 
     </div>
