@@ -24,22 +24,21 @@ const AuthForm = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
-          <input name="email" type="text" id="email" />
-        </div>
-        <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" id="password" />
-        </div>
-        <div>
-          <button type="submit">Submit</button>
-        </div>
+      <form className="LoginForm" onSubmit={handleSubmit}>
+        <h3>Login to Account: </h3>
+
+        <label htmlFor="email">
+          Email
+        </label>
+        <input name="email" type="text" id="email" />
+
+        <label htmlFor="password">
+          Password
+        </label>
+        <input name="password" type="password" id="password" />
+
+        <button type="submit">Login!</button>
+
         {error && <div> {error} </div>}
       </form>
       <div>
