@@ -2,6 +2,7 @@ const { User } = require("../db");
 const Sequelize = require("sequelize");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const { has } = require("immer/dist/internal");
 
 //Protect routes function
 const protect = async (req, res, next) => {
@@ -106,18 +107,14 @@ const getMe = async (req, res, next) => {
 };
 
 const updateUser = async (req, res, next) => {
-  const { email, password, firstName, lastName, phoneNumber } = req.body;
+  const {password} = req.body;
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
-    console.log('req user', req.user)
-    const updatedUser = await req.user.update({
-      firstName,
-      lastName,
-      email,
-      phoneNumber,
-      password: hashedPassword,
-    });
-    res.json(updatedUser);
+    const user = {
+      ...req.body,
+      password: hashedPassword
+    }
+    res.json(user);
   } catch (err) {
     next(err);
   }
