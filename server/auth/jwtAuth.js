@@ -44,7 +44,7 @@ const registerUser = async (req, res, next) => {
     }
 
     //Hash
-    const hashedPassword = await bcrypt.hash(password, 10);
+     const hashedPassword = await bcrypt.hash(password, 10);
 
     //Create user
     const user = await User.create({
@@ -106,32 +106,36 @@ const getMe = async (req, res, next) => {
 };
 
 const updateUser = async (req, res, next) => {
+  const { email, password, firstName, lastName, phoneNumber } = req.body;
   try {
-    const user = req.user;
-    const updatedUser = await user.update(req.body);
+    const hashedPassword = await bcrypt.hash(password, 10);
+    console.log('req user', req.user)
+    const updatedUser = await req.user.update({
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      password: hashedPassword,
+    });
     res.json(updatedUser);
   } catch (err) {
     next(err);
   }
 };
-// const token = jwt.sign({ id },JWT_SECRET,{
-//   expiresIn:EXPIRES_IN
 
 const generateToken = (id) => {
-  return jwt.sign( id, process.env.JWT_SECRET,{
-    expiresIn: "30d"}
-  );
+  return jwt.sign(id, process.env.JWT_SECRET);
 };
 
-const hashPassword = async (user) => {
+//const hashPassword = async (user) => {
   //in case the password has been changed, we want to encrypt it with bcrypt
-  if (user.changed("password")) {
-    user.password = await bcrypt.hash(user.password, 10);
-  }
-};
+  //if (user.changed("password")) {
+    //user.password = await bcrypt.hash(user.password, 10);
+ // }
+//};
 
 //User.beforeCreate(hashPassword);
-User.beforeUpdate(hashPassword);
+//User.beforeUpdate(hashPassword);
 
 module.exports = {
   registerUser,

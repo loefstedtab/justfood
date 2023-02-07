@@ -22,11 +22,7 @@ const User = db.define("user", {
   },
   phoneNumber: {
     type: Sequelize.STRING,
-  }
+  },
 });
 
-
-
 module.exports = User;
-
-// User.beforeBulkCreate(users => Promise.all(users.map(hashPassword)))

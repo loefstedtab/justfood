@@ -15,5 +15,5 @@ module.exports = {
   Ingredient,
   Pantry,
   Recipe,
-  User
+  User,
 };

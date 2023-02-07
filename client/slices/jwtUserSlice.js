@@ -75,8 +75,6 @@ export const editUser = createAsyncThunk(
       },
     };
     try {
-      const id = updatedUser.id;
-      console.log("ID FROM EDIT USER THUNK", id);
       const { data } = await axios.put(`/api/jwtUser`, updatedUser, config);
       return data;
     } catch (err) {
@@ -143,7 +141,6 @@ export const authSlice = createSlice({
     });
   },
 });
-
 
 export const { logout } = authSlice.actions;
 
