@@ -2,6 +2,7 @@ const { User } = require("../db");
 const Sequelize = require("sequelize");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const { has } = require("immer/dist/internal");
 
 //Protect routes function
 const protect = async (req, res, next) => {
@@ -106,18 +107,13 @@ const getMe = async (req, res, next) => {
 };
 
 const updateUser = async (req, res, next) => {
-  const { password } = req.body;
+  const {password} = req.body;
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = {...req.body, password: hashedPassword};
-    console.log('user',user)
-    // const updatedUser = await req.user.update({
-    //   firstName,
-    //   lastName,
-    //   email,
-    //   phoneNumber,
-    //   password: hashedPassword,
-    // });
+    const user = {
+      ...req.body,
+      password: hashedPassword
+    }
     res.json(user);
   } catch (err) {
     next(err);
@@ -127,16 +123,6 @@ const updateUser = async (req, res, next) => {
 const generateToken = (id) => {
   return jwt.sign(id, process.env.JWT_SECRET);
 };
-
-//const hashPassword = async (user) => {
-  //in case the password has been changed, we want to encrypt it with bcrypt
-  //if (user.changed("password")) {
-    //user.password = await bcrypt.hash(user.password, 10);
- // }
-//};
-
-//User.beforeCreate(hashPassword);
-//User.beforeUpdate(hashPassword);
 
 module.exports = {
   registerUser,
