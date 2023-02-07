@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 
 const Home = () => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [restrictions, setRestrictions] = useState({
     dairyFree: false,
     soyFree: false,
     lowSodium: false,
   });
-  const [ingredientSearchTerm, setIngredientSearchTerm] = useState('');
+  const [ingredientSearchTerm, setIngredientSearchTerm] = useState("");
   const [ingredients, setIngredients] = useState([]);
-  const [includePantryIngredients, setIncludePantryIngredients] = useState(false);
+  const [includePantryIngredients, setIncludePantryIngredients] =
+    useState(false);
   const [missingIngredients, setMissingIngredients] = useState(0);
   const [suggestions, setSuggestions] = useState([]);
   const [ingredientSuggestions, setIngredientSuggestions] = useState([]);
@@ -23,8 +24,8 @@ const Home = () => {
     }
     const restrictionsQuery = Object.keys(restrictions)
       .filter((restriction) => restrictions[restriction])
-      .map((restriction) => restriction + '=true')
-      .join('&');
+      .map((restriction) => restriction + "=true")
+      .join("&");
     const res = await axios.get(
       `https://api.spoonacular.com/recipes/complexSearch?query=${e.target.value}&${restrictionsQuery}&apiKey=67f2eb38dc7441189476c0fd3fb74863`
     );
@@ -32,7 +33,10 @@ const Home = () => {
   };
 
   const handleRestrictionChange = (restriction) => {
-    setRestrictions({ ...restrictions, [restriction]: !restrictions[restriction] });
+    setRestrictions({
+      ...restrictions,
+      [restriction]: !restrictions[restriction],
+    });
   };
 
   const handleIngredientSearchTermChange = async (e) => {
@@ -63,20 +67,21 @@ const Home = () => {
     setIngredients(ingredients.filter((i) => i !== ingredient));
   };
 
-
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     const restrictionsQuery = Object.keys(restrictions)
       .filter((restriction) => restrictions[restriction])
-      .map((restriction) => restriction + '=true')
-      .join('&');
+      .map((restriction) => restriction + "=true")
+      .join("&");
     let res;
     if (ingredients.length === 0 || missingIngredients === 0) {
       res = await axios.get(
         `https://api.spoonacular.com/recipes/complexSearch?query=${searchTerm}&${restrictionsQuery}&apiKey=67f2eb38dc7441189476c0fd3fb74863`
       );
     } else {
-      const ingredientsQuery = ingredients.map((ingredient) => `ingredients=${ingredient}`).join('&');
+      const ingredientsQuery = ingredients
+        .map((ingredient) => `ingredients=${ingredient}`)
+        .join("&");
       res = await axios.get(
         `https://api.spoonacular.com/recipes/complexSearch?query=${searchTerm}&${ingredientsQuery}&numberOfMissingIngredients=${missingIngredients}&${restrictionsQuery}&apiKey=67f2eb38dc7441189476c0fd3fb74863`
       );
@@ -99,7 +104,7 @@ const Home = () => {
             <input
               type="checkbox"
               checked={restrictions.dairyFree}
-              onChange={() => handleRestrictionChange('dairyFree')}
+              onChange={() => handleRestrictionChange("dairyFree")}
             />
             Dairy-Free
           </label>
@@ -107,7 +112,7 @@ const Home = () => {
             <input
               type="checkbox"
               checked={restrictions.soyFree}
-              onChange={() => handleRestrictionChange('soyFree')}
+              onChange={() => handleRestrictionChange("soyFree")}
             />
             Soy-Free
           </label>
@@ -115,7 +120,7 @@ const Home = () => {
             <input
               type="checkbox"
               checked={restrictions.lowSodium}
-              onChange={() => handleRestrictionChange('lowSodium')}
+              onChange={() => handleRestrictionChange("lowSodium")}
             />
             Low Sodium
           </label>
@@ -123,7 +128,7 @@ const Home = () => {
             <input
               type="checkbox"
               checked={restrictions.Canadian}
-              onChange={() => handleRestrictionChange('Canadian')}
+              onChange={() => handleRestrictionChange("Canadian")}
             />
             Canadian
           </label>
@@ -139,7 +144,10 @@ const Home = () => {
             {suggestions.map((suggestion) => (
               <li key={suggestion.id}>
                 {suggestion.title}
-                <button type="button" onClick={() => handleIngredientAdd(suggestion.title)}>
+                <button
+                  type="button"
+                  onClick={() => handleIngredientAdd(suggestion.title)}
+                >
                   Add
                 </button>
               </li>
@@ -151,7 +159,10 @@ const Home = () => {
             {ingredientSuggestions.map((suggestion) => (
               <li key={suggestion.id}>
                 {suggestion.name}
-                <button type="button" onClick={() => handleIngredientAdd(suggestion.name)}>
+                <button
+                  type="button"
+                  onClick={() => handleIngredientAdd(suggestion.name)}
+                >
                   Add
                 </button>
               </li>
@@ -164,15 +175,17 @@ const Home = () => {
           ))}
         </ul>
         <ul>
-        {ingredients.map((ingredient, index) => (
-    <li key={index}>
-      {ingredient} <button onClick={() => handleIngredientRemove(ingredient)}>Delete</button>
-    </li>
-  ))}
-          </ul>
+          {ingredients.map((ingredient, index) => (
+            <li key={index}>
+              {ingredient}{" "}
+              <button onClick={() => handleIngredientRemove(ingredient)}>
+                Delete
+              </button>
+            </li>
+          ))}
+        </ul>
         <label>
           <input
-
             type="checkbox"
             checked={includePantryIngredients}
             onChange={handleIncludePantryIngredientsChange}
@@ -181,8 +194,7 @@ const Home = () => {
         </label>
         {includePantryIngredients && (
           <input>
-            type="number"
-            value={missingIngredients}
+            type="number" value={missingIngredients}
             onChange={handleMissingIngredientsChange}
             placeholder="Number of missing ingredients"
           </input>
@@ -193,12 +205,4 @@ const Home = () => {
   );
 };
 
-
 export default Home;
-
-
-
-
-
-
-

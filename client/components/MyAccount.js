@@ -1,65 +1,35 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { editUser, getMe } from "../slices/jwtUserSlice";
+import { editUser } from "../slices/jwtUserSlice";
 
 const EditUser = () => {
   const { status, me } = useSelector((state) => state.auth);
 
-  //const [password, setPassword] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [firstName, setFirstName] = useState(me.firstName);
   const [lastName, setLastName] = useState(me.lastName);
   const [email, setEmail] = useState(me.email);
-  const [phone, setPhone] = useState(me.phone);
+  const [phone, setPhone] = useState(me.phoneNumber);
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
-  // const [user, setUser] = useState({
-  //   email: "",
-  //   password: "",
-  //   confirmPassword: "",
-  // });
-  // useEffect(() => {
-  //   user.password && user.password === user.confirmPassword
-  //     ? setPasswordsDontMatch(false)
-  //     : setPasswordsDontMatch(true);
-  //     console.log(loading, "loading", passwordsDontMatch, "passwords match")
-  // }, [user, updated]);
-  // const [loading, setLoading] = useState(false);
-  // const [passwordsDontMatch, setPasswordsDontMatch] = useState(true);
-  // const [updated, setUpdated] = useState(false);
+  const checkedPassword =
+    password && password === confirmPassword ? true : false;
 
   const updatedUser = {
     id: me.id,
-    password: me.password,
+    password: password,
     firstName: firstName,
     lastName: lastName,
     email: email,
-    phone: phone,
+    phoneNumber: phone,
   };
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    //dispatch(getMe)
-    console.log('UPDATED USER FROM HANDLESUBMIT', updatedUser)
     dispatch(editUser(updatedUser));
   };
-
-  useEffect(() => {
-    if (status === "Succeeded") {
-      navigate("/MyAccount");
-    }
-  }, [status]);
-
-  // const updateUser = (event) => {
-	// 	const keyToUpdate = event.target.name;
-	// 	setUser((currentValues) => ({
-	// 		...currentValues,
-	// 		[keyToUpdate]: event.target.value,
-	// 	}));
-	// };
-
 
   return (
     <div className="myProfile">
@@ -76,14 +46,23 @@ const EditUser = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          {/* <label htmlFor="password">Password:</label>
+          <label htmlFor="password">Password:</label>
           <input
             name="password"
             value={password}
-            placeholder='password'
-            type='password'
+            placeholder="password"
+            type="password"
             onChange={(e) => setPassword(e.target.value)}
-          /> */}
+          />
+
+          <label htmlFor="confirmPassword">Confirm Password:</label>
+          <input
+            name="confirmPassword"
+            value={confirmPassword}
+            placeholder="Re-Enter Password"
+            type="password"
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
 
           <label htmlFor="firstName">First Name:</label>
           <input
@@ -109,7 +88,17 @@ const EditUser = () => {
             onChange={(e) => setPhone(e.target.value)}
           />
 
-          <button type="submit">Create Account</button>
+          <br />
+
+          {status === "idle" ? null : status === "Updated" ? (
+            <div>Your information has been updated</div>
+          ) : null}
+          <button
+            type="submit"
+            disabled={status === "Loading" || !checkedPassword}
+          >
+            Click to submit
+          </button>
         </form>
       </section>
     </div>

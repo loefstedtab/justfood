@@ -98,50 +98,29 @@ const loginUser = async (req, res, next) => {
 //Get current user
 const getMe = async (req, res, next) => {
   try {
-    const user = req.user
-    //const user = await User.findByToken(req.headers.authorization)
-    // const user = {
-    //   id: req.user.id,
-    //   firstName: req.user.firstName,
-    //   lastName: req.user.lastName,
-    //   email: req.user.email,
-    //   phoneNumber: req.user.phoneNumber,
-    // };
+    const user = req.user;
     res.json(user);
   } catch (err) {
     next(err);
   }
 };
 
-const updateUser = async(req,res,next) => {
-  try{
+const updateUser = async (req, res, next) => {
+  try {
     const user = req.user;
     const updatedUser = await user.update(req.body);
     res.json(updatedUser);
- }catch(err){
-   next(err);
+  } catch (err) {
+    next(err);
   }
-    // const user =  req.user.id
-    // console.log('USER FROM ENDPOINT', user);
-    // const updatedUser = await user.update(req.body);
-    // console.log('UPDATED USER FROM ENDPOINT', updatedUser)
-    // res.json(updatedUser);
-    //const user = await User.findByPk(req.body.id);
-
-    // const user = {
-    //   id: req.user.id,
-    //   firstName: req.user.firstName,
-    //   lastName: req.user.lastName,
-    //   email: req.user.email,
-    //   phoneNumber: req.user.phoneNumber,
-    // }
-    //const user = await User.findByToken(req.headers.authorization)
 };
+// const token = jwt.sign({ id },JWT_SECRET,{
+//   expiresIn:EXPIRES_IN
 
 const generateToken = (id) => {
-  return jwt.sign(id, process.env.JWT_SECRET, {
-    //expiresIn: '30d',
-  });
+  return jwt.sign( {id}, process.env.JWT_SECRET,{
+    expiresIn: "30d"}
+  );
 };
 
 const hashPassword = async (user) => {
@@ -151,7 +130,7 @@ const hashPassword = async (user) => {
   }
 };
 
- //User.beforeCreate(hashPassword);
+//User.beforeCreate(hashPassword);
 User.beforeUpdate(hashPassword);
 
 module.exports = {

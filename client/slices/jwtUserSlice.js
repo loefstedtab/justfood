@@ -1,14 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-/*
-  CONSTANT VARIABLES
-*/
 const TOKEN = "token";
 
-/*
-  THUNKS
-*/
 export const getMe = createAsyncThunk("jwt/getMe", async () => {
   const token = window.localStorage.getItem(TOKEN);
   try {
@@ -77,12 +71,13 @@ export const editUser = createAsyncThunk(
     const token = window.localStorage.getItem(TOKEN);
     const config = {
       headers: {
-         authorization: `Bearer ${token}`
-    }};
+        authorization: `Bearer ${token}`,
+      },
+    };
     try {
       const id = updatedUser.id;
-      console.log('ID FROM EDIT USER THUNK', id)
-      const { data } = await axios.put(`/api/jwtUser`, updatedUser,config)
+      console.log("ID FROM EDIT USER THUNK", id);
+      const { data } = await axios.put(`/api/jwtUser`, updatedUser, config);
       return data;
     } catch (err) {
       console.log(err);
@@ -90,9 +85,6 @@ export const editUser = createAsyncThunk(
   }
 );
 
-/*
-  SLICE
-*/
 export const authSlice = createSlice({
   name: "auth",
   initialState: {
@@ -139,19 +131,20 @@ export const authSlice = createSlice({
     builder.addCase(createUser.pending, (state, action) => {
       state.status = "Loading";
     });
+    builder.addCase(editUser.pending, (state, action) => {
+      state.status = "Loading";
+    });
     builder.addCase(editUser.fulfilled, (state, action) => {
-      state.status = "Succeeded";
+      state.status = "Updated";
       state.me = action.payload;
+    });
+    builder.addCase(editUser.rejected, (state, action) => {
+      state.status = "Rejected";
     });
   },
 });
 
-/*
-  ACTIONS
-*/
+
 export const { logout } = authSlice.actions;
 
-/*
-  REDUCER
-*/
 export default authSlice.reducer;

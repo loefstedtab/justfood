@@ -49,7 +49,7 @@ const AddUser = () => {
         <input
           name="password"
           value={password}
-          type='password'
+          type="password"
           onChange={(e) => setPassword(e.target.value)}
         />
 

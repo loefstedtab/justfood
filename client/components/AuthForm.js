@@ -17,10 +17,10 @@ const AuthForm = () => {
   };
 
   useEffect(() => {
-    if (status === "Succeeded"){
-      navigate('/home')
+    if (status === "Succeeded") {
+      navigate("/home");
     }
-  },[status])
+  }, [status]);
 
   return (
     <div>

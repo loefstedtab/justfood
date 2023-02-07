@@ -1,9 +1,9 @@
 const passport = require("passport");
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const { Strategy: GoogleStrategy } = require("passport-google-oauth20");
 const { User } = require("../db");
-const sequelize = require('sequelize');
+const sequelize = require("sequelize");
 
 passport.use(
   new GoogleStrategy(
@@ -46,13 +46,11 @@ passport.deserializeUser((user, done) => {
   done(null, user);
 });
 
-
 const isAuth = (req, res, next) => {
-  if (req.user)
-  next();
+  if (req.user) next();
   else {
     res.json({ loggedIn: false });
   }
 };
 
-module.exports =  { isAuth }
+module.exports = { isAuth };

@@ -20,15 +20,11 @@ const Login = () => {
       <div className="form">
         <AuthForm />
       </div>
-        <div className="buttonDiv">
-          <GoogleButton onClick={handleLogin} />
-        </div>
+      <div className="buttonDiv">
+        <GoogleButton onClick={handleLogin} />
+      </div>
     </>
   );
 };
 
 export default Login;
-
-
-
-
