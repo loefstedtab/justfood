@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { redirect, useNavigate } from "react-router-dom";
 import { authenticate } from "../app/store";
+import AddUser from "./AddUser";
 
 const AuthForm = () => {
   const { error, status } = useSelector((state) => state.auth);
@@ -16,10 +17,10 @@ const AuthForm = () => {
   };
 
   useEffect(() => {
-    if (status === "Succeeded"){
-      navigate('/home')
+    if (status === "Succeeded") {
+      navigate("/home");
     }
-  },[status])
+  }, [status]);
 
   return (
     <div>
@@ -40,6 +41,9 @@ const AuthForm = () => {
 
         {error && <div> {error} </div>}
       </form>
+      <div>
+        <AddUser />
+      </div>
     </div>
   );
 };

@@ -21,6 +21,9 @@ const Login = () => {
 
       <div>
         <AuthForm />
+      </div>
+
+      <div className="GoogleBtn">
         <GoogleButton onClick={handleLogin} />
       </div>
 
@@ -33,7 +36,3 @@ const Login = () => {
 };
 
 export default Login;
-
-
-
-

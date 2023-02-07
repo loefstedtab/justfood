@@ -11,9 +11,9 @@ const Recipe = require("./models/Recipe");
 
 module.exports = {
   db,
+  User,
   Cooked,
   Ingredient,
   Pantry,
-  Recipe,
-  User
+  Recipe
 };

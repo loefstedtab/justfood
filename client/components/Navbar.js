@@ -1,23 +1,21 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
 const Navbar = () => {
   const googleUser = useSelector((state) => state.user);
-  const jwtUser = useSelector((state) => state.auth.getMe)
+  const jwtUser = useSelector((state) => state.auth.me)
+  console.log('ME FROM NAVBAR', jwtUser);
   return (
     <div>
         {googleUser.loggedIn || jwtUser ? (
           <div>
             <Link to="/home"><h1 className="WebsiteTitle">Just Food!</h1> </Link>
             <div className='NavbarLinks'>
-              <Link to="/pantry">Pantry</Link>
-              <Link to="/myaccount">My Account</Link>
+              <Link to="/aboutus">About Us</Link>
               <Link to="/cookinghistory">Cooking History</Link>
               <Link to="/bookmarks">Bookmarks</Link>
-              <Link to="/aboutus">About Us</Link>
+              <Link to="/myaccount">My Account</Link>
             </div>
-
             <div>
               <h3 className="WelcomeElement">Welcome, {googleUser.firstName || jwtUser.firstName}!</h3>
               <form className='logoutButton' action="/auth/logout" method="post">
@@ -26,7 +24,6 @@ const Navbar = () => {
                 </button>
               </form>
             </div>
-
           </div>
         ) : (
           <div>
@@ -42,5 +39,4 @@ const Navbar = () => {
     </div>
   );
 };
-
 export default Navbar;
