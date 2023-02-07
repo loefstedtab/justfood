@@ -124,16 +124,6 @@ const generateToken = (id) => {
   return jwt.sign(id, process.env.JWT_SECRET);
 };
 
-//const hashPassword = async (user) => {
-  //in case the password has been changed, we want to encrypt it with bcrypt
-  //if (user.changed("password")) {
-    //user.password = await bcrypt.hash(user.password, 10);
- // }
-//};
-
-//User.beforeCreate(hashPassword);
-//User.beforeUpdate(hashPassword);
-
 module.exports = {
   registerUser,
   loginUser,
