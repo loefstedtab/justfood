@@ -2,7 +2,6 @@ const { User } = require("../db");
 const Sequelize = require("sequelize");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const { has } = require("immer/dist/internal");
 
 //Protect routes function
 const protect = async (req, res, next) => {
