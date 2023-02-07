@@ -17,7 +17,6 @@ const AddUser = () => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    //console.log('ME FROM HANDLESUBMIT', me);
     let newUser = {
       password: password,
       firstName: firstName,
