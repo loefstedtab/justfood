@@ -77,7 +77,7 @@ export const createUser = createAsyncThunk(
 
 export const editUser = createAsyncThunk(
   "jwt/editUser",
-  async (updatedUser) => {
+  async (updatedUser, thunkAPI) => {
     const token = window.localStorage.getItem(TOKEN);
     const config = {
       headers: {

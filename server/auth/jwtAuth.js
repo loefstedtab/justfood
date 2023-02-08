@@ -113,7 +113,7 @@ const updateUser = async (req, res, next) => {
     const user = {
       ...req.body,
       password: hashedPassword,
-      // loggedIn: true
+      loggedIn: true
     };
   console.log("Updated User line 117", user)
     res.json(user);
