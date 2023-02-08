@@ -37,9 +37,6 @@ const AuthForm = () => {
 
         {error && <div> {error} </div>}
       </form>
-      <div>
-        <AddUser />
-      </div>
     </div>
   );
 };
