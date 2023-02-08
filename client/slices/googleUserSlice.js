@@ -115,7 +115,7 @@ const userSlice = createSlice({
       state.error = action.error.message;
     });
     builder.addCase(getMe.pending, (state, action) => {
-      state.status = "Loading";
+      state.status = "User Loading";
       console.log("status from get me pending", state.status)
 
     });
