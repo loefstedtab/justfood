@@ -17,7 +17,6 @@ const protect = async (req, res, next) => {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
       //get user from token
       req.user = await User.findByPk(decoded);
-      //.select('-password');
       next();
     } catch (err) {
       res.status(401).json("Not authorized");
@@ -44,7 +43,7 @@ const registerUser = async (req, res, next) => {
     }
 
     //Hash
-     const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     //Create user
     const user = await User.create({
@@ -98,22 +97,23 @@ const loginUser = async (req, res, next) => {
 //Get current user
 const getMe = async (req, res, next) => {
   try {
-    const user = req.user;
-    res.json(user);
+    const user = req.user.dataValues;
+    res.json({ ...user, loggedIn: true });
   } catch (err) {
     next(err);
   }
 };
 
 const updateUser = async (req, res, next) => {
-  const {password} = req.body;
+  const { password } = req.body;
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = {
+    const foundUser = await User.findByPk(req.body.id)
+    let user = {
       ...req.body,
-      password: hashedPassword
-    }
-    res.json(user);
+      password: hashedPassword,
+    };
+    res.json(await foundUser.update(user));
   } catch (err) {
     next(err);
   }

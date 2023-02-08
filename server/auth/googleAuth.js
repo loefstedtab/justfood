@@ -14,7 +14,6 @@ passport.use(
     },
     async (_, __, profile, done) => {
       let user = profile._json;
-      console.log("THIS IS THE USER FROM GOOGLE", user);
       try {
         user = await User.findOrCreate({
           where: {
@@ -26,7 +25,6 @@ passport.use(
             email: user.email,
           },
         });
-        console.log(user);
         done(null, user[0]);
       } catch (error) {
         console.log(error);
@@ -52,5 +50,7 @@ const isAuth = (req, res, next) => {
     res.json({ loggedIn: false });
   }
 };
+
+
 
 module.exports = { isAuth };
