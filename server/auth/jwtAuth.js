@@ -107,17 +107,14 @@ const getMe = async (req, res, next) => {
 
 const updateUser = async (req, res, next) => {
   const { password } = req.body;
-  console.log("Updated User line 109", req.body)
   try {
-  console.log("Updated User line 111", req.body)
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = {
+    const foundUser = await User.findByPk(req.body.id)
+    let user = {
       ...req.body,
       password: hashedPassword,
-      loggedIn: true
     };
-  console.log("Updated User line 117", user)
-    res.json(user);
+    res.json(await foundUser.update(user));
   } catch (err) {
     next(err);
   }

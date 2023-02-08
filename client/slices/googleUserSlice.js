@@ -86,6 +86,7 @@ export const editUser = createAsyncThunk(
     };
     try {
       const { data } = await axios.put(`/api/jwtUser`, updatedUser, config);
+      thunkAPI.dispatch(getMe())
       return data;
     } catch (err) {
       console.log(err);

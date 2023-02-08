@@ -30,12 +30,11 @@ const EditUser = () => {
   };
 
   useEffect(() =>{
-    console.log("my account useeffect firing")
     setFirstName(user.firstName)
     setLastName(user.lastName)
     setEmail(user.email)
     setPhone(user.phoneNumber)
-  })
+  }, [user])
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -46,7 +45,7 @@ const EditUser = () => {
 
   if (status === "User Loading"){
     content = <MutatingDots />
-  } else if (status === "Succeeded"){
+  } else if (status === "Succeeded" || status === "Updated"){
     content = <div className="myProfile">
     <section className="myProfileHeading">
       <h3>Edit Your Information Below</h3>
