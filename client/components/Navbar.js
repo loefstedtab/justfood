@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { selectUser } from "../slices/googleUserSlice";
+import { selectUser } from "../slices/userSlice";
 const Navbar = () => {
   const {user} = useSelector(selectUser)
   const logout = () => {

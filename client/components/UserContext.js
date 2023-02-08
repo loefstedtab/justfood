@@ -3,7 +3,7 @@ import {
   fetchGoogleUser,
   getMe,
   selectUser,
-} from "../slices/googleUserSlice";
+} from "../slices/userSlice";
 import { useSelector, useDispatch } from "react-redux";
 
 export const UserContext = createContext();

@@ -108,7 +108,6 @@ const userSlice = createSlice({
     });
     builder.addCase(getMe.fulfilled, (state, action) => {
       state.status = "Succeeded";
-      console.log("status from get me", state.status)
       state.user = action.payload;
     });
     builder.addCase(getMe.rejected, (state, action) => {
@@ -117,13 +116,9 @@ const userSlice = createSlice({
     });
     builder.addCase(getMe.pending, (state, action) => {
       state.status = "User Loading";
-      console.log("status from get me pending", state.status)
-
     });
     builder.addCase(authenticate.pending, (state, action) => {
       state.status = "Loading";
-      console.log("status from authenticate pending", state.status)
-
     });
     builder.addCase(authenticate.rejected, (state, action) => {
       state.status = "Rejected";
@@ -131,12 +126,10 @@ const userSlice = createSlice({
     });
     builder.addCase(authenticate.fulfilled, (state, action) => {
       state.status = "Succeeded";
-      console.log("status from authenticate", state.status)
       state.user = action.payload;
     });
     builder.addCase(createUser.fulfilled, (state, action) => {
       state.status = "Succeeded";
-      console.log("status from create", state.status)
       state.user = action.payload;
     });
     builder.addCase(createUser.rejected, (state, action) => {
@@ -151,7 +144,6 @@ const userSlice = createSlice({
     });
     builder.addCase(editUser.fulfilled, (state, action) => {
       state.status = "Updated";
-      console.log("status from create", state.status)
       state.user = action.payload;
     });
     builder.addCase(editUser.rejected, (state, action) => {

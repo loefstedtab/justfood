@@ -97,7 +97,6 @@ const loginUser = async (req, res, next) => {
 //Get current user
 const getMe = async (req, res, next) => {
   try {
-    console.log("This is from the get me function", req.user)
     const user = req.user.dataValues;
     res.json({ ...user, loggedIn: true });
   } catch (err) {

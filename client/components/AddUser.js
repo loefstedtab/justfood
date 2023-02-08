@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createUser } from "../slices/googleUserSlice";
+import { createUser } from "../slices/userSlice";
 
 const AddUser = () => {
   const { status, error } = useSelector((state) => state);

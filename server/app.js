@@ -13,13 +13,6 @@ app.use(morgan("dev"));
 // body parsing middleware
 app.use(express.json());
 
-// app.use(
-//   cors({
-//     credentials: true,
-//     origin: process.env.CLIENT_URL,
-//   })
-// );
-
 app.use(
   session({
     secret: process.env.COOKIE_SECRET,

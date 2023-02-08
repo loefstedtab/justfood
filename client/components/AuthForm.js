@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { redirect, useNavigate } from "react-router-dom";
-import { authenticate } from "../slices/googleUserSlice";
+import { authenticate } from "../slices/userSlice";
 import AddUser from "./AddUser";
 
 const AuthForm = () => {
@@ -16,11 +16,7 @@ const AuthForm = () => {
     dispatch(authenticate({ email, password })).then(navigate('/'));
   };
 
-  // useEffect(() => {
-  //   if (status === "Succeeded") {
-  //     navigate("/home");
-  //   }
-  // }, [status]);
+
 
   return (
     <div>
