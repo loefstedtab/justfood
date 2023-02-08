@@ -13,7 +13,7 @@ const AuthForm = () => {
     evt.preventDefault();
     const email = evt.target.email.value;
     const password = evt.target.password.value;
-    dispatch(authenticate({ email, password }));
+    dispatch(authenticate({ email, password })).then(navigate('/'));
   };
 
   // useEffect(() => {

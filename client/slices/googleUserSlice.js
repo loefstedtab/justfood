@@ -96,7 +96,7 @@ export const editUser = createAsyncThunk(
 const userSlice = createSlice({
   name: "auth",
   initialState: {
-    user: null,
+    user: {},
     error: null,
     status: "idle",
   },

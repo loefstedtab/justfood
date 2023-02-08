@@ -43,7 +43,7 @@ const registerUser = async (req, res, next) => {
     }
 
     //Hash
-     const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     //Create user
     const user = await User.create({
@@ -98,20 +98,24 @@ const loginUser = async (req, res, next) => {
 const getMe = async (req, res, next) => {
   try {
     const user = req.user.dataValues;
-    res.json({...user, loggedIn: true});
+    res.json({ ...user, loggedIn: true });
   } catch (err) {
     next(err);
   }
 };
 
 const updateUser = async (req, res, next) => {
-  const {password} = req.body;
+  const { password } = req.body;
+  console.log("Updated User line 109", req.body)
   try {
+  console.log("Updated User line 111", req.body)
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = {
       ...req.body,
-      password: hashedPassword
-    }
+      password: hashedPassword,
+      // loggedIn: true
+    };
+  console.log("Updated User line 117", user)
     res.json(user);
   } catch (err) {
     next(err);

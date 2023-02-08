@@ -24,14 +24,8 @@ const AddUser = () => {
       email: email,
       phoneNumber: phone,
     };
-    dispatch(createUser(newUser));
+    dispatch(createUser(newUser)).then(navigate("/home"));
   };
-
-  useEffect(() => {
-    if (status === "Succeeded") {
-      navigate("/home");
-    }
-  }, [status]);
 
   return (
     <div>
