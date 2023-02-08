@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const passport = require("passport");
+const { logout } = require("./googleAuth");
 const { loginUser } = require("./jwtAuth");
 
 //Google Login Auth Routes

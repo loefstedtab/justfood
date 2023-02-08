@@ -16,11 +16,11 @@ const AuthForm = () => {
     dispatch(authenticate({ email, password }));
   };
 
-  useEffect(() => {
-    if (status === "Succeeded") {
-      navigate("/home");
-    }
-  }, [status]);
+  // useEffect(() => {
+  //   if (status === "Succeeded") {
+  //     navigate("/home");
+  //   }
+  // }, [status]);
 
   return (
     <div>

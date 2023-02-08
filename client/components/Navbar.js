@@ -4,7 +4,10 @@ import { Link } from "react-router-dom";
 import { selectUser } from "../slices/googleUserSlice";
 const Navbar = () => {
   const {user} = useSelector(selectUser)
-  
+  const logout = () => {
+    localStorage.removeItem('token')
+  }
+
   return (
     <div>
         {user && user.loggedIn ? (
@@ -19,7 +22,7 @@ const Navbar = () => {
             <div>
               <h3 className="WelcomeElement">Welcome, {user.firstName}!</h3>
               <form className='logoutButton' action="/auth/logout" method="post">
-                <button className="logout" type="submit">
+                <button onClick={() => logout()} className="logout" type="submit">
                   Sign out
                 </button>
               </form>

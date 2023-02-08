@@ -11,12 +11,12 @@ const Context = ({ children }) => {
 
   const dispatch = useDispatch();
 
-  const {user} = useSelector(selectUser);
-  // console.log("THis user comes from context", user)
+  const {user, status} = useSelector(selectUser);
+  console.log("THis user comes from context", user)
 
   useEffect(() => {
-    dispatch(fetchGoogleUser())
-    dispatch(authenticate()).then(setAccount(user))
+      dispatch(fetchGoogleUser())
+      dispatch(getMe()).then(setAccount(user))
   }, []);
 
   //   get the user

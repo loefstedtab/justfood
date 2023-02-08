@@ -12,7 +12,7 @@ const EditUser = () => {
   const [lastName, setLastName] = useState(user.lastName);
   const [email, setEmail] = useState(user.email);
   const [phone, setPhone] = useState(user.phoneNumber);
-
+ 
   const dispatch = useDispatch();
 
   const checkedPassword =
@@ -34,9 +34,9 @@ const EditUser = () => {
 
   let content
 
-  if(!user){
+  if(status === "idle"){
     content = <MutatingDots />
-  } else if(user){
+  } else if(status === "Succeeded"){
     content =  <div className="myProfile">
     <section className="myProfileHeading">
       <h3>Edit Your Information Below</h3>
