@@ -27,8 +27,19 @@ const MealDetail = ({ match }) => {
           __html: meal.summary
         }}
         ></div>
-        <p>{meal.sourceUrl}</p>
-        <p>{meal.sourceName}</p>
+      
+        <div dangerouslySetInnerHTML={{
+        __html: meal.instructions
+        }}
+        ></div>
+        <div>
+          <button bookmark={meal.id}>Bookmark</button>
+          <button cooked={meal.id}>Cooked</button>
+        </div>
+
+
+        <p>Ready in {meal.readyInMinutes} Minutes</p>
+        <p>Makes {meal.servings} servings</p>
         {meal?.dishTypes?.map((dishType) => (
           <p>{dishType}</p>
         ))}

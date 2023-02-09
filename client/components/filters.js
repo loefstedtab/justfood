@@ -1,76 +1,62 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import { createStore } from 'redux';
+import { useSelector, useDispatch } from 'react-redux';
+import CheckboxFilter from './checkboxes';
 
-const Filter = ({}) => {
-  const [tagInput, setTagInput] = useState('');
-const [tags, setTags] = useState([]);
 
-  const handleTagInputChange = (e) => {
-    setTagInput(e.target.value);
-  };
+const Filter = () => {
+  const [missingIngredients, setMissingIngredients] = useState(0);
+  const [maxCostPerServing, setMaxCostPerServing] = useState(0);
+  const filters = useSelector(state => state.filters);
+  const dispatch = useDispatch();
 
-  const handleAddTag = (e) => {
-    e.preventDefault();
-    setTagInput('');
+  const handlemaxCostPerServing = (event) => {
+    setMaxCostPerServing(event.target.value);
   };
 
   const handleFilterChange = (filter) => {
+    dispatch({ type: 'TOGGLE_FILTER', filter });
   };
 
-  const handleRemoveTag = (tagToRemove) => {
-   
+  const handleSliderChange = (event) => {
+    setMissingIngredients(event.target.value);
   };
 
   return (
     <div>
-      <form onSubmit={handleAddTag}>
-        <input type="text" value={tagInput} onChange={handleTagInputChange} />
-        <button type="submit">Add Tag</button>
-      </form>
-      <ul>
-        {tags.map((tag) => (
-          <li key={tag}>
-            {tag}
-            <button onClick={() => handleRemoveTag(tag)}>Remove</button>
-          </li>
-        ))}
-      </ul>
-      <button>Clear All</button>
+    <div>
+      {filters && filters.map((filter, index) => (
+        <label key={index}>
+          <input type="checkbox" name={filter.name} id={filter.id} onChange={() => handleFilterChange(filter.id)} />
+          {filter.name}
+        </label>
+      ))}
+    </div>
       <div>
-        <label>
-          <input type="checkbox" onChange={() => handleFilterChange('dairyFree')} />
-          Dairy-Free
+        <label htmlFor="slider">
+          Missing Ingredients
+          <input
+            type="range"
+            id="slider"
+            min="0"
+            max="5"
+            value={missingIngredients}
+            onChange={handleSliderChange}
+          />
         </label>
         <label>
-          <input type="checkbox" onChange={() => handleFilterChange('soyFree')} />
-          Soy-Free
+          Max Cost Per Serving
+          <input
+            type="number"
+            value={maxCostPerServing}
+            onChange={handlemaxCostPerServing}
+          />
         </label>
-        <label>
-            <input type="checkbox" onChange={() => handleFilterChange('glutenFree')} />
-            Gluten-Free
-        </label>
-        <label>
-            <input type="checkbox" onChange={() => handleFilterChange('vegan')} />
-            Vegan
-        </label>
-        <label>
-            <input type="checkbox" onChange={() => handleFilterChange('vegetarian')} />
-            Vegetarian
-        </label>
-        
       </div>
     </div>
   );
 };
 
-const mapStateToProps = (state) => ({
-  tags: state.tags,
-});
+export default Filter;
 
-const mapDispatchToProps = (dispatch) => ({
-  addTag: (tag) => dispatch(addTag(tag)),
-  removeTag: (tag) => dispatch(removeTag(tag)),
-  clearTags: () => dispatch(clearTags()),
-});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Filter);
