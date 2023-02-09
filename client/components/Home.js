@@ -24,7 +24,7 @@ const Home = () => {
     }
 
     const res = await axios.get(
-      `https://api.spoonacular.com/recipes/complexSearch?query=${e.target.value}&apiKey=67f2eb38dc7441189476c0fd3fb74863`
+      `https://api.spoonacular.com/recipes/complexSearch?query=${e.target.value}&apiKey=7d1e2814f507478498ff350fa1678752`
     );
     setSuggestions(res.data.results.slice(0, 5));
   };
@@ -33,7 +33,7 @@ const Home = () => {
     e.preventDefault();
     if (selected=="Search For Meals!") {
     navigate(`/allrecipes?searchTerm=${searchTerm}&filters=${filters.join(',')}`)
-    } 
+    }
     else  {
       navigate(`/allrecipes?ingredients=${ingredients.map(ingredient => ingredient.name).join(',')}&filters=${filters.join(',')}`)
     }

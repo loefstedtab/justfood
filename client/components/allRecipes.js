@@ -10,12 +10,12 @@ const AllMeals = ({ history, location }) => {
   const getSearchResultsByMeal = async () => {
 
     const res = await axios.get(
-      `https://api.spoonacular.com/recipes/complexSearch?query=${searchParams.get('searchTerm')}&diet=${searchParams.get("filters")}&apiKey=67f2eb38dc7441189476c0fd3fb74863`
+      `https://api.spoonacular.com/recipes/complexSearch?query=${searchParams.get('searchTerm')}&diet=${searchParams.get("filters")}&apiKey=7d1e2814f507478498ff350fa1678752`
     );
     setSuggestions(res.data.results);
   };
   const getSearchResultsByIngredients = async () => {
-    const res = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?includeIngredients=${searchParams.get("ingredients")}&diet=${searchParams.get("filters")}&apiKey=67f2eb38dc7441189476c0fd3fb74863`)
+    const res = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?includeIngredients=${searchParams.get("ingredients")}&diet=${searchParams.get("filters")}&apiKey=7d1e2814f507478498ff350fa1678752`)
     setSuggestions(res.data.results);
 
   }

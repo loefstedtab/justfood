@@ -1,4 +1,4 @@
-const { User } = require("../db");
+const { User, Recipe } = require("../db");
 const Sequelize = require("sequelize");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
@@ -120,9 +120,20 @@ const updateUser = async (req, res, next) => {
     }
   }else{
     let user = await User.findByPk(req.body.id)
-    res.json(await user.update(req.body)); 
+    res.json(await user.update(req.body));
   }
 };
+
+const updateRecipe = async (req, res, next) => {
+  console.log("THIS IS THE REQ.BODY FOR UPDATE RECIPE line 129", req.body)
+  try{
+      const foundRecipe = await Recipe.findOrCreate({where:{mealId: req.body.mealId}, defaults:{isCooked: req.body.isCooked, isBookmarked: req.body.isBookmarked}})
+      console.log("THIS IS THE FOUND RECIPE FOR UPDATE RECIPE", foundRecipe)
+      res.json(foundRecipe)
+  }catch(err){
+    next(err)
+  }
+}
 
 const generateToken = (id) => {
   return jwt.sign(id, process.env.JWT_SECRET);
@@ -135,4 +146,5 @@ module.exports = {
   getMe,
   generateToken,
   protect,
+  updateRecipe
 };

@@ -1,19 +1,41 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
+import { editRecipe, selectRecipe } from "../slices/recipeSlice";
+import {selectUser} from "../slices/userSlice"
+import { useDispatch, useSelector } from "react-redux";
+
 
 const MealDetail = ({ match }) => {
   const [meal, setMeal] = useState({});
+  const user = useSelector(selectUser)
+  console.log("THIS IS THE USER FROM SINGLE RECIPE", user, meal.id)
 
   const [searchParams] = useSearchParams();
   const getMeal = async () => {
     const res = await axios.get(
       `https://api.spoonacular.com/recipes/${searchParams.get(
         "recipeId"
-      )}/information?apiKey=67f2eb38dc7441189476c0fd3fb74863`
+      )}/information?apiKey=7d1e2814f507478498ff350fa1678752`
     );
     setMeal(res.data);
   };
+
+  const handleBookmark = () => {
+    updatedRecipe = {
+      mealId : meal.id,
+      isBookmarked: true,
+      userId: user.id
+    }
+  }
+
+  const handleCooked = () => {
+    updatedRecipe = {
+      mealId : meal.id,
+      isCooked: true,
+      userId: user.id
+    }
+  }
 
   useEffect(() => {
     getMeal();
@@ -35,8 +57,8 @@ const MealDetail = ({ match }) => {
         }}
       ></div>
       <div>
-        <button bookmark={meal.id}>Bookmark</button>
-        <button cooked={meal.id}>Cooked</button>
+        <button onClick={() => {handleBookmark}}>Bookmark</button>
+        <button onClick={() => {handleCooked}}>Cooked</button>
       </div>
 
       <p>Ready in {meal.readyInMinutes} Minutes</p>

@@ -2,21 +2,15 @@ const sequelize = require("sequelize");
 const db = require("../db");
 
 const Recipe = db.define("recipe", {
-  recipe_id: {
-    type: sequelize.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-    allowNull: false,
-  },
-  user_id: {
-    type: sequelize.INTEGER,
-  },
   isBookmarked: {
     type: sequelize.BOOLEAN,
   },
   isCooked: {
     type: sequelize.BOOLEAN,
   },
+  mealId:{
+    type: sequelize.INTEGER
+  }
 
   //  wrote these additional fields in the model, if we decide to use them.
   // recipeDescription: {
