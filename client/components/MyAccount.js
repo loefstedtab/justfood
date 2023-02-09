@@ -41,7 +41,10 @@ const EditUser = () => {
   };
   const handlePasswordSubmit = (evt) => {
     evt.preventDefault();
-    dispatch(editUser({ password: password })).then(alert("CONGRATULATIONS"));
+    dispatch(editUser({
+      id: user.id,
+      password: password }))
+      .then(alert("CONGRATULATIONS"));
   };
 
   let content;
@@ -118,7 +121,7 @@ const EditUser = () => {
               type="password"
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
-            <button type="submit" disabled={status === "Loading"}></button>
+            <button type="submit" disabled={status === "Loading" || !checkedPassword}></button>
           </form>
         </section>
       </div>
