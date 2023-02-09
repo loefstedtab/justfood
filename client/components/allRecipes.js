@@ -8,7 +8,7 @@ const AllMeals = ({ history, location }) => {
   const [suggestions, setSuggestions] = useState([]);
   const [searchParams] = useSearchParams();
   const getSearchResultsByMeal = async () => {
-    
+
     const res = await axios.get(
       `https://api.spoonacular.com/recipes/complexSearch?query=${searchParams.get('searchTerm')}&diet=${searchParams.get("filters")}&apiKey=67f2eb38dc7441189476c0fd3fb74863`
     );
@@ -37,16 +37,16 @@ const AllMeals = ({ history, location }) => {
       <h1>Search Results</h1>
       <ul>
           {suggestions.map((suggestion) => (
-           <li> 
+           <li>
             <a href={`/recipe?recipeId=${suggestion.id}`}  key={suggestion.id}>{suggestion.title}  </a>
             <img src={suggestion.image} />
-            
-            
+
+
 
             </li>
           ))}
         </ul>
-       
+
     </div>
   );
 };
