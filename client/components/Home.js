@@ -3,7 +3,9 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Pantry from './Pantry';
 import Filter from './filters';
+import CheckboxFilter from './checkboxes';
 import HomeDropdown from './HomeDropdown';
+
 
 
 const Home = () => {
@@ -11,7 +13,7 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [selected, setSelected] = useState('Choose One:');
-
+  const [filters, setFilters] = useState([]);
   const navigate = useNavigate();
 
   const handleSearchTermChange = async (e) => {
@@ -29,18 +31,18 @@ const Home = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    if (ingredients.length === 0) {
-    navigate(`/allrecipes?searchTerm=${searchTerm}`)
+    if (selected=="Search For Meals!") {
+    navigate(`/allrecipes?searchTerm=${searchTerm}&filters=${filters.join(',')}`)
     } 
-    if (ingredients.length > 0) {
-      navigate(`/allrecipes?ingredients=${ingredients.map(ingredient => ingredient.name).join(',')}`)
+    else  {
+      navigate(`/allrecipes?ingredients=${ingredients.map(ingredient => ingredient.name).join(',')}&filters=${filters.join(',')}`)
     }
   };
 
   return (
     <div>
       <HomeDropdown selected={selected} setSelected={setSelected}/>
-      <form onSubmit={handleFormSubmit}>
+      {selected=="Search For Meals!" &&  <form onSubmit={handleFormSubmit}>
         <input
           type="text"
           value={searchTerm}
@@ -49,7 +51,7 @@ const Home = () => {
         />
 
         <button type="submit">Search</button>
-      </form>
+      </form>}
       {suggestions.length > 0 && (
         <ul>
           {suggestions.map((suggestion) => (
@@ -58,8 +60,8 @@ const Home = () => {
         </ul>
       )}
 
-      <Pantry ingredients = {ingredients} setIngredients = {setIngredients} />
-
+      {selected=="Search By Ingredients!" && <Pantry ingredients = {ingredients} setIngredients = {setIngredients} handleFormSubmit = {handleFormSubmit} />}
+      <CheckboxFilter filters={filters} setFilters={setFilters} />
       <Filter />
     </div>
   );

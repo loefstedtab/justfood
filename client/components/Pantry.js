@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const Pantry = ({ingredients,setIngredients}) => {
+const Pantry = ({ingredients,setIngredients,handleFormSubmit}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [suggestions, setSuggestions] = useState([]);
 
@@ -33,8 +33,9 @@ const Pantry = ({ingredients,setIngredients}) => {
 
   return (
     <div>
-      <form>
-        <input type="text" value={searchTerm} onChange={handleSearchTermChange} />
+      <form onSubmit={handleFormSubmit}>
+            <input type="text" value={searchTerm} onChange={handleSearchTermChange} placeholder="Search by Ingredients" />
+        <button type="submit">Search</button>
         {suggestions.map((suggestion) => (
           <div key={suggestion} >
             {suggestion.name}

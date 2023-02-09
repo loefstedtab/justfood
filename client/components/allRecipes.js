@@ -7,16 +7,17 @@ const AllMeals = ({ history, location }) => {
   const [meals, setMeals] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
   const [searchParams] = useSearchParams();
-  const getSearchResults = async () => {
+  const getSearchResultsByMeal = async () => {
     
     const res = await axios.get(
-      `https://api.spoonacular.com/recipes/complexSearch?query=${searchParams.get('searchTerm')}&apiKey=67f2eb38dc7441189476c0fd3fb74863`
+      `https://api.spoonacular.com/recipes/complexSearch?query=${searchParams.get('searchTerm')}&diet=${searchParams.get("filters")}&apiKey=67f2eb38dc7441189476c0fd3fb74863`
     );
     setSuggestions(res.data.results);
   };
   const getSearchResultsByIngredients = async () => {
-    const res = await axios.get(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${searchParams.get("ingredients")}&apiKey=67f2eb38dc7441189476c0fd3fb74863`)
-    setSuggestions(res.data);
+    const res = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?includeIngredients=${searchParams.get("ingredients")}&diet=${searchParams.get("filters")}&apiKey=67f2eb38dc7441189476c0fd3fb74863`)
+    setSuggestions(res.data.results);
+
   }
 
 
@@ -24,7 +25,7 @@ const AllMeals = ({ history, location }) => {
 
   React.useEffect(() => {
     if (searchParams.get('searchTerm')) {
-      getSearchResults();
+      getSearchResultsByMeal();
     }
     if (searchParams.get('ingredients')) {
       getSearchResultsByIngredients();
