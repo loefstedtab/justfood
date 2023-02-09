@@ -11,6 +11,7 @@ const MealDetail = ({ match }) => {
   const user = useSelector(selectUser)
   console.log("THIS IS THE USER FROM SINGLE RECIPE", user, meal.id)
 
+  const dispatch = useDispatch()
   const [searchParams] = useSearchParams();
   const getMeal = async () => {
     const res = await axios.get(
@@ -22,18 +23,25 @@ const MealDetail = ({ match }) => {
   };
 
   const handleBookmark = () => {
+    isBookmarked
+    ? false
+    : true
     updatedRecipe = {
       mealId : meal.id,
-      isBookmarked: true,
-      userId: user.id
+      userId: user.id,
+      isBookmarked
     }
+    dispatch(editRecipe(updatedRecipe))
   }
 
   const handleCooked = () => {
+    isCooked
+    ? false
+    : true
     updatedRecipe = {
       mealId : meal.id,
-      isCooked: true,
-      userId: user.id
+      userId: user.id,
+      isCooked
     }
   }
 
