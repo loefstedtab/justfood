@@ -4,29 +4,28 @@ const db = require("../db");
 const User = db.define("user", {
   firstName: {
     type: Sequelize.STRING,
-    //allowNull: false,
+    allowNull: false,
   },
   lastName: {
     type: Sequelize.STRING,
-    //allowNull: false,
+    allowNull: false,
   },
   email: {
     type: Sequelize.STRING,
-    //allowNull: false,
-  },
-  phoneNumber: {
-    type: Sequelize.STRING,
+    allowNull: false,
   },
   googleId: {
     type: Sequelize.STRING,
   },
   password: {
     type: Sequelize.STRING,
+    defaultValue: " "
+
+  },
+  phoneNumber: {
+    type: Sequelize.STRING,
+    defaultValue: " "
   },
 });
 
-
-
 module.exports = User;
-
-// User.beforeBulkCreate(users => Promise.all(users.map(hashPassword)))

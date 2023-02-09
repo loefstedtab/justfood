@@ -1,20 +1,16 @@
 const router = require("express").Router();
-const { protect } = require("../auth/jwtAuth");
+const { protect, updateUser } = require("../auth/jwtAuth");
 const { isAuth } = require("../auth/googleAuth");
 const jwt = require("jsonwebtoken");
 const { User } = require("../db");
 const { generateToken, registerUser, getMe } = require("../auth/jwtAuth");
 
 //JWT routes
-router.get("/jwtUser", protect, getMe);
+router.route("/jwtUser")
+.get(protect, getMe)
+.put(protect, updateUser);
 
-// router.post("/jwtRegister", async (req, res) => {
-//   const user = await User.findOne({ where: { email: req.body.email } });
-//   const token = generateToken(user.dataValues.id);
-//   res.json(token);
-// });
-
-router.post("/jwtRegister", registerUser)
+router.post("/jwtRegister", registerUser);
 
 //Google Routes
 router.get("/googleUser", isAuth, async (req, res, next) => {

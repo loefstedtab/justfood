@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createUser } from "../slices/jwtUserSlice";
+import { createUser } from "../slices/userSlice";
 
-const AddUserForm = () => {
-  const { status } = useSelector((state) => state.auth);
+const AddUser = () => {
+  const { status, error } = useSelector((state) => state);
 
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -22,16 +22,10 @@ const AddUserForm = () => {
       firstName: firstName,
       lastName: lastName,
       email: email,
-      phone: phone,
+      phoneNumber: phone,
     };
-    dispatch(createUser(newUser));
+    dispatch(createUser(newUser)).then(navigate("/home"));
   };
-
-  useEffect(() => {
-    if (status === "Succeeded") {
-      navigate("/home");
-    }
-  }, [status]);
 
   return (
     <div>
@@ -49,6 +43,7 @@ const AddUserForm = () => {
         <input
           name="password"
           value={password}
+          type="password"
           onChange={(e) => setPassword(e.target.value)}
         />
 
@@ -79,4 +74,4 @@ const AddUserForm = () => {
   );
 };
 
-export default AddUserForm;
+export default AddUser;

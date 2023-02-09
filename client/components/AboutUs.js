@@ -2,14 +2,64 @@ import { all } from "axios";
 import React, { useState } from "react";
 
 const AboutUs = () => {
+  const [activeIndex, setActiveIndex] = useState(-1);
 
-    return (
-      <div>
-        <h2>About Just Food: </h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mi bibendum neque egestas congue quisque egestas. Eu volutpat odio facilisis mauris sit amet massa vitae tortor. Venenatis lectus magna fringilla urna porttitor rhoncus dolor. Magna etiam tempor orci eu lobortis elementum nibh. Amet aliquam id diam maecenas. Nunc aliquet bibendum enim facilisis gravida. Volutpat commodo sed egestas egestas fringilla phasellus faucibus scelerisque. Massa placerat duis ultricies lacus sed turpis. Sollicitudin tempor id eu nisl nunc mi. Ullamcorper morbi tincidunt ornare massa eget egestas purus viverra accumsan. Tellus id interdum velit laoreet id donec ultrices. Integer enim neque volutpat ac tincidunt vitae semper quis. Nunc vel risus commodo viverra. Elementum eu facilisis sed odio. Odio euismod lacinia at quis risus sed vulputate odio ut. Sed turpis tincidunt id aliquet risus.</p>
-        <h2>Meet the Team: </h2>
-    </div>
-    )
-}
+  const handleClick = index => {
+    setActiveIndex(index === activeIndex ? -1 : index);
+  };
+
+  return (
+    <div>
+      <h2>About Just Food: </h2>
+      <p>Lorem ipsum dolor sit </p>
+      <h2>Meet the Team: </h2>
+      <div className="accordion">
+        <div className="accordion-item">
+          <button className="accordion-header" onClick={() => handleClick(0)}>
+            Armand Arslanian
+          </button>
+          <div className={`accordionContent ${activeIndex === 0 ? 'active' : ''}`}>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+        </div>
+        <div className="accordion-item">
+          <button className="accordion-header" onClick={() => handleClick(1)}>
+            Arthur Loefstedt
+          </button>
+          <div className={`accordionContent ${activeIndex === 1 ? 'active' : ''}`}>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+        </div>
+        <div className="accordion-item">
+          <button className="accordion-header" onClick={() => handleClick(1)}>
+            Lionel Verrier
+          </button>
+          <div className={`accordionContent ${activeIndex === 1 ? 'active' : ''}`}>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+        </div>
+        <div className="accordion-item">
+          <button className="accordion-header" onClick={() => handleClick(1)}>
+            Stephanie Kwong
+          </button>
+          <div className={`accordionContent ${activeIndex === 1 ? 'active' : ''}`}>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+        </div>
+        <div className="accordion-item">
+          <button className="accordion-header" onClick={() => handleClick(2)}>
+            Salvador Fierro
+          </button>
+          <div className={`accordionContent ${activeIndex === 2 ? 'active' : ''}`}>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+            </div>
+            </div>
+            </div>
+            );
+          };
+
 
 export default AboutUs;
+
+

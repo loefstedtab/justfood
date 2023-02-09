@@ -2,7 +2,7 @@ import React from "react";
 import GoogleButton from "react-google-button";
 import { Link } from "react-router-dom";
 import AuthForm from "./AuthForm";
-import AddUserForm from "./AddUserForm";
+import AddUser from "./AddUser";
 
 const Login = () => {
   window.process = {
@@ -18,17 +18,17 @@ const Login = () => {
 
   return (
     <div className="LoginContainer">
-
-      <div>
-        <AuthForm />
-      </div>
-
+      
       <div className="GoogleBtn">
         <GoogleButton onClick={handleLogin} />
       </div>
 
       <div>
-        <AddUserForm />
+        <AuthForm />
+      </div>
+
+      <div>
+        <AddUser />
       </div>
 
     </div>
@@ -36,7 +36,3 @@ const Login = () => {
 };
 
 export default Login;
-
-
-
-

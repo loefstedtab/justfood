@@ -11,6 +11,7 @@ import AllMeals from '../components/allRecipes';
 import MealDetail from '../components/recipe';
 import CookingHistory from "../components/CookingHistory";
 import Bookmarks from "../components/Bookmarks";
+import EditUser from '../components/MyAccount';
 
 const AppRoutes = () => {
   return (
@@ -20,7 +21,7 @@ const AppRoutes = () => {
           <Route to="/home" element={<Home />} />
           <Route path="/login" element={<Login />}/>
           <Route path="/aboutus" element={<AboutUs />} />
-          <Route path="/myaccount" element={<MyAccount />} />
+          <Route path="/myaccount" element={<EditUser />} />
           <Route path="/cookinghistory" element={<CookingHistory />} />
           <Route path="/bookmarks" element={<Bookmarks />} />
           <Route path="/allrecipes" element={<AllMeals />} />

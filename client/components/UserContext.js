@@ -1,5 +1,9 @@
 import React, { createContext, useEffect, useState } from "react";
-import { fetchGoogleUser, selectUser } from "../slices/googleUserSlice";
+import {
+  fetchGoogleUser,
+  getMe,
+  selectUser,
+} from "../slices/userSlice";
 import { useSelector, useDispatch } from "react-redux";
 
 export const UserContext = createContext();
@@ -11,10 +15,11 @@ const Context = ({ children }) => {
 
   const dispatch = useDispatch();
 
-  const user = useSelector(selectUser);
+  const { user } = useSelector(selectUser);
 
   useEffect(() => {
-    dispatch(fetchGoogleUser()).then(setAccount(user));
+    dispatch(fetchGoogleUser());
+    dispatch(getMe()).then(setAccount(user));
   }, []);
 
   //   get the user
