@@ -8,7 +8,7 @@ import AboutUs from '../components/AboutUs';
 import MyAccount from '../components/MyAccount';
 import Login from '../components/Login';
 import AllMeals from '../components/allRecipes';
-import MealDetail from '../components/recipe';
+import MealDetail from '../components/singleRecipe';
 import CookingHistory from "../components/CookingHistory";
 import Bookmarks from "../components/Bookmarks";
 import EditUser from '../components/MyAccount';
