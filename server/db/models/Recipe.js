@@ -19,39 +19,39 @@ const Recipe = db.define("recipe", {
   },
 
   //  wrote these additional fields in the model, if we decide to use them.
-  recipeDescription: {
-    type: sequelize.STRING,
-  },
-  recipeImage: {
-    type: sequelize.STRING,
-  },
-  recipeInstructions: {
-    type: sequelize.STRING,
-  },
-  recipeIngredients: {
-    type: sequelize.STRING,
-  },
-  recipeTags: {
-    type: sequelize.STRING,
-  },
-  recipeRating: {
-    type: sequelize.INTEGER,
-  },
-  recipeServings: {
-    type: sequelize.INTEGER,
-  },
-  recipePrepTime: {
-    type: sequelize.INTEGER,
-  },
-  recipeCookTime: {
-    type: sequelize.INTEGER,
-  },
-  recipeTotalTime: {
-    type: sequelize.INTEGER,
-  },
-  recipeCalories: {
-    type: sequelize.INTEGER,
-  },
+  // recipeDescription: {
+  //   type: sequelize.STRING,
+  // },
+  // recipeImage: {
+  //   type: sequelize.STRING,
+  // },
+  // recipeInstructions: {
+  //   type: sequelize.STRING,
+  // },
+  // recipeIngredients: {
+  //   type: sequelize.STRING,
+  // },
+  // recipeTags: {
+  //   type: sequelize.STRING,
+  // },
+  // recipeRating: {
+  //   type: sequelize.INTEGER,
+  // },
+  // recipeServings: {
+  //   type: sequelize.INTEGER,
+  // },
+  // recipePrepTime: {
+  //   type: sequelize.INTEGER,
+  // },
+  // recipeCookTime: {
+  //   type: sequelize.INTEGER,
+  // },
+  // recipeTotalTime: {
+  //   type: sequelize.INTEGER,
+  // },
+  // recipeCalories: {
+  //   type: sequelize.INTEGER,
+  // },
 });
 
 module.exports = Recipe;
