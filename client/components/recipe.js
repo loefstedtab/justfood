@@ -11,44 +11,48 @@ const MealDetail = ({ match }) => {
       setMeal(res.data);
   };
 
-    
-
-
   useEffect(() => {
    getMeal ();
     
   }, [searchParams]);
 
   return (
-    <div>
-      <h1>{meal.title}</h1>
+    <div className='mealCard'>
+
+      <div className='mealHeader'>
+        <div className='mealBookmarkIcon'>
+          <a href="#"><i className="fa fa-heart-o"></i></a>
+        </div>
         <img src={meal.image} alt={meal.title} />
-        <div dangerouslySetInnerHTML={{
-          __html: meal.summary
-        }}
-        ></div>
+      </div>
       
-        <div dangerouslySetInnerHTML={{
-        __html: meal.instructions
-        }}
-        ></div>
-        <div>
-          <button bookmark={meal.id}>Bookmark</button>
-          <button cooked={meal.id}>Cooked</button>
+      <div className='mealFooter'>
+        <h1 className='mealTitle'>{meal.title}</h1>
+        <i className="fa fa-clock-o"> {meal.readyInMinutes} Mins</i>
+        <i className="fa fa-users"> Serves {meal.servings} </i>
+        <div className='mealFooterHeaders'>Meal Summary: </div>
+        <p className='mealFooterText' dangerouslySetInnerHTML={{__html: meal.summary}}></p>
+        <div className='mealFooterHeaders'>Meal Instructions: </div>
+        <p className='mealFooterText' dangerouslySetInnerHTML={{__html: meal.instructions}}></p>
+
+        <div className='mealFooterHeaders'>Conforming Diets: </div>
+        <div className='mealFooterTags'>
+          {meal?.diets?.map((diet) => (
+            <div>{diet}</div>
+          ))}
         </div>
 
-
-        <p>Ready in {meal.readyInMinutes} Minutes</p>
-        <p>Makes {meal.servings} servings</p>
-        {meal?.dishTypes?.map((dishType) => (
-          <p>{dishType}</p>
-        ))}
-        {meal?.diets?.map((diet) => (
-          <p>{diet}</p>
-        ))}
-        {meal?.cuisines?.map((cuisine) => (
-          <p>{cuisine}</p>
-        ))}
+        <div className='mealFooterHeaders'>Cuisine: </div>
+        <div className='mealFooterTags'>
+          {meal?.cuisines?.map((cuisine) => (
+            <div>{cuisine}</div>
+          ))}
+        </div>
+      </div>
+      
+      <div className='cookItButton'>
+        <button >Cook It!</button>
+      </div>
     </div>
   );
 };

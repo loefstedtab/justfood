@@ -1,4 +1,15 @@
 /* ----------GLOBAL TAG Styling ----------*/
+* {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  text-decoration: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 body {
   background: url(JustFoodBackground.webp);
   background-size: cover;
@@ -27,7 +38,7 @@ button:active {
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
-/* ----------Navbar.js Styling ----------*/
+
 a:link {
   text-decoration: none;
   font-weight: bold;
@@ -39,6 +50,15 @@ a:visited {
   color: inherit;
 }
 
+img {
+  max-width: 100%;
+}
+
+html, body {
+  height: 100%;
+}
+
+/* ----------Navbar.js Styling ----------*/
 .WebsiteTitle {
   display: flex;
   justify-content: center;
@@ -204,4 +224,76 @@ a:visited {
   
 .accordionContent.active {
   max-height: 500px;
+}
+
+/* ----------Recipe.js Styling ----------*/
+.mealCard {
+  position: relative;
+  background: #fff;
+  max-width: 500px;
+  margin: 20px auto;
+  box-shadow: 0px 0px 30px 2px #000;
+}
+
+.mealCard .mealHeader {
+  background-size: cover;
+  min-height: 350px;
+}
+
+.mealCard .mealHeader .mealBookmarkIcon a .fa-heart-o {
+  position: absolute;
+  left: 85%;
+  bottom: 63%;
+  background: #39c53d;
+  color: #fff;
+  font-size: 1.3em;
+  font-weight: bold;
+  padding: 15px;
+  border-radius: 50%;
+  box-shadow: 0px 5px 30px 1px #39c53d;
+}
+
+.mealCard .mealFooter .mealTitle {
+  color: #212129;
+  text-align: left;
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 5px 30px;
+}
+
+.mealCard .mealFooter .fa-clock-o {
+  color: #9b9b9b;
+  margin: 0 30px;
+}
+
+.mealCard .mealFooter .fa-users {
+  color: #9b9b9b;
+}
+
+.mealCard .mealFooterHeaders {
+  margin: 10px 30px;
+  font-weight: bold;
+  color: black;
+}
+
+.mealCard .mealFooterText {
+  margin: 10px 30px;
+  color: black;
+}
+
+.mealFooterTags {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 10px 30px;
+  color: black;
+}
+
+.mealCard .cookItButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
