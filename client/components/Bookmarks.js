@@ -18,11 +18,12 @@ const Bookmarked = () => {
           }
         });
         const results = await Promise.all(promiseArray);
-        setMeals(results.map((result) => result.data));
+        setMeals(results.map((result) => console.log('DATA FROM MAP LINE 21', result.data)));
       }
     };
     fetchRecipes();
   }, [recipes]);
+  console.log('MEALS FROM LINE 26', meals)
   return (
     <div>
       <h1>Bookmarked Meals</h1>
