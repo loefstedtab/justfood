@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 const CookingHistory = () => {
   const [cookingHistory, setCookingHistory] = useState([]);
+  
 
   useEffect(() => {
     const storedHistory = JSON.parse(localStorage.getItem("cookingHistory")) || [];
