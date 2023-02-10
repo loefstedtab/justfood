@@ -1,7 +1,7 @@
 const sequelize = require("sequelize");
 const db = require("../db");
-const Pantry = db.define("pantry", {
-  Pantry_id: {
+const Ingredient = db.define("ingredient", {
+  id: {
     type: sequelize.INTEGER,
     primaryKey: true,
     autoIncrement: true,
@@ -11,7 +11,7 @@ const Pantry = db.define("pantry", {
     type: sequelize.INTEGER,
     allowNull: false,
   },
-  ingredients: {
+  name: {
     type: sequelize.STRING,
     allowNull: false,
   },
@@ -20,5 +20,4 @@ const Pantry = db.define("pantry", {
     allowNull: false,
   },
 });
-
-module.exports = Pantry;
+module.exports = Ingredient;

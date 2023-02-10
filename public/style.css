@@ -1,4 +1,15 @@
 /* ----------GLOBAL TAG Styling ----------*/
+* {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  text-decoration: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 body {
   background: url(JustFoodBackground.webp);
   background-size: cover;
@@ -9,7 +20,7 @@ body {
 button {
   padding: 5px;
   margin: 5px;
-  background-color: #39c53d;
+  background-color: #3a943d;
   color: white;
   font-size: 14px;
   text-shadow: -1px 1px 2px #000,
@@ -19,15 +30,15 @@ button {
 }
 
 button:hover {
-  background-color: #3e8e41;
+  background-color: #3a943d;
 }
 
 button:active {
-  background-color: #3e8e41;
+  background-color: #3a943d;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
-/* ----------Navbar.js Styling ----------*/
+
 a:link {
   text-decoration: none;
   font-weight: bold;
@@ -39,6 +50,15 @@ a:visited {
   color: inherit;
 }
 
+img {
+  max-width: 100%;
+}
+
+html, body {
+  height: 100%;
+}
+
+/* ----------Navbar.js Styling ----------*/
 .WebsiteTitle {
   display: flex;
   justify-content: center;
@@ -157,51 +177,115 @@ a:visited {
   background: #f4f4f4;
 }
 
-/* ----------AboutUs.js Styling ----------*/
-
-.accordion {
-  width: 80%;
-  margin: 0 auto;
+/* ----------Recipe.js Styling ----------*/
+.mealCard {
+  position: relative;
+  background: #fff;
+  max-width: 500px;
+  margin: 20px auto;
+  box-shadow: 0px 0px 30px 2px #000;
 }
 
-.accordion-item {
-  background-color: #fafafa;
-  color: #444;
-  cursor: pointer;
+.mealCard .mealHeader {
+  background-size: cover;
+  min-height: 350px;
+}
+
+.mealCard .mealHeader .mealBookmarkIcon a .fa-heart-o {
+  position: absolute;
+  left: 85%;
+  bottom: 63%;
+  background: #3a943d;
+  color: #fff;
+  font-size: 1.3em;
+  font-weight: bold;
+  padding: 15px;
+  border-radius: 50%;
+  box-shadow: 0px 5px 30px 1px #3a943d;
+}
+
+.mealCard .mealFooter .mealTitle {
+  color: #212129;
+  text-align: left;
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 5px 30px;
+}
+
+.mealCard .mealFooter .fa-clock-o {
+  color: #9b9b9b;
+  margin: 0 30px;
+}
+
+.mealCard .mealFooter .fa-users {
+  color: #9b9b9b;
+}
+
+.mealCard .mealFooterHeaders {
+  margin: 10px 30px;
+  font-weight: bold;
+  color: black;
+}
+
+.mealCard .mealFooterText {
+  margin: 10px 30px;
+  color: black;
+}
+
+.mealFooterTags {
   display: flex;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  position: relative;
-  transition: all 0.4s;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 10px 30px;
+  color: black;
 }
 
-.accordion-header {
-  background-color: #ddd;
-  border-radius: 10px 10px 0 0;
-  color: #444;
-  display: block;
+.mealCard .cookItButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ----------AboutUs.js Styling ----------*/
+.center {
+  width: 600px;
+  margin: auto;
+}
+
+section a {
+  background: #3a943d;
+  color: #000;
+  text-decoration: none;
+  text-align: center;
   padding: 10px;
-  position: relative;
-  z-index: 1;
-  width: 100%;
+  display: block;
+  font-size: 1.3em;
+  letter-spacing: 3px;
+  overflow: hidden;
+  border-bottom: 3px solid black;
+  text-shadow: -1px 1px 2px #000,
+  1px 1px 2px #000,
+  1px -1px 0 #000,
+  -1px -1px 0 #000;
 }
 
-/* .accordion-content {
-  background-color: #fafafa;
-  display: block;
+section p {
   padding: 10px;
   overflow: hidden;
   height: 0;
-  transition: all 0.4s;
-} */
-
-.accordionContent {
-  max-height: 0;
+  opacity: 0;
+  background: gray;
+  color: #fff;
   overflow: hidden;
-  transition: max-height 0.2s ease-out;
+  letter-spacing: 2px;
+  transition: 2s;
 }
-  
-.accordionContent.active {
-  max-height: 500px;
+
+section:target p {
+  height: 10em;
+  opacity: 1;
+  padding: 20px;
 }

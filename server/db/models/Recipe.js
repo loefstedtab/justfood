@@ -10,60 +10,47 @@ const Recipe = db.define("recipe", {
   },
   user_id: {
     type: sequelize.INTEGER,
-    allowNull: false,
   },
   isBookmarked: {
     type: sequelize.BOOLEAN,
-    allowNull: false,
   },
   isCooked: {
     type: sequelize.BOOLEAN,
-    allowNull: false,
   },
-  // },  wrote these additional fields in the model, if we decide to use them.
-  //  recipeDescription: {
-  //     type: sequelize.STRING,
-  //     allowNull: false
+
+  //  wrote these additional fields in the model, if we decide to use them.
+  // recipeDescription: {
+  //   type: sequelize.STRING,
   // },
   // recipeImage: {
-  //     type: sequelize.STRING,
-  //     allowNull: false
+  //   type: sequelize.STRING,
   // },
   // recipeInstructions: {
-  //     type: sequelize.STRING,
-  //     allowNull: false
+  //   type: sequelize.STRING,
   // },
   // recipeIngredients: {
-  //     type: sequelize.STRING,
-  //     allowNull: false
+  //   type: sequelize.STRING,
   // },
   // recipeTags: {
-  //     type: sequelize.STRING,
-  //     allowNull: false
+  //   type: sequelize.STRING,
   // },
   // recipeRating: {
-  //     type: sequelize.INTEGER,
-  //     allowNull: false
+  //   type: sequelize.INTEGER,
   // },
   // recipeServings: {
-  //     type: sequelize.INTEGER,
-  //     allowNull: false
+  //   type: sequelize.INTEGER,
   // },
   // recipePrepTime: {
-  //     type: sequelize.INTEGER,
-  //     allowNull: false
+  //   type: sequelize.INTEGER,
   // },
   // recipeCookTime: {
-  //     type: sequelize.INTEGER,
-  //     allowNull: false
+  //   type: sequelize.INTEGER,
   // },
   // recipeTotalTime: {
-  //     type: sequelize.INTEGER,
-  //     allowNull: false
+  //   type: sequelize.INTEGER,
   // },
   // recipeCalories: {
-  //     type: sequelize.INTEGER,
-  //     allowNull: false
+  //   type: sequelize.INTEGER,
   // },
 });
 
