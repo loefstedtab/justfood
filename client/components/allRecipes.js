@@ -10,12 +10,12 @@ const AllMeals = ({ history, location }) => {
   const getSearchResultsByMeal = async () => {
 
     const res = await axios.get(
-      `https://api.spoonacular.com/recipes/complexSearch?query=${searchParams.get('searchTerm')}&diet=${searchParams.get("filters")}&apiKey=7d1e2814f507478498ff350fa1678752`
+      `https://api.spoonacular.com/recipes/complexSearch?query=${searchParams.get('searchTerm')}&diet=${searchParams.get("filters")}&apiKey=d5602a4214c5474b995e183d5928322f`
     );
     setSuggestions(res.data.results);
   };
   const getSearchResultsByIngredients = async () => {
-    const res = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?includeIngredients=${searchParams.get("ingredients")}&diet=${searchParams.get("filters")}&apiKey=7d1e2814f507478498ff350fa1678752`)
+    const res = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?includeIngredients=${searchParams.get("ingredients")}&diet=${searchParams.get("filters")}&apiKey=d5602a4214c5474b995e183d5928322f`)
     setSuggestions(res.data.results);
 
   }
@@ -37,7 +37,7 @@ const AllMeals = ({ history, location }) => {
       <h1>Search Results</h1>
       <ul>
           {suggestions.map((suggestion) => (
-           <li>
+           <li key={suggestion.id}>
             <a href={`/recipe?recipeId=${suggestion.id}`}  key={suggestion.id}>{suggestion.title}  </a>
             <img src={suggestion.image} />
 

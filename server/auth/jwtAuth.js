@@ -97,8 +97,8 @@ const loginUser = async (req, res, next) => {
 //Get current user
 const getMe = async (req, res, next) => {
   try {
-    const user = req.user.dataValues;
-    res.json({ ...user, loggedIn: true });
+    const {dataValues} = await User.findByPk(req.user.dataValues.id, {include: Recipe})
+    res.json({ ...dataValues, loggedIn: true });
   } catch (err) {
     next(err);
   }
@@ -127,9 +127,13 @@ const updateUser = async (req, res, next) => {
 const updateRecipe = async (req, res, next) => {
   console.log("THIS IS THE REQ.BODY FOR UPDATE RECIPE line 129", req.body)
   try{
-      const foundRecipe = await Recipe.findOrCreate({where:{mealId: req.body.mealId}, defaults:{isCooked: req.body.isCooked, isBookmarked: req.body.isBookmarked}})
-      console.log("THIS IS THE FOUND RECIPE FOR UPDATE RECIPE", foundRecipe)
-      res.json(foundRecipe)
+    //Check to see if the recipe exists in the database
+    const recipeExists = await Recipe.findOne({where:{mealId: req.body.mealId}})
+    if(recipeExists === null){
+     res.json(await Recipe.create(req.body))
+    } else {
+      res.json(await recipeExists.update(req.body))
+    }
   }catch(err){
     next(err)
   }
