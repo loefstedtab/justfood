@@ -62,7 +62,7 @@ const Home = () => {
 
       {selected=="Search By Ingredients!" && <Pantry ingredients = {ingredients} setIngredients = {setIngredients} handleFormSubmit = {handleFormSubmit} />}
       <CheckboxFilter filters={filters} setFilters={setFilters} />
-      <Filter />
+      <Filter/>
     </div>
   );
 };

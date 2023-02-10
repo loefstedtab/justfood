@@ -1,4 +1,5 @@
-//this is the access point for all things database related!
+const Sequelize = require("sequelize");
+
 
 const db = require("./db");
 const User = require("./models/User");
@@ -7,7 +8,7 @@ const Ingredient = require("./models/Ingredient");
 const Pantry = require("./models/Pantry");
 const Recipe = require("./models/Recipe");
 
-//associations could go here!
+
 
 module.exports = {
   db,

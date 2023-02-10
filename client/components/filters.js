@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { createStore } from 'redux';
+import { configureStore } from 'redux';
 import { useSelector, useDispatch } from 'react-redux';
 import CheckboxFilter from './checkboxes';
 
@@ -18,9 +18,10 @@ const Filter = () => {
     dispatch({ type: 'TOGGLE_FILTER', filter });
   };
 
-  const handleSliderChange = (event) => {
+  const handleMissingIngredientChange = (event) => {
     setMissingIngredients(event.target.value);
   };
+
 
   return (
     <div>
@@ -41,7 +42,7 @@ const Filter = () => {
             min="0"
             max="5"
             value={missingIngredients}
-            onChange={handleSliderChange}
+            onChange={handleMissingIngredientChange}
           />
         </label>
         <label>
