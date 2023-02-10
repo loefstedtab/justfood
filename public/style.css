@@ -20,7 +20,7 @@ body {
 button {
   padding: 5px;
   margin: 5px;
-  background-color: #39c53d;
+  background-color: #3a943d;
   color: white;
   font-size: 14px;
   text-shadow: -1px 1px 2px #000,
@@ -30,11 +30,11 @@ button {
 }
 
 button:hover {
-  background-color: #3e8e41;
+  background-color: #3a943d;
 }
 
 button:active {
-  background-color: #3e8e41;
+  background-color: #3a943d;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
@@ -177,55 +177,6 @@ html, body {
   background: #f4f4f4;
 }
 
-/* ----------AboutUs.js Styling ----------*/
-
-.accordion {
-  width: 80%;
-  margin: 0 auto;
-}
-
-.accordion-item {
-  background-color: #fafafa;
-  color: #444;
-  cursor: pointer;
-  display: flex;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  position: relative;
-  transition: all 0.4s;
-}
-
-.accordion-header {
-  background-color: #ddd;
-  border-radius: 10px 10px 0 0;
-  color: #444;
-  display: block;
-  padding: 10px;
-  position: relative;
-  z-index: 1;
-  width: 100%;
-}
-
-/* .accordion-content {
-  background-color: #fafafa;
-  display: block;
-  padding: 10px;
-  overflow: hidden;
-  height: 0;
-  transition: all 0.4s;
-} */
-
-.accordionContent {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
-}
-  
-.accordionContent.active {
-  max-height: 500px;
-}
-
 /* ----------Recipe.js Styling ----------*/
 .mealCard {
   position: relative;
@@ -244,13 +195,13 @@ html, body {
   position: absolute;
   left: 85%;
   bottom: 63%;
-  background: #39c53d;
+  background: #3a943d;
   color: #fff;
   font-size: 1.3em;
   font-weight: bold;
   padding: 15px;
   border-radius: 50%;
-  box-shadow: 0px 5px 30px 1px #39c53d;
+  box-shadow: 0px 5px 30px 1px #3a943d;
 }
 
 .mealCard .mealFooter .mealTitle {
@@ -298,51 +249,43 @@ html, body {
   align-items: center;
 }
 
-/*accordion*/
-
-.accordion {
-  width: 80%;
-  margin: 0 auto;
+/* ----------AboutUs.js Styling ----------*/
+.center {
+  width: 600px;
+  margin: auto;
 }
 
-.accordion-item {
-  background-color: #fafafa;
-  color: #444;
-  cursor: pointer;
-  display: flex;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  position: relative;
-  transition: all 0.4s;
-}
-
-.accordion-header {
-  background-color: #ddd;
-  border-radius: 10px 10px 0 0;
-  color: #444;
-  display: block;
+section a {
+  background: #3a943d;
+  color: #000;
+  text-decoration: none;
+  text-align: center;
   padding: 10px;
-  position: relative;
-  z-index: 1;
-  width: 100%;
+  display: block;
+  font-size: 1.3em;
+  letter-spacing: 3px;
+  overflow: hidden;
+  border-bottom: 3px solid black;
+  text-shadow: -1px 1px 2px #000,
+  1px 1px 2px #000,
+  1px -1px 0 #000,
+  -1px -1px 0 #000;
 }
 
-/* .accordion-content {
-  background-color: #fafafa;
-  display: block;
+section p {
   padding: 10px;
   overflow: hidden;
   height: 0;
-  transition: all 0.4s;
-} */
-
-.accordionContent {
-  max-height: 0;
+  opacity: 0;
+  background: gray;
+  color: #fff;
   overflow: hidden;
-  transition: max-height 0.2s ease-out;
-  }
-  
-  .accordionContent.active {
-  max-height: 500px;
-  }
+  letter-spacing: 2px;
+  transition: 2s;
+}
+
+section:target p {
+  height: 10em;
+  opacity: 1;
+  padding: 20px;
+}
