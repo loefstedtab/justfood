@@ -42,26 +42,30 @@ const Home = () => {
   return (
     <div>
       <HomeDropdown selected={selected} setSelected={setSelected}/>
+      
       {selected=="Search Directly for a Meal!" &&  <form onSubmit={handleFormSubmit}>
         <input
+          className='searchMealInput'
           type="text"
           value={searchTerm}
           onChange={handleSearchTermChange}
           placeholder="Search Directly for a Meal!"
         />
-
         <button type="submit">Search</button>
       </form>}
+
       {suggestions.length > 0 && (
-        <ul>
+        <ul className='mealResultContainer'>
           {suggestions.map((suggestion) => (
-           <li> <a href={`/recipe?recipeId=${suggestion.id}`} key={suggestion.id}>{suggestion.title}  </a></li>
+           <li className='mealResults'> <a href={`/recipe?recipeId=${suggestion.id}`} key={suggestion.id}>{suggestion.title}  </a></li>
           ))}
         </ul>
       )}
 
       {selected=="Search for a Meal by Ingredients!" && <Pantry ingredients = {ingredients} setIngredients = {setIngredients} handleFormSubmit = {handleFormSubmit} />}
+
       <CheckboxFilter filters={filters} setFilters={setFilters} />
+      
       <Filter />
     </div>
   );
