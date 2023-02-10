@@ -9,21 +9,20 @@ const Bookmarked = () => {
   const [meals, setMeals] = useState([]);
   useEffect(() => {
     const fetchRecipes = async () => {
-      if (recipes) {
-        const promiseArray = recipes.map((recipe) => {
-          if (recipe.isBookmarked) {
-            return axios.get(
-              `https://api.spoonacular.com/recipes/${recipe.mealId}/information?includeNutrition=false&apiKey=1b7501f3e2a744ac95ac18898a19f22b`
-            );
-          }
+      if (!recipes) return;
+      const mealPromises = recipes
+        .filter((recipe) => recipe.isBookmarked)
+        .map(async (recipe) => {
+          const response = await axios.get(
+            `https://api.spoonacular.com/recipes/${recipe.mealId}/information?includeNutrition=false&apiKey=1b7501f3e2a744ac95ac18898a19f22b`
+          );
+          return response.data;
         });
-        const results = await Promise.all(promiseArray);
-        setMeals(results.map((result) => console.log('DATA FROM MAP LINE 21', result.data)));
-      }
+      const mealsData = await Promise.all(mealPromises);
+      setMeals(mealsData);
     };
     fetchRecipes();
   }, [recipes]);
-  console.log('MEALS FROM LINE 26', meals)
   return (
     <div>
       <h1>Bookmarked Meals</h1>
