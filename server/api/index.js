@@ -15,6 +15,7 @@ router.post("/jwtRegister", registerUser);
 //Google Routes
 router.get("/googleUser", isAuth, async (req, res, next) => {
   try {
+    console.log("this the google user req.user", req.user)
     const user = {
       ...req.user,
       loggedIn: true,
@@ -25,7 +26,7 @@ router.get("/googleUser", isAuth, async (req, res, next) => {
   }
 });
 
-//Update the recipe 
+//Update the recipe
 router.put("/updateRecipe", updateRecipe)
 
 router.use((req, res, next) => {

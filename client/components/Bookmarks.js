@@ -4,9 +4,11 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../slices/userSlice";
 const Bookmarked = () => {
   const { user } = useSelector(selectUser);
+  console.log("this is user from bookmarks", user)
   const { recipes } = user;
   console.log("recipes from bookmark", recipes);
   const [meals, setMeals] = useState([]);
+
   useEffect(() => {
     const fetchRecipes = async () => {
       if (!recipes) return;
@@ -23,6 +25,7 @@ const Bookmarked = () => {
     };
     fetchRecipes();
   }, [recipes]);
+  
   return (
     <div>
       <h1>Bookmarked Meals</h1>

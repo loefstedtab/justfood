@@ -29,15 +29,12 @@ const MealDetail = () => {
 
   const handleBookmark = () => {
     // isBookmarked ? false : true;
-    // console.log("THIS IS ISBOOKMARKED FROM HANDLE BOOKMARK", isBookmarked);
     let updatedRecipe = {
       mealId: meal.id,
       userId: user.id,
       isBookmarked: true
     };
-    dispatch(editRecipe(updatedRecipe)).then(
-      console.log("THE HANDLE BOOKMARK HAS BEEN CLICKED AND DISPATCHED")
-    );
+    dispatch(editRecipe(updatedRecipe))
   };
 
   const handleCooked = () => {
