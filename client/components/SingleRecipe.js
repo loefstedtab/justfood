@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
 import { editRecipe, selectRecipe } from "../slices/recipeSlice";
-import { selectUser } from "../slices/userSlice";
+import { fetchGoogleUser, selectUser } from "../slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const MealDetail = () => {
@@ -45,7 +45,7 @@ const MealDetail = () => {
       userId: user.id,
       isCooked: true
     };
-    dispatch(editRecipe(updatedRecipe));
+    dispatch(editRecipe(updatedRecipe))
   };
 
   useEffect(() => {
