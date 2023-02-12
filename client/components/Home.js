@@ -12,7 +12,7 @@ const Home = () => {
   const [ingredients, setIngredients] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [suggestions, setSuggestions] = useState([]);
-  const [selected, setSelected] = useState('Choose One:');
+  const [selected, setSelected] = useState('Choose a Search Option:');
   const [filters, setFilters] = useState([]);
   const navigate = useNavigate();
 
@@ -31,7 +31,7 @@ const Home = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    if (selected=="Search For Meals!") {
+    if (selected=="Search Directly for a Meal!") {
     navigate(`/allrecipes?searchTerm=${searchTerm}&filters=${filters.join(',')}`)
     }
     else  {
@@ -42,27 +42,32 @@ const Home = () => {
   return (
     <div>
       <HomeDropdown selected={selected} setSelected={setSelected}/>
-      {selected=="Search For Meals!" &&  <form onSubmit={handleFormSubmit}>
+      
+      {selected=="Search Directly for a Meal!" &&  <form onSubmit={handleFormSubmit}>
         <input
+          className='searchMealInput'
           type="text"
           value={searchTerm}
           onChange={handleSearchTermChange}
-          placeholder="Search for a meal"
+          placeholder="Search Directly for a Meal!"
         />
-
         <button type="submit">Search</button>
       </form>}
+
       {suggestions.length > 0 && (
-        <ul>
+        <ul className='mealResultContainer'>
           {suggestions.map((suggestion) => (
-           <li> <a href={`/recipe?recipeId=${suggestion.id}`} key={suggestion.id}>{suggestion.title}  </a></li>
+           <li className='mealResults'> <a href={`/recipe?recipeId=${suggestion.id}`} key={suggestion.id}>{suggestion.title}  </a></li>
           ))}
         </ul>
       )}
 
-      {selected=="Search By Ingredients!" && <Pantry ingredients = {ingredients} setIngredients = {setIngredients} handleFormSubmit = {handleFormSubmit} />}
+      {selected=="Search for a Meal by Ingredients!" && <Pantry ingredients = {ingredients} setIngredients = {setIngredients} handleFormSubmit = {handleFormSubmit} />}
+
       <CheckboxFilter filters={filters} setFilters={setFilters} />
-      <Filter />
+
+      <Filter/>
+
     </div>
   );
 };

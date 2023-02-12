@@ -20,4 +20,5 @@ const isCooked = db.define("isCooked", {
     allowNull: false,
   },
 });
+
 module.exports = isCooked;
