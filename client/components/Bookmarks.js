@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectUser } from "../slices/userSlice";
+
 const Bookmarked = () => {
   const { user } = useSelector(selectUser);
   console.log("this is user from bookmarks", user)
@@ -25,7 +26,7 @@ const Bookmarked = () => {
     };
     fetchRecipes();
   }, [recipes]);
-  
+
   return (
     <div>
       <h1>Bookmarked Meals</h1>
