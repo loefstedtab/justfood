@@ -8,13 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 const MealDetail = () => {
   const [meal, setMeal] = useState({});
   const {user} = useSelector(selectUser);
-  console.log(
-    "THIS IS THE USER FROM SINGLE RECIPE",
-    user,
-    "This is the users recipes", user.recipes,
-    "THIS IS THE MEAL ID FOR THE MEAL BEING DISPLAYED",
-    meal.id
-  );
 
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
@@ -34,7 +27,7 @@ const MealDetail = () => {
       userId: user.id,
       isBookmarked: true
     };
-    dispatch(editRecipe(updatedRecipe))
+    dispatch(editRecipe(updatedRecipe)).then(dispatch(getMe()))
   };
 
   const handleCooked = () => {

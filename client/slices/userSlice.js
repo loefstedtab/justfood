@@ -7,6 +7,7 @@ const TOKEN = "token";
 export const fetchGoogleUser = createAsyncThunk("/googleUser", async () => {
   try {
     const { data } = await axios.get("/api/googleUser");
+    console.log("this is the data from the google user thunk", data)
     return data;
   } catch (err) {
     console.log(err);

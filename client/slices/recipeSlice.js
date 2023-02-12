@@ -20,11 +20,18 @@ export const editRecipe = createAsyncThunk(
 
 const recipeSlice = createSlice({
   name: "recipe",
-  initialState: {},
+  initialState: {
+    recipe: {},
+    status: "idle"
+  },
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(editRecipe.fulfilled, (state, action) => {
-      return action.payload
+      state.status = "Recipe Loaded!"
+      state.recipe = action.payload
+    });
+    builder.addCase(editRecipe.pending, (state, action) => {
+      state.status = "Recipe Loading"
     });
   }
 })

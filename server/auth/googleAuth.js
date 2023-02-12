@@ -14,18 +14,19 @@ passport.use(
     },
     async (_, __, profile, done) => {
       let user = profile._json;
+
       try {
         const userExists = await User.findOne({
           where: { googleId: user.sub },
         });
-        console.log(userExists)
+        console.log("this is line 22 of the google strategy", userExists)
         let findOrCreate = async () => {
           if (userExists === null) {
             let newUser = await User.create({firstName: user.given_name, lastName: user.family_name, email: user.email, googleId: user.sub});
             return newUser
           } else {
-            let user = await userExists.update({firstName: user.given_name, lastName: user.family_name, email: user.email});
-            return user
+            let userUpdate = await userExists.update({firstName: user.given_name, lastName: user.family_name, email: user.email});
+            return userUpdate
           }
         }
         let googleUser = await findOrCreate()
