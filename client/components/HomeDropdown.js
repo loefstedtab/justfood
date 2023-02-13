@@ -15,6 +15,7 @@ const HomeDropdown = ({selected, setSelected}) => {
                 <div className="DropdownOptions">
                     {options.map((option) => (
                         <div 
+                            key={option}
                             onClick={(e) => {
                             setSelected(option)
                             setIsActive(false)

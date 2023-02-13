@@ -66,7 +66,7 @@ const Home = () => {
 
       <CheckboxFilter filters={filters} setFilters={setFilters} />
 
-      <Filter/>
+      
 
     </div>
   );

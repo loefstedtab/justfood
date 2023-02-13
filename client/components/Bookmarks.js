@@ -1,19 +1,12 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-<<<<<<< HEAD
 import { useSelector } from "react-redux";
-=======
-import { useSelector, useDispatch } from "react-redux";
->>>>>>> origin
 import { selectUser } from "../slices/userSlice";
 
 const Bookmarked = () => {
   const { user } = useSelector(selectUser);
   const { recipes } = user;
-<<<<<<< HEAD
   console.log("recipes from bookmark", recipes);
-=======
->>>>>>> origin
   const [meals, setMeals] = useState([]);
 
   useEffect(() => {
@@ -38,7 +31,9 @@ const Bookmarked = () => {
       <h1>Bookmarked Meals</h1>
       {meals.map((meal) => (
         <div className="bookmark-list">
-          <h2>{meal.title}</h2>
+          <h2>
+          <a href={`/recipe?recipeId=${meal.id}`}>{meal.title}</a>
+          </h2>
           <img src={meal.image} alt={meal.title} />
         </div>
       ))}
