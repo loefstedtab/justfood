@@ -29,9 +29,6 @@ const HomeDropdown = ({ selected, setSelected }) => {
                 </div>
             )}
         </div>
-      )}
-    </div>
-  );
-};
+)}
 
 export default HomeDropdown;
