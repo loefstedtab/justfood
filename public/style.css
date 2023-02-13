@@ -332,7 +332,7 @@ section:target p {
 .PantryContainer {
   position: absolute;
   font-size: 20px;
-  left: 1000px;
+  left: 75%;
   top: 240px;
 }
 
