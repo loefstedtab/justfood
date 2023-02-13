@@ -41,6 +41,7 @@ button:active {
 
 a:link {
   text-decoration: none;
+  color: white;
   font-weight: bold;
 
 }
@@ -265,11 +266,23 @@ section:target p {
   align-items: center;
 }
 
+.mealResultContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-shadow: -1px 1px 2px #000,
+  1px 1px 2px #000,
+  1px -1px 0 #000,
+  -1px -1px 0 #000;
+  padding: 10px;
+}
+
 /* ----------HomeDropdown.js Styling ----------*/
 .DropdownContainer {
   width: 300px;
   user-select: none;
-  margin: 100px auto;
+  margin: 50px auto;
   position: relative;
 }
 
@@ -308,41 +321,38 @@ section:target p {
 }
 
 /* ----------Pantry.js Styling ----------*/
-
-
-/* ----------checkboxes.js filters.js Styling ----------*/
-.FiltersTitle {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  left: 50px;
-  width: 183px;
-  background: #fff;
-  color: #333;
-  align-items: center;
+.ingredientResultContainer {
+  text-shadow: -1px 1px 2px #000,
+  1px 1px 2px #000,
+  1px -1px 0 #000,
+  -1px -1px 0 #000;
+  padding: 10px;
 }
 
+.PantryContainer {
+  position: absolute;
+  font-size: 20px;
+  left: 1000px;
+  top: 240px;
+}
+
+/* ----------checkboxes.js filters.js Styling ----------*/
 .CheckboxFilters {
   display: flex;
   flex-direction: column;
-  position: relative;
+  position: absolute;
   left: 50px;
   padding: 8px;
-  width: 183px;
-  background: #fff;
-  color: #333;
+  width: 150px;
+  font-size: 20px;
+  text-shadow: -1px 1px 2px #000,
+  1px 1px 2px #000,
+  1px -1px 0 #000,
+  -1px -1px 0 #000;
 }
 
-.ToggleFilters {
+.FiltersTitle {
   display: flex;
   flex-direction: column;
-  padding: 8px;
-  width: 183px;
-  background: #fff;
-  color: #333;
-}
-
-.FilterContainer2 {
-  position: relative;
-  left: 50px;
+  align-items: center;
 }

@@ -22,7 +22,7 @@ const Home = () => {
     }
 
     const res = await axios.get(
-      `https://api.spoonacular.com/recipes/complexSearch?query=${e.target.value}&apiKey=d5602a4214c5474b995e183d5928322f`
+      `https://api.spoonacular.com/recipes/complexSearch?query=${e.target.value}&apiKey=7d1e2814f507478498ff350fa1678752`
     );
     setSuggestions(res.data.results.slice(0, 5));
   };
@@ -46,7 +46,8 @@ const Home = () => {
     <div>
 
       <HomeDropdown selected={selected} setSelected={setSelected} />
-
+      <CheckboxFilter filters={filters} setFilters={setFilters} />
+      
       <div className="searchMealInput">
         {selected == "Search Directly for a Meal!" && (
           <form onSubmit={handleFormSubmit}>
@@ -78,7 +79,7 @@ const Home = () => {
         {selected=="Search for a Meal by Ingredients!" && <Pantry ingredients = {ingredients} setIngredients = {setIngredients} handleFormSubmit = {handleFormSubmit} />}
       </div>
 
-      <CheckboxFilter filters={filters} setFilters={setFilters} />
+      
 
     </div>
   );
