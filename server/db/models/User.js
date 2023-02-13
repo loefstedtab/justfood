@@ -26,10 +26,10 @@ const User = db.define("user", {
     type: Sequelize.STRING,
     defaultValue: " "
   },
-  recipes: {
-    type: Sequelize.JSONB,
-    defaultValue: []
-  }
+  // recipes: {
+  //   type: Sequelize.JSONB,
+  //   defaultValue: []
+  // }
 });
 
 module.exports = User;

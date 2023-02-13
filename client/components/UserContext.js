@@ -16,11 +16,12 @@ const Context = ({ children }) => {
   const dispatch = useDispatch();
 
   const { user } = useSelector(selectUser);
+  const recipe = useSelector((state) => state.recipe)
 
   useEffect(() => {
     dispatch(fetchGoogleUser());
     dispatch(getMe()).then(setAccount(user));
-  }, []);
+  }, [recipe.status === "Recipe Loaded!"]);
 
   //   get the user
   return (
