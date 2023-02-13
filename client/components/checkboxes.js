@@ -5,11 +5,7 @@ const CheckboxFilter = ({ filters, handleFilterChange }) => {
     <div className="CheckboxFilters">
       {filters.map((filter) => (
         <label key={filter}>
-          <input
-            type="checkbox"
-            value={filter}
-            onChange={handleFilterChange}
-          />
+          <input type="checkbox" value={filter} onChange={handleFilterChange} />
           {filter}
         </label>
       ))}
@@ -17,8 +13,7 @@ const CheckboxFilter = ({ filters, handleFilterChange }) => {
   );
 };
 
-const Restrictions = ({filters, setFilters}) => {
-  
+const Restrictions = ({ filters, setFilters }) => {
   console.log(filters);
 
   const handleFilterChange = (event) => {

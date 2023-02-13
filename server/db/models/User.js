@@ -19,17 +19,12 @@ const User = db.define("user", {
   },
   password: {
     type: Sequelize.STRING,
-    defaultValue: " "
-
+    defaultValue: " ",
   },
   phoneNumber: {
     type: Sequelize.STRING,
-    defaultValue: " "
+    defaultValue: " ",
   },
-  // recipes: {
-  //   type: Sequelize.JSONB,
-  //   defaultValue: []
-  // }
 });
 
 module.exports = User;
