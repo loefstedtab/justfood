@@ -135,48 +135,6 @@ html, body {
   padding: 5px;
 }
 
-/* ----------HomeDropdown.js Styling ----------*/
-.DropdownContainer {
-  width: 400px;
-  user-select: none;
-  margin: 100px auto;
-  position: relative;
-}
-
-.DropdownContainer .DropdownButton {
-  padding: 15px 20px;
-  background: #fff;
-  box-shadow: 3px 3px 10px 6px rgba(0,0,0,0.06);
-  font-weight: bold;
-  color: #333;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  justify-content: space-between;
-}
-
-.DropdownContainer .DropdownOptions {
-  position: absolute;
-  top: 110%;
-  left: 0;
-  padding: 10px;
-  background: #fff;
-  box-shadow: 3px 3px 10px 6px rgba(0,0,0,0.06);
-  font-weight: 500;
-  color: #333;
-  width: 95%;
-}
-
-.DropdownContainer .DropdownOptions .DropdownItem{
-  padding: 10px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.DropdownContainer .DropdownOptions .DropdownItem:hover{
-  background: #f4f4f4;
-}
-
 /* ----------Recipe.js Styling ----------*/
 .mealCard {
   position: relative;
@@ -291,17 +249,100 @@ section:target p {
 }
 
 /* -----------------------------------LANDING PAGE STYLING -----------------------------------*/
-/* ----------Home.js, HomeDropdown.js, Pantry.js, checkboxes.js, filters.js Styling ----------*/
+/* ----------Home.js, HomeDropdown.js, Pantry.js, filters.js Styling ----------*/
 /* ----------Home.js Styling ----------*/
+.searchMealInput {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
+.searchIngredientInput {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 /* ----------HomeDropdown.js Styling ----------*/
+.DropdownContainer {
+  width: 300px;
+  user-select: none;
+  margin: 100px auto;
+  position: relative;
+}
 
+.DropdownContainer .DropdownButton {
+  padding: 6px 10px;
+  background: #fff;
+  box-shadow: 3px 3px 10px 6px rgba(0,0,0,0.06);
+  font-weight: bold;
+  color: #333;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  justify-content: space-between;
+}
+
+.DropdownContainer .DropdownOptions {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  padding: 1px;
+  background: #fff;
+  box-shadow: 3px 3px 10px 6px rgba(0,0,0,0.06);
+  font-weight: 500;
+  color: #333;
+  width: 100%;
+}
+
+.DropdownContainer .DropdownOptions .DropdownItem{
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.DropdownContainer .DropdownOptions .DropdownItem:hover{
+  background: #f4f4f4;
+}
 
 /* ----------Pantry.js Styling ----------*/
 
 
-/* ----------checkboxes.js Styling ----------*/
+/* ----------checkboxes.js filters.js Styling ----------*/
+.FiltersTitle {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  left: 50px;
+  width: 183px;
+  background: #fff;
+  color: #333;
+  align-items: center;
+}
 
+.CheckboxFilters {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  left: 50px;
+  padding: 8px;
+  width: 183px;
+  background: #fff;
+  color: #333;
+}
 
-/* ----------filters.js Styling ----------*/
+.ToggleFilters {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  width: 183px;
+  background: #fff;
+  color: #333;
+}
+
+.FilterContainer2 {
+  position: relative;
+  left: 50px;
+}

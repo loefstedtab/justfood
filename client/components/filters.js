@@ -20,23 +20,18 @@ const Filter = () => {
   };
 
   return (
-    <div>
+    <div className='FilterContainer2'>
       <div>
-        {filters &&
-          filters.map((filter, index) => (
-            <label key={index}>
-              <input
-                type="checkbox"
-                name={filter.name}
-                id={filter.id}
-                onChange={() => handleFilterChange(filter.id)}
-              />
-              {filter.name}
-            </label>
-          ))}
+        {filters && filters.map((filter, index) => (
+          <label key={index}>
+            <input type="checkbox" name={filter.name} id={filter.id} onChange={() => handleFilterChange(filter.id)} />
+            {filter.name}
+          </label>
+        ))}
       </div>
-      <div>
-        <label htmlFor="slider">
+
+      <div className='ToggleFilters'>
+        <label htmlFor="slider" >
           Missing Ingredients
           <input
             type="range"
@@ -47,6 +42,7 @@ const Filter = () => {
             onChange={handleMissingIngredientChange}
           />
         </label>
+
         <label>
           Max Cost Per Serving
           <input

@@ -44,6 +44,7 @@ const Home = () => {
 
   return (
     <div>
+
       <HomeDropdown selected={selected} setSelected={setSelected} />
 
       {selected == "Search Directly for a Meal!" && (
@@ -72,13 +73,9 @@ const Home = () => {
         </ul>
       )}
 
-      {selected == "Search for a Meal by Ingredients!" && (
-        <Pantry
-          ingredients={ingredients}
-          setIngredients={setIngredients}
-          handleFormSubmit={handleFormSubmit}
-        />
-      )}
+      <div className='searchIngredientInput'>
+        {selected=="Search for a Meal by Ingredients!" && <Pantry ingredients = {ingredients} setIngredients = {setIngredients} handleFormSubmit = {handleFormSubmit} />}
+      </div>
 
       <CheckboxFilter filters={filters} setFilters={setFilters} />
 
