@@ -7,6 +7,8 @@ const AllMeals = ({ history, location }) => {
   const [meals, setMeals] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
   const [searchParams] = useSearchParams();
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
   const getSearchResultsByMeal = async () => {
 
     const res = await axios.get(
@@ -20,9 +22,6 @@ const AllMeals = ({ history, location }) => {
 
   }
 
-
-
-
   React.useEffect(() => {
     if (searchParams.get('searchTerm')) {
       getSearchResultsByMeal();
@@ -35,18 +34,41 @@ const AllMeals = ({ history, location }) => {
   return (
     <div>
       <h1>Search Results</h1>
-      <ul>
-          {suggestions.map((suggestion) => (
-           <li key={suggestion.id}>
-            <a href={`/recipe?recipeId=${suggestion.id}`}  key={suggestion.id}>{suggestion.title}  </a>
-            <img src={suggestion.image} />
-
-
-
-            </li>
-          ))}
-        </ul>
-
+      {suggestions.length > 0 ? (
+        <>
+          <ul>
+            {suggestions
+              .slice(
+                (currentPage - 1) * itemsPerPage,
+                currentPage * itemsPerPage
+              )
+              .map((suggestion) => (
+                <li key={suggestion.id}>
+                  <a href={`/recipe?recipeId=${suggestion.id}`}>
+                    {suggestion.title}
+                  </a>
+                  <img src={suggestion.image} />
+                </li>
+              ))}
+          </ul>
+          <div>
+            <button
+              onClick={() => setCurrentPage(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              Previous
+            </button>
+            <button
+              onClick={() => setCurrentPage(currentPage + 1)}
+              disabled={currentPage * itemsPerPage >= suggestions.length}
+            >
+              Next
+            </button>
+          </div>
+        </>
+      ) : (
+        <p>No items matched your search results</p>
+      )}
     </div>
   );
 };
