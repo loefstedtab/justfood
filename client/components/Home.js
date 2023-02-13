@@ -43,16 +43,17 @@ const Home = () => {
     <div>
       <HomeDropdown selected={selected} setSelected={setSelected}/>
       
-      {selected=="Search Directly for a Meal!" &&  <form onSubmit={handleFormSubmit}>
-        <input
-          className='searchMealInput'
-          type="text"
-          value={searchTerm}
-          onChange={handleSearchTermChange}
-          placeholder="Search Directly for a Meal!"
-        />
-        <button type="submit">Search</button>
-      </form>}
+      <div className='searchMealInput'>
+        {selected=="Search Directly for a Meal!" &&  <form onSubmit={handleFormSubmit}>
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={handleSearchTermChange}
+            placeholder="Search Directly for a Meal!"
+          />
+          <button type="submit">Search</button>
+        </form>}
+      </div>
 
       {suggestions.length > 0 && (
         <ul className='mealResultContainer'>
@@ -62,7 +63,9 @@ const Home = () => {
         </ul>
       )}
 
-      {selected=="Search for a Meal by Ingredients!" && <Pantry ingredients = {ingredients} setIngredients = {setIngredients} handleFormSubmit = {handleFormSubmit} />}
+      <div className='searchIngredientInput'>
+        {selected=="Search for a Meal by Ingredients!" && <Pantry ingredients = {ingredients} setIngredients = {setIngredients} handleFormSubmit = {handleFormSubmit} />}
+      </div>
 
       <CheckboxFilter filters={filters} setFilters={setFilters} />
 
