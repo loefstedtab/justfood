@@ -30,7 +30,9 @@ const CookingHistory = () => {
       <h1>Cooking History</h1>
       {meals.map((meal) => (
         <div className="cooking-history-list">
-          <h2>{meal.title}</h2>
+          <h2>
+          <a href={`/recipe?recipeId=${meal.id}`}>{meal.title}</a>
+            </h2>
           <img src={meal.image} alt={meal.title} />
         </div>
       ))}

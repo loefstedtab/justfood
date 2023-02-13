@@ -13,20 +13,21 @@ const HomeDropdown = ({ selected, setSelected }) => {
         {selected}
         <span className="fas fa-caret-down"></span>
       </div>
-
-      {isActive && (
-        <div className="DropdownOptions">
-          {options.map((option) => (
-            <div
-              onClick={(e) => {
-                setSelected(option);
-                setIsActive(false);
-              }}
-              className="DropdownItem"
-            >
-              {option}
-            </div>
-          ))}
+            {isActive && (
+                <div className="DropdownOptions">
+                    {options.map((option) => (
+                        <div 
+                            key={option}
+                            onClick={(e) => {
+                            setSelected(option)
+                            setIsActive(false)
+                        }} 
+                            className='DropdownItem'>
+                            {option}
+                        </div>    
+                    ))}
+                </div>
+            )}
         </div>
       )}
     </div>
