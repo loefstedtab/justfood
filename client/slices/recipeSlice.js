@@ -1,8 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-
-
 export const editRecipe = createAsyncThunk(
   "/editRecipe",
   async (updatedRecipe) => {
@@ -15,24 +13,21 @@ export const editRecipe = createAsyncThunk(
   }
 );
 
-
 const recipeSlice = createSlice({
   name: "recipe",
   initialState: {
-    // recipe: {},
-    status: "idle"
+    status: "idle",
   },
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(editRecipe.fulfilled, (state, action) => {
-      state.status = "Recipe Loaded!"
+      state.status = "Recipe Loaded!";
     });
     builder.addCase(editRecipe.pending, (state, action) => {
-      state.status = "Recipe Loading"
+      state.status = "Recipe Loading";
     });
-  }
-})
-
+  },
+});
 
 export const selectRecipe = (state) => {
   return state.recipe;

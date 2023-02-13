@@ -2,7 +2,7 @@ const passport = require("passport");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const { Strategy: GoogleStrategy } = require("passport-google-oauth20");
-const { User, Recipe } = require("../db");
+const { User } = require("../db");
 const sequelize = require("sequelize");
 
 passport.use(
@@ -53,4 +53,3 @@ const isAuth = (req, res, next) => {
 };
 
 module.exports = { isAuth };
-
