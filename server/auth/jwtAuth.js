@@ -125,7 +125,6 @@ const updateUser = async (req, res, next) => {
 };
 
 const updateRecipe = async (req, res, next) => {
-  console.log("THIS IS THE REQ.BODY FOR UPDATE RECIPE line 129", req.body)
   try{
     //Check to see if the recipe exists in the database
     const recipeExists = await Recipe.findOne({where:{mealId: req.body.mealId}})

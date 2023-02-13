@@ -16,22 +16,17 @@ passport.use(
       let user = profile._json;
 
       try {
-        const userExists = await User.findOne({
-          where: { googleId: user.sub },
+        user = await User.findOrCreate({
+          where: {
+            googleId: user.sub,
+          },
+          defaults: {
+            firstName: user.given_name,
+            lastName: user.family_name,
+            email: user.email,
+          },
         });
-        console.log("this is line 22 of the google strategy", userExists)
-        let findOrCreate = async () => {
-          if (userExists === null) {
-            let newUser = await User.create({firstName: user.given_name, lastName: user.family_name, email: user.email, googleId: user.sub});
-            return newUser
-          } else {
-            let userUpdate = await userExists.update({firstName: user.given_name, lastName: user.family_name, email: user.email});
-            return userUpdate
-          }
-        }
-        let googleUser = await findOrCreate()
-        let {dataValues} = await User.findOne({where : {googleId: googleUser.dataValues.googleId}, include: Recipe})
-        done(null, dataValues);
+        done(null, user[0]);
       } catch (error) {
         console.log(error);
         done(error);
@@ -59,14 +54,3 @@ const isAuth = (req, res, next) => {
 
 module.exports = { isAuth };
 
-// user = await User.findOrCreate({
-//   where: {
-//     googleId: user.sub,
-//   },
-//   defaults: {
-//     firstName: user.given_name,
-//     lastName: user.family_name,
-//     email: user.email,
-//   },
-//   include: [Recipe],
-// });

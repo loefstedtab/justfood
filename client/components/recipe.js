@@ -14,43 +14,27 @@ const getWinePairing = async (meal) => {
 const MealDetail = ({ }) => {
   const [meal, setMeal] = useState({});
   const {user} = useSelector(selectUser);
-  const {status} = useSelector(selectRecipe)
-  console.log("this is status ", status)
   const dispatch = useDispatch();
 
 
-  // const [showBookmarked, setShowBookmarked] = useState(false);
-
-  // const handleBookmarkClick = (mealId) => {
-
-  // };
-
   const handleBookmark = async () => {
-    // isBookmarked ? false : true;
     let updatedRecipe = {
       mealId: meal.id,
       userId: user.id,
       isBookmarked: true
     };
-    console.log("is there a user", user)
     dispatch(editRecipe(updatedRecipe))
   };
 
-  useEffect(() => {
-    user.googleId ? dispatch(fetchGoogleUser()) : dispatch(getMe())
-  }, [status === "Recipe Loaded!"])
-
   const handleCooked = () => {
     // isCooked ? false : true;
-    // console.log("THIS IS isCooked FROM HANDLE COOKED", isCooked);
     let updatedRecipe = {
       mealId: meal.id,
       userId: user.id,
       isCooked: true
     };
-    dispatch(editRecipe(updatedRecipe)).then(
-      user.googleId ? dispatch(fetchGoogleUser()) : dispatch(getMe())
-    )
+    dispatch(editRecipe(updatedRecipe))
+
   };
 
   const [searchParams] = useSearchParams();

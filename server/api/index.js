@@ -2,8 +2,9 @@ const router = require("express").Router();
 const { protect, updateUser } = require("../auth/jwtAuth");
 const { isAuth } = require("../auth/googleAuth");
 const jwt = require("jsonwebtoken");
-const { User } = require("../db");
+const { User, Recipe } = require("../db");
 const { registerUser, getMe, updateRecipe } = require("../auth/jwtAuth");
+const { data } = require("jquery");
 
 //JWT routes
 router.route("/jwtUser")
@@ -15,11 +16,11 @@ router.post("/jwtRegister", registerUser);
 //Google Routes
 router.get("/googleUser", isAuth, async (req, res, next) => {
   try {
-    console.log("this the google user req.user", req.user)
-    const user = {
-      ...req.user,
+    let {dataValues} = await User.findOne({where:{googleId: req.user.googleId}, include: Recipe})
+    let user = {
+      ...dataValues,
       loggedIn: true,
-    };
+    }
     res.json(user);
   } catch (err) {
     next(err);
@@ -36,3 +37,6 @@ router.use((req, res, next) => {
 });
 
 module.exports = router;
+
+
+

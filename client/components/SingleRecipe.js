@@ -21,7 +21,6 @@ const MealDetail = () => {
   };
 
   const handleBookmark = () => {
-    // isBookmarked ? false : true;
     let updatedRecipe = {
       mealId: meal.id,
       userId: user.id,
@@ -31,8 +30,6 @@ const MealDetail = () => {
   };
 
   const handleCooked = () => {
-    // isCooked ? false : true;
-    // console.log("THIS IS isCooked FROM HANDLE COOKED", isCooked);
     let updatedRecipe = {
       mealId: meal.id,
       userId: user.id,
