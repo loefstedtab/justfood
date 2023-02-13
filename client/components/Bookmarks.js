@@ -1,19 +1,11 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-<<<<<<< HEAD
-import { useSelector } from "react-redux";
-=======
 import { useSelector, useDispatch } from "react-redux";
->>>>>>> origin
 import { selectUser } from "../slices/userSlice";
 
 const Bookmarked = () => {
   const { user } = useSelector(selectUser);
   const { recipes } = user;
-<<<<<<< HEAD
-  console.log("recipes from bookmark", recipes);
-=======
->>>>>>> origin
   const [meals, setMeals] = useState([]);
 
   useEffect(() => {
