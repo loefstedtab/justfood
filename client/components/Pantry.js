@@ -15,7 +15,7 @@ const Pantry = ({ ingredients, setIngredients, handleFormSubmit }) => {
 
     axios
       .get(
-        `https://api.spoonacular.com/food/ingredients/autocomplete?query=${e.target.value}&apiKey=d5602a4214c5474b995e183d5928322f`
+        `https://api.spoonacular.com/food/ingredients/autocomplete?query=${e.target.value}&apiKey=7d1e2814f507478498ff350fa1678752`
       )
       .then(({ data }) => setSuggestions(data))
       .catch((error) => console.error(error));
@@ -36,7 +36,8 @@ const Pantry = ({ ingredients, setIngredients, handleFormSubmit }) => {
   };
 
   return (
-    <div>
+    <div className="ingredientResultContainer">
+
       <form onSubmit={handleFormSubmit}>
         <input
           type="text"
@@ -57,7 +58,7 @@ const Pantry = ({ ingredients, setIngredients, handleFormSubmit }) => {
           </div>
         ))}
       </form>
-      <ul>
+      <ul className="PantryContainer"> Ingredients in your Pantry:
         {ingredients.map((ingredient) => (
           <li key={ingredient.name}>
             {ingredient.name}

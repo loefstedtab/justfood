@@ -8,7 +8,7 @@ import { editRecipe, selectRecipe } from "../slices/recipeSlice";
 
 const getWinePairing = async (meal) => {
   const res = await axios.get(
-    `https://api.spoonacular.com/food/wine/pairing?food=${meal.dishType}&apiKey=67f2eb38dc7441189476c0fd3fb74863`
+    `https://api.spoonacular.com/food/wine/pairing?food=${meal.dishType}&apiKey=7d1e2814f507478498ff350fa1678752`
   );
   return res.data.pairedWines;
 };
