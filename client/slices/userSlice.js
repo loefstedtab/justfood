@@ -94,6 +94,16 @@ export const editUser = createAsyncThunk(
   }
 );
 
+export const editGoogleUser = createAsyncThunk('google/editUser', async (updatedUser, thunkAPI) => {
+  try{
+    const {data} = await axios.put('/api/editGoogle', updatedUser);
+    thunkAPI.dispatch(fetchGoogleUser())
+    return data
+  } catch (err) {
+    console.log(err)
+  }
+})
+
 const userSlice = createSlice({
   name: "auth",
   initialState: {
@@ -149,6 +159,9 @@ const userSlice = createSlice({
     builder.addCase(editUser.rejected, (state, action) => {
       state.status = "Rejected";
     });
+    builder.addCase(editGoogleUser.fulfilled, (state, action) => {
+      state.status = "Google Updated"
+    })
   },
 });
 
