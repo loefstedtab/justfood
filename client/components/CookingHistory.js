@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useSelector } from 'react-redux';
-import { selectUser } from '../slices/userSlice';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { selectUser } from "../slices/userSlice";
 
 const CookingHistory = () => {
   const { user } = useSelector(selectUser);

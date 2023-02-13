@@ -3,7 +3,6 @@ import axios from "axios";
 
 const TOKEN = "token";
 
-
 export const fetchGoogleUser = createAsyncThunk("/googleUser", async () => {
   try {
     const { data } = await axios.get("/api/googleUser");
@@ -86,7 +85,7 @@ export const editUser = createAsyncThunk(
     };
     try {
       const { data } = await axios.put(`/api/jwtUser`, updatedUser, config);
-      thunkAPI.dispatch(getMe())
+      thunkAPI.dispatch(getMe());
       return data;
     } catch (err) {
       console.log(err);
@@ -114,7 +113,7 @@ const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchGoogleUser.fulfilled, (state, action) => {
-      state.user = action.payload
+      state.user = action.payload;
     });
     builder.addCase(getMe.fulfilled, (state, action) => {
       state.status = "Succeeded";
