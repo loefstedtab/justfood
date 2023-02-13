@@ -14,13 +14,13 @@ const Pantry = ({ingredients,setIngredients,handleFormSubmit}) => {
     }
 
     axios
-      .get(`https://api.spoonacular.com/food/ingredients/autocomplete?query=${e.target.value}&apiKey=67f2eb38dc7441189476c0fd3fb74863`)
+      .get(`https://api.spoonacular.com/food/ingredients/autocomplete?query=${e.target.value}&apiKey=d5602a4214c5474b995e183d5928322f`)
       .then(({ data }) => setSuggestions(data))
       .catch((error) => console.error(error));
   };
 
   const handleAddIngredient = (ingredient) => {
-    setIngredients([...ingredients, ingredient]); 
+    setIngredients([...ingredients, ingredient]);
     setSearchTerm('');
     setSuggestions([]);
   };

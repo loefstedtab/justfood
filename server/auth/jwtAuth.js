@@ -1,4 +1,4 @@
-const { User } = require("../db");
+const { User, Recipe } = require("../db");
 const Sequelize = require("sequelize");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
@@ -97,8 +97,8 @@ const loginUser = async (req, res, next) => {
 //Get current user
 const getMe = async (req, res, next) => {
   try {
-    const user = req.user.dataValues;
-    res.json({ ...user, loggedIn: true });
+    const {dataValues} = await User.findByPk(req.user.dataValues.id, {include: Recipe})
+    res.json({ ...dataValues, loggedIn: true });
   } catch (err) {
     next(err);
   }
@@ -120,9 +120,23 @@ const updateUser = async (req, res, next) => {
     }
   }else{
     let user = await User.findByPk(req.body.id)
-    res.json(await user.update(req.body)); 
+    res.json(await user.update(req.body));
   }
 };
+
+const updateRecipe = async (req, res, next) => {
+  try{
+    //Check to see if the recipe exists in the database
+    const recipeExists = await Recipe.findOne({where:{mealId: req.body.mealId}})
+    if(recipeExists === null){
+     res.json(await Recipe.create(req.body))
+    } else {
+      res.json(await recipeExists.update(req.body))
+    }
+  }catch(err){
+    next(err)
+  }
+}
 
 const generateToken = (id) => {
   return jwt.sign(id, process.env.JWT_SECRET);
@@ -135,4 +149,5 @@ module.exports = {
   getMe,
   generateToken,
   protect,
+  updateRecipe
 };
