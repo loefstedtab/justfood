@@ -1,6 +1,5 @@
 import React from "react";
 import GoogleButton from "react-google-button";
-import { Link } from "react-router-dom";
 import AuthForm from "./AuthForm";
 import AddUser from "./AddUser";
 
@@ -18,7 +17,6 @@ const Login = () => {
 
   return (
     <div className="LoginContainer">
-      
       <div className="GoogleBtn">
         <GoogleButton onClick={handleLogin} />
       </div>
@@ -30,7 +28,6 @@ const Login = () => {
       <div>
         <AddUser />
       </div>
-
     </div>
   );
 };

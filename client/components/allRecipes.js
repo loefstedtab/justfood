@@ -1,32 +1,38 @@
-import React, { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import axios from 'axios';
-import Pantry from './Pantry';
+import React, { useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import axios from "axios";
 
-const AllMeals = ({ history, location }) => {
-  const [meals, setMeals] = useState([]);
+const AllMeals = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [searchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   const getSearchResultsByMeal = async () => {
-
     const res = await axios.get(
-      `https://api.spoonacular.com/recipes/complexSearch?query=${searchParams.get('searchTerm')}&diet=${searchParams.get("filters")}&apiKey=d5602a4214c5474b995e183d5928322f`
+      `https://api.spoonacular.com/recipes/complexSearch?query=${searchParams.get(
+        "searchTerm"
+      )}&diet=${searchParams.get(
+        "filters"
+      )}&apiKey=d5602a4214c5474b995e183d5928322f`
     );
     setSuggestions(res.data.results);
   };
   const getSearchResultsByIngredients = async () => {
-    const res = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?includeIngredients=${searchParams.get("ingredients")}&diet=${searchParams.get("filters")}&apiKey=d5602a4214c5474b995e183d5928322f`)
+    const res = await axios.get(
+      `https://api.spoonacular.com/recipes/complexSearch?includeIngredients=${searchParams.get(
+        "ingredients"
+      )}&diet=${searchParams.get(
+        "filters"
+      )}&apiKey=d5602a4214c5474b995e183d5928322f`
+    );
     setSuggestions(res.data.results);
-
-  }
+  };
 
   React.useEffect(() => {
-    if (searchParams.get('searchTerm')) {
+    if (searchParams.get("searchTerm")) {
       getSearchResultsByMeal();
     }
-    if (searchParams.get('ingredients')) {
+    if (searchParams.get("ingredients")) {
       getSearchResultsByIngredients();
     }
   }, [searchParams]);
