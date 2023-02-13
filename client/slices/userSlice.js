@@ -3,7 +3,6 @@ import axios from "axios";
 
 const TOKEN = "token";
 
-
 export const fetchGoogleUser = createAsyncThunk("/googleUser", async () => {
   try {
     const { data } = await axios.get("/api/googleUser");
@@ -86,13 +85,23 @@ export const editUser = createAsyncThunk(
     };
     try {
       const { data } = await axios.put(`/api/jwtUser`, updatedUser, config);
-      thunkAPI.dispatch(getMe())
+      thunkAPI.dispatch(getMe());
       return data;
     } catch (err) {
       console.log(err);
     }
   }
 );
+
+export const editGoogleUser = createAsyncThunk('google/editUser', async (updatedUser, thunkAPI) => {
+  try{
+    const {data} = await axios.put('/api/editGoogle', updatedUser);
+    thunkAPI.dispatch(fetchGoogleUser())
+    return data
+  } catch (err) {
+    console.log(err)
+  }
+})
 
 const userSlice = createSlice({
   name: "auth",
@@ -104,7 +113,7 @@ const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchGoogleUser.fulfilled, (state, action) => {
-      state.user = action.payload
+      state.user = action.payload;
     });
     builder.addCase(getMe.fulfilled, (state, action) => {
       state.status = "Succeeded";
@@ -149,6 +158,9 @@ const userSlice = createSlice({
     builder.addCase(editUser.rejected, (state, action) => {
       state.status = "Rejected";
     });
+    builder.addCase(editGoogleUser.fulfilled, (state, action) => {
+      state.status = "Google Updated"
+    })
   },
 });
 

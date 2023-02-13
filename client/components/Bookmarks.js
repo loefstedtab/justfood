@@ -6,7 +6,6 @@ import { selectUser } from "../slices/userSlice";
 const Bookmarked = () => {
   const { user } = useSelector(selectUser);
   const { recipes } = user;
-  console.log("recipes from bookmark", recipes);
   const [meals, setMeals] = useState([]);
 
   useEffect(() => {

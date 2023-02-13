@@ -2,14 +2,10 @@ import React, { useState } from "react";
 
 const CheckboxFilter = ({ filters, handleFilterChange }) => {
   return (
-    <div className="checkbox-filter">
+    <div className="CheckboxFilters">
       {filters.map((filter) => (
         <label key={filter}>
-          <input
-            type="checkbox"
-            value={filter}
-            onChange={handleFilterChange}
-          />
+          <input type="checkbox" value={filter} onChange={handleFilterChange} />
           {filter}
         </label>
       ))}
@@ -17,8 +13,7 @@ const CheckboxFilter = ({ filters, handleFilterChange }) => {
   );
 };
 
-const Restrictions = ({filters, setFilters}) => {
-  
+const Restrictions = ({ filters, setFilters }) => {
   console.log(filters);
 
   const handleFilterChange = (event) => {
@@ -32,11 +27,11 @@ const Restrictions = ({filters, setFilters}) => {
 
   return (
     <div className="restrictions">
+      <div className="FiltersTitle">Filters: </div>
       <CheckboxFilter
-        filters={["High Protein", "Vegan", "Low Fat", "Low Carb", "Low Sodium", "Gluten Free", "Dairy Free","Paleo", "Whole30","vegetarian","" ]}
+        filters={["High Protein", "Vegan", "Low Fat", "Low Carb", "Low Sodium", "Gluten Free", "Dairy Free","Paleo", "Whole30","Vegetarian" ]}
         handleFilterChange={handleFilterChange}
       />
-    
     </div>
   );
 };

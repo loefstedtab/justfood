@@ -97,7 +97,9 @@ const loginUser = async (req, res, next) => {
 //Get current user
 const getMe = async (req, res, next) => {
   try {
-    const {dataValues} = await User.findByPk(req.user.dataValues.id, {include: Recipe})
+    const { dataValues } = await User.findByPk(req.user.dataValues.id, {
+      include: Recipe,
+    });
     res.json({ ...dataValues, loggedIn: true });
   } catch (err) {
     next(err);
@@ -105,38 +107,40 @@ const getMe = async (req, res, next) => {
 };
 
 const updateUser = async (req, res, next) => {
-  if(req.body.password){
+  if (req.body.password) {
     const { password } = req.body;
-    try{
+    try {
       const hashedPassword = await bcrypt.hash(password, 10);
-      const foundUser = await User.findByPk(req.body.id)
+      const foundUser = await User.findByPk(req.body.id);
       let user = {
         ...req.body,
         password: hashedPassword,
       };
       res.json(await foundUser.update(user));
-    }catch(err){
-      next(err)
+    } catch (err) {
+      next(err);
     }
-  }else{
-    let user = await User.findByPk(req.body.id)
+  } else {
+    let user = await User.findByPk(req.body.id);
     res.json(await user.update(req.body));
   }
 };
 
 const updateRecipe = async (req, res, next) => {
-  try{
+  try {
     //Check to see if the recipe exists in the database
-    const recipeExists = await Recipe.findOne({where:{mealId: req.body.mealId}})
-    if(recipeExists === null){
-     res.json(await Recipe.create(req.body))
+    const recipeExists = await Recipe.findOne({
+      where: { mealId: req.body.mealId },
+    });
+    if (recipeExists === null) {
+      res.json(await Recipe.create(req.body));
     } else {
-      res.json(await recipeExists.update(req.body))
+      res.json(await recipeExists.update(req.body));
     }
-  }catch(err){
-    next(err)
+  } catch (err) {
+    next(err);
   }
-}
+};
 
 const generateToken = (id) => {
   return jwt.sign(id, process.env.JWT_SECRET);
@@ -149,5 +153,5 @@ module.exports = {
   getMe,
   generateToken,
   protect,
-  updateRecipe
+  updateRecipe,
 };

@@ -28,19 +28,6 @@ async function seed() {
       password: await bcrypt.hash("don", 10),
     }),
   ]);
-  Recipe.create({
-    mealId: 716429,
-    userId: 2,
-    isCooked: true,
-    isBookmarked: true,
-  });
-  Recipe.create({
-    mealId: 715538,
-    userId: 2,
-    isCooked: true,
-    isBookmarked: true,
-  });
-
 
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);

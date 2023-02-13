@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 import userSlice from "../slices/userSlice";
-import recipeSlice from "../slices/recipeSlice"
+import recipeSlice from "../slices/recipeSlice";
 
 const store = configureStore({
   reducer: {
     user: userSlice,
-    recipe: recipeSlice
+    recipe: recipeSlice,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
