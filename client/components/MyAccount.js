@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editUser, selectUser, editGoogleUser } from "../slices/userSlice";
-import { MutatingDots } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const EditUser = () => {
   const { status, user } = useSelector(selectUser);
@@ -15,7 +15,6 @@ const EditUser = () => {
   const [phone, setPhone] = useState("");
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const checkedPassword =
     password && password === confirmPassword ? true : false;
@@ -39,26 +38,41 @@ const EditUser = () => {
     setFirstName(user.firstName);
     setLastName(user.lastName);
     setEmail(user.email);
-    setPhone(user.phoneNumber);
+    if (user.phoneNumber) {
+      setPhone(user.phoneNumber);
+    }
   }, [user]);
 
-  const handleSubmit = (evt) => {
+  const handleSubmit = async (evt) => {
     evt.preventDefault();
     if (user.googleId) {
-      dispatch(editGoogleUser(updatedGoogleUser)).then(navigate("/home"));
+      await toast.promise(dispatch(editGoogleUser(updatedGoogleUser)), {
+        pending: "Updating User",
+        success: "User Info Updated!",
+        error: "User Info Not Updated",
+      });
     } else {
-      dispatch(editUser(updatedUser)).then(navigate("/home"));
+      await toast.promise(dispatch(editUser(updatedUser)), {
+        pending: "Updating User",
+        success: "User Info Updated!",
+        error: "User Info Not Updated",
+      });
     }
   };
 
-  const handlePasswordSubmit = (evt) => {
+  const handlePasswordSubmit = async (evt) => {
     evt.preventDefault();
-    dispatch(
-      editUser({
-        id: user.id,
-        password: password,
+    let updatedPassword = {
+      id: user.id,
+      password: password,
+    };
+    await toast
+      .promise(dispatch(editUser(updatedPassword)), {
+        pending: "Updating Password!",
+        success: "Password Updated!",
+        error: "User Info Not Updated",
       })
-    ).then(alert("CONGRATULATIONS"));
+      .then(setPassword(""), setConfirmPassword(""));
   };
 
   return (
@@ -66,82 +80,106 @@ const EditUser = () => {
       <section className="myProfileHeading">
         <h3>Edit Your Information Below</h3>
       </section>
-      <section className="myProfileForm">
-        <form className="form" id="edit-user-form" onSubmit={handleSubmit}>
+      <section className="profileForms">
+        <form
+          className="userInfoForm"
+          id="edit-user-form"
+          onSubmit={handleSubmit}
+        >
           {!user.googleId ? (
             <>
-              <label htmlFor="email">Email:</label>
+              <label className="formLabel" htmlFor="email">
+                Email:
+              </label>
               <input
+                className="formInput"
+                id="Email"
                 name="email"
-                value={email}
-                placeholder={email}
+                // value={email}
+                // placeholder={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </>
           ) : null}
 
-          <label htmlFor="firstName">First Name:</label>
+          <label className="formLabel" htmlFor="firstName">
+            First Name:
+          </label>
           <input
+            className="formInput"
             name="firstName"
-            value={firstName}
-            placeholder={firstName}
+            // value={firstName}
+            // placeholder={firstName}
             onChange={(e) => setFirstName(e.target.value)}
           />
 
-          <label htmlFor="lastName">Last Name:</label>
           <input
+            className="formInput"
             name="lastName"
-            value={lastName}
-            placeholder={lastName}
+            // value={lastName}
+            // placeholder={lastName}
             onChange={(e) => setLastName(e.target.value)}
           />
+          <label className="formLabel" htmlFor="lastName">
+            Last Name:
+          </label>
 
-          <label htmlFor="phone">Phone Number:</label>
+          <label className="formLabel" htmlFor="phone">
+            Phone Number:
+          </label>
           <input
+            className="formInput"
             name="phone"
-            value={phone}
-            placeholder={phone}
+            // value={phone}
+            // placeholder={user.phoneNumber ? phone : "Phone Number"}
             onChange={(e) => setPhone(e.target.value)}
           />
 
           <br />
 
-          {status === "idle" ? null : status === "Updated" ? (
-            <div>Your information has been updated</div>
-          ) : null}
           <button type="submit" disabled={status === "Loading"}>
             Click to submit
           </button>
         </form>
 
         <br />
-          {!user.googleId ?
-           <>
-            <form className="form" onSubmit={handlePasswordSubmit}>
-          <label htmlFor="password">Password:</label>
-          <input
-            name="password"
-            value={password}
-            placeholder="password"
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
+        {!user.googleId ? (
+          <form className="passwordForm" onSubmit={handlePasswordSubmit}>
+            <label className="formLabel" htmlFor="password">
+              Password:
+            </label>
+            <input
+              className="formInput"
+              name="password"
+              value={password}
+              placeholder="password"
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
 
-          <label htmlFor="confirmPassword">Confirm Password:</label>
-          <input
-            name="confirmPassword"
-            value={confirmPassword}
-            placeholder="Re-Enter Password"
-            type="password"
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-          <button
-            type="submit"
-            disabled={status === "Loading" || !checkedPassword}
-          ></button>
-        </form>
-          </> : null}
+            <label className="formLabel" htmlFor="confirmPassword">
+              Confirm Password:
+            </label>
+            <input
+              className="formInput"
+              name="confirmPassword"
+              value={confirmPassword}
+              placeholder="Re-Enter Password"
+              type="password"
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
 
+            <button
+              type="submit"
+              disabled={status === "Loading" || !checkedPassword}
+            >
+              Update Password
+            </button>
+            {password !== "" && confirmPassword !== "" && !checkedPassword ? (
+              <div>Passwords Do Not Match!</div>
+            ) : null}
+          </form>
+        ) : null}
       </section>
     </div>
   );

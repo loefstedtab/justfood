@@ -4,6 +4,8 @@ import { selectUser } from "../slices/userSlice";
 
 const Account = () => {
   const user = useSelector(selectUser);
+
+  
   return (
     <div>
       "This is the user Account"

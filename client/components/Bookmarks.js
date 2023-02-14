@@ -5,32 +5,17 @@ import { selectUser } from "../slices/userSlice";
 
 const Bookmarked = () => {
   const { user } = useSelector(selectUser);
+  console.log("this is the user on the bookmark page", user)
   const { recipes } = user;
-  const [meals, setMeals] = useState([]);
 
-  useEffect(() => {
-    const fetchRecipes = async () => {
-      if (!recipes) return;
-      const mealPromises = recipes
-        .filter((recipe) => recipe.isBookmarked)
-        .map(async (recipe) => {
-          const response = await axios.get(
-            `https://api.spoonacular.com/recipes/${recipe.mealId}/information?includeNutrition=false&apiKey=1b7501f3e2a744ac95ac18898a19f22b`
-          );
-          return response.data;
-        });
-      const mealsData = await Promise.all(mealPromises);
-      setMeals(mealsData);
-    };
-    fetchRecipes();
-  }, [recipes]);
+  let bookmarked = recipes.filter((recipe) => recipe.isBookmarked ? recipe : null)
 
   return (
     <div>
       <h1 className="bookmarkTitle">Bookmarked Meals</h1>
         <div className="bookmarksContainer">
-          {meals.map((meal) => (
-            <div className="bookmarkItem">
+          {bookmarked.map((meal) => (
+            <div key={meal.id} className="bookmarkItem">
               <h2>
               <a href={`/recipe?recipeId=${meal.id}`}>{meal.title}</a>
               </h2>
