@@ -61,12 +61,12 @@ const MealDetail = ({}) => {
   return (
     <div className="mealCard">
       <div className="mealHeader">
-        <div className="mealBookmarkIcon">
-          <a href="#">
-            <i className="fa fa-heart-o" onClick={handleBookmark}></i>
-          </a>
-        </div>
         <img src={meal.image} alt={meal.title} />
+          <div className="mealBookmarkIcon">
+            <a href="#">
+              <i className="fa fa-heart-o" onClick={handleBookmark}></i>
+            </a>
+          </div>
       </div>
 
       <div className="mealFooter">
