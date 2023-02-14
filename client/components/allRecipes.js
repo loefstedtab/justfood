@@ -6,7 +6,7 @@ const AllMeals = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [searchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 9;
+  const itemsPerPage = 10;
   const getSearchResultsByMeal = async () => {
     const res = await axios.get(
       `https://api.spoonacular.com/recipes/complexSearch?query=${searchParams.get(
@@ -52,7 +52,7 @@ const AllMeals = () => {
                     <li key={suggestion.id} className='mealResult'>
                       <a className='mealResultName' href={`/recipe?recipeId=${suggestion.id}`}>
                         {suggestion.title}
-                        <img src={suggestion.image} />
+                        <img className="allMealSearchResultsImg" src={suggestion.image} />
                       </a>
                     </li>
                   ))}
