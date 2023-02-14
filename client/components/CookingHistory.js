@@ -6,6 +6,7 @@ import { selectUser } from "../slices/userSlice";
 const CookingHistory = () => {
   const { user } = useSelector(selectUser);
   const { recipes } = user;
+  console.log(rec)
   const [meals, setMeals] = useState([]);
 
   useEffect(() => {
@@ -25,14 +26,17 @@ const CookingHistory = () => {
     fetchCookingHistory();
   }, [recipes]);
 
+  let orderedMeals = meals.sort((a,b) => b.date.localeCompare(a.date))
+
   return (
     <div>
       <h1>Cooking History</h1>
-      {meals.map((meal) => (
+      {orderedMeals.map((meal) => (
         <div className="cooking-history-list">
           <h2>
           <a href={`/recipe?recipeId=${meal.id}`}>{meal.title}</a>
             </h2>
+            <h2>Cooked On: {meal.createdAt}</h2>
           <img src={meal.image} alt={meal.title} />
         </div>
       ))}

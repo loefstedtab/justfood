@@ -356,3 +356,38 @@ section:target p {
   flex-direction: column;
   align-items: center;
 }
+
+
+/* ---------- My Account Page Styling ----------*/
+
+.myProfile{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid red;
+}
+
+.profileForms{
+  display: flex;
+  margin: 2rem;
+}
+
+.userInfoForm{
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
+  padding: 2rem;
+  border: 2px solid red;
+}
+
+.passwordForm{
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
+  padding: 2rem;
+  border: 2px solid red;
+}
+
+

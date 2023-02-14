@@ -15,23 +15,32 @@ const getWinePairing = async (meal) => {
 
 const MealDetail = ({}) => {
   const [meal, setMeal] = useState({});
+  console.log("this is the meal", meal)
   const { user } = useSelector(selectUser);
   const dispatch = useDispatch();
 
   const handleBookmark = async () => {
     let updatedRecipe = {
+      ...meal,
       mealId: meal.id,
       userId: user.id,
       isBookmarked: true,
+      summary:[meal.summary],
+      instructions:[meal.instructions],
+      cuisines:[meal.cuisines]
     };
     dispatch(editRecipe(updatedRecipe));
   };
 
   const handleCooked = () => {
     let updatedRecipe = {
+      ...meal,
       mealId: meal.id,
       userId: user.id,
       isCooked: true,
+      summary:[meal.summary],
+      instructions:[meal.instructions],
+      cuisines:[meal.cuisines]
     };
     dispatch(editRecipe(updatedRecipe));
   };
