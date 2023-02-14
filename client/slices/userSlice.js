@@ -116,50 +116,52 @@ const userSlice = createSlice({
       state.user = action.payload;
     });
     builder.addCase(getMe.fulfilled, (state, action) => {
-      state.status = "Succeeded";
+      state.status = "getMe Succeeded";
       state.user = action.payload;
     });
     builder.addCase(getMe.rejected, (state, action) => {
-      state.status = "Failed";
+      state.status = "getMe Failed";
       state.error = action.error.message;
     });
     builder.addCase(getMe.pending, (state, action) => {
-      state.status = "User Loading";
+      state.status = "getMe Loading";
     });
     builder.addCase(authenticate.pending, (state, action) => {
-      state.status = "Loading";
+      state.status = "auth Loading";
     });
     builder.addCase(authenticate.rejected, (state, action) => {
-      state.status = "Rejected";
+      console.log('STATE.STATUS from builder', state.status)
+      state.status = "auth Rejected";
       state.error = action.payload;
+
     });
     builder.addCase(authenticate.fulfilled, (state, action) => {
-      state.status = "Succeeded";
+      state.status = "auth Succeeded";
       state.user = action.payload;
     });
     builder.addCase(createUser.fulfilled, (state, action) => {
-      state.status = "Succeeded";
+      state.status = "createUser Succeeded";
       state.user = action.payload;
     });
     builder.addCase(createUser.rejected, (state, action) => {
-      state.status = "Failed";
+      state.status = "createUser Failed";
       state.error = action.payload;
     });
     builder.addCase(createUser.pending, (state, action) => {
-      state.status = "Loading";
+      state.status = "createUser Loading";
     });
     builder.addCase(editUser.pending, (state, action) => {
-      state.status = "Loading";
+      state.status = "editUser Loading";
     });
     builder.addCase(editUser.fulfilled, (state, action) => {
-      state.status = "Updated";
+      state.status = "editUser Updated";
       state.user = action.payload;
     });
     builder.addCase(editUser.rejected, (state, action) => {
-      state.status = "Rejected";
+      state.status = "editUser Rejected";
     });
     builder.addCase(editGoogleUser.fulfilled, (state, action) => {
-      state.status = "Google Updated"
+      state.status = "editGoogleUser Google Updated"
     })
   },
 });

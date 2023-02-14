@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { editUser, selectUser, editGoogleUser } from "../slices/userSlice";
 import { MutatingDots } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 const EditUser = () => {
   const { status, user } = useSelector(selectUser);
@@ -42,12 +43,21 @@ const EditUser = () => {
     setPhone(user.phoneNumber);
   }, [user]);
 
+  useEffect(() => {
+    if(status === "editUser Updated"){
+      toast.error('Dumbass', {
+        onClose: navigate('/home')
+      })
+    }
+  }, [status])
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
     if (user.googleId) {
       dispatch(editGoogleUser(updatedGoogleUser)).then(navigate("/home"));
     } else {
-      dispatch(editUser(updatedUser)).then(navigate("/home"));
+      dispatch(editUser(updatedUser))
+      //.then(navigate("/home"));
     }
   };
 
