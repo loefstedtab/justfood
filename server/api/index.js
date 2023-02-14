@@ -3,6 +3,7 @@ const { protect, updateUser } = require("../auth/jwtAuth");
 const { isAuth } = require("../auth/googleAuth");
 const { User, Recipe } = require("../db");
 const { registerUser, getMe, updateRecipe } = require("../auth/jwtAuth");
+const { Router } = require("express");
 
 //JWT routes
 router.route("/jwtUser")
@@ -37,8 +38,12 @@ router.put("/editGoogle", async (req, res, next) => {
   }
 })
 
+
+
 //Update the recipe
 router.put("/updateRecipe", updateRecipe);
+
+
 
 router.use((req, res, next) => {
   const error = new Error("Not Found");
