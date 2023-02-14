@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { createUser } from "../slices/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { createUser, selectUser } from "../slices/userSlice";
+import { toast } from 'react-toastify';
 
 const AddUser = () => {
   const [password, setPassword] = useState("");
@@ -13,6 +14,16 @@ const AddUser = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const { error, status } = useSelector(selectUser);
+
+  useEffect(() => {
+    status === "createUser Failed"
+      ? toast.error(error, { onChange: navigate("/login") })
+      : status === "createUser Succeeded"
+      ? toast.success("Welcome", { onChange: navigate("/home") })
+      : null;
+  }, [status]);
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
     let newUser = {
@@ -22,7 +33,8 @@ const AddUser = () => {
       email: email,
       phoneNumber: phone,
     };
-    dispatch(createUser(newUser)).then(navigate("/home"));
+    dispatch(createUser(newUser))
+    //.then(navigate("/home"));
   };
 
   return (

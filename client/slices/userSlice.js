@@ -130,7 +130,6 @@ const userSlice = createSlice({
       state.status = "auth Loading";
     });
     builder.addCase(authenticate.rejected, (state, action) => {
-      console.log('STATE.STATUS from builder', state.status)
       state.status = "auth Rejected";
       state.error = action.payload;
 
