@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { editUser, selectUser, editGoogleUser } from "../slices/userSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { EditForm } from "./EditForm";
 
 const EditUser = () => {
   const { status, user } = useSelector(selectUser);
@@ -78,7 +79,7 @@ const EditUser = () => {
   return (
     <div className="myProfile">
       <section className="myProfileHeading">
-        <h3>Edit Your Information Below</h3>
+        <h3>PROFILE INFO:</h3>
       </section>
       <section className="profileForms">
         <form
@@ -88,52 +89,15 @@ const EditUser = () => {
         >
           {!user.googleId ? (
             <>
-              <label className="formLabel" htmlFor="email">
-                Email:
-              </label>
-              <input
-                className="formInput"
-                id="Email"
-                name="email"
-                // value={email}
-                // placeholder={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+              <EditForm value={email} setValue={setEmail} placeholder={email} type={"text"}/>
             </>
           ) : null}
 
-          <label className="formLabel" htmlFor="firstName">
-            First Name:
-          </label>
-          <input
-            className="formInput"
-            name="firstName"
-            // value={firstName}
-            // placeholder={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-          />
+          <EditForm value={firstName} setValue={setFirstName} placeholder={firstName} type={"text"}/>
 
-          <input
-            className="formInput"
-            name="lastName"
-            // value={lastName}
-            // placeholder={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-          />
-          <label className="formLabel" htmlFor="lastName">
-            Last Name:
-          </label>
+          <EditForm value={lastName} setValue={setLastName} placeholder={lastName} type={"text"}/>
 
-          <label className="formLabel" htmlFor="phone">
-            Phone Number:
-          </label>
-          <input
-            className="formInput"
-            name="phone"
-            // value={phone}
-            // placeholder={user.phoneNumber ? phone : "Phone Number"}
-            onChange={(e) => setPhone(e.target.value)}
-          />
+          <EditForm value={phone} setValue={setPhone} placeholder={phone} type={"text"}/>
 
           <br />
 
@@ -143,31 +107,12 @@ const EditUser = () => {
         </form>
 
         <br />
+
         {!user.googleId ? (
           <form className="passwordForm" onSubmit={handlePasswordSubmit}>
-            <label className="formLabel" htmlFor="password">
-              Password:
-            </label>
-            <input
-              className="formInput"
-              name="password"
-              value={password}
-              placeholder="password"
-              type="password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
+          <EditForm value={password} setValue={setPassword} placeholder={"Password"} type={"password"}/>
 
-            <label className="formLabel" htmlFor="confirmPassword">
-              Confirm Password:
-            </label>
-            <input
-              className="formInput"
-              name="confirmPassword"
-              value={confirmPassword}
-              placeholder="Re-Enter Password"
-              type="password"
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
+          <EditForm value={password} setValue={setPassword} placeholder={"Confirm Password"} type={"password"}/>
 
             <button
               type="submit"
@@ -175,9 +120,9 @@ const EditUser = () => {
             >
               Update Password
             </button>
-            {password !== "" && confirmPassword !== "" && !checkedPassword ? (
-              <div>Passwords Do Not Match!</div>
-            ) : null}
+            {password !== "" && confirmPassword !== "" && !checkedPassword ? 
+              <p className="error">Passwords Do Not Match!</p>
+             : null}
           </form>
         ) : null}
       </section>

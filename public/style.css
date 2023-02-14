@@ -13,7 +13,7 @@
 body {
   background: url(JustFoodBackground.webp);
   background-size: cover;
-  font-family: 'Itim', cursive;
+  font-family: "Itim", cursive;
   color: white;
 }
 
@@ -23,10 +23,8 @@ button {
   background-color: #3a943d;
   color: white;
   font-size: 14px;
-  text-shadow: -1px 1px 2px #000,
-  1px 1px 2px #000,
-  1px -1px 0 #000,
-  -1px -1px 0 #000;
+  text-shadow: -1px 1px 2px #000, 1px 1px 2px #000, 1px -1px 0 #000,
+    -1px -1px 0 #000;
 }
 
 button:hover {
@@ -43,11 +41,8 @@ a:link {
   text-decoration: none;
   color: white;
   font-weight: bold;
-  text-shadow: -1px 1px 2px #000,
-  1px 1px 2px #000,
-  1px -1px 0 #000,
-  -1px -1px 0 #000;
-
+  text-shadow: -1px 1px 2px #000, 1px 1px 2px #000, 1px -1px 0 #000,
+    -1px -1px 0 #000;
 }
 
 a:visited {
@@ -59,7 +54,8 @@ img {
   max-width: 100%;
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
@@ -70,31 +66,25 @@ html, body {
   align-items: center;
   font-size: 64px;
   margin-bottom: 10px;
-  text-shadow: -1px 1px 2px #000,
-  1px 1px 2px #000,
-  1px -1px 0 #000,
-  -1px -1px 0 #000;
+  text-shadow: -1px 1px 2px #000, 1px 1px 2px #000, 1px -1px 0 #000,
+    -1px -1px 0 #000;
 }
 
 .NavbarLinks {
   display: flex;
   justify-content: space-evenly;
-	font-size: 32px;
+  font-size: 32px;
   margin-bottom: 10px;
-	text-shadow: -1px 1px 2px #000,
-				  1px 1px 2px #000,
-				  1px -1px 0 #000,
-				  -1px -1px 0 #000;
+  text-shadow: -1px 1px 2px #000, 1px 1px 2px #000, 1px -1px 0 #000,
+    -1px -1px 0 #000;
 }
 
 .WelcomeElement {
   position: absolute;
   top: 10px;
   left: 10px;
-  text-shadow: -1px 1px 2px #000,
-  1px 1px 2px #000,
-  1px -1px 0 #000,
-  -1px -1px 0 #000;
+  text-shadow: -1px 1px 2px #000, 1px 1px 2px #000, 1px -1px 0 #000,
+    -1px -1px 0 #000;
 }
 
 .logoutButton {
@@ -112,10 +102,8 @@ html, body {
   flex-grow: 2;
   margin: 1em;
   padding: 5px;
-  text-shadow: -1px 1px 2px #000,
-  1px 1px 2px #000,
-  1px -1px 0 #000,
-  -1px -1px 0 #000;
+  text-shadow: -1px 1px 2px #000, 1px 1px 2px #000, 1px -1px 0 #000,
+    -1px -1px 0 #000;
 }
 
 .LoginForm {
@@ -126,10 +114,8 @@ html, body {
   flex-grow: 2;
   margin: 1em;
   padding: 5px;
-  text-shadow: -1px 1px 2px #000,
-  1px 1px 2px #000,
-  1px -1px 0 #000,
-  -1px -1px 0 #000;
+  text-shadow: -1px 1px 2px #000, 1px 1px 2px #000, 1px -1px 0 #000,
+    -1px -1px 0 #000;
 }
 
 .GoogleBtn {
@@ -231,10 +217,8 @@ section a {
   letter-spacing: 3px;
   overflow: hidden;
   border-bottom: 3px solid black;
-  text-shadow: -1px 1px 2px #000,
-  1px 1px 2px #000,
-  1px -1px 0 #000,
-  -1px -1px 0 #000;
+  text-shadow: -1px 1px 2px #000, 1px 1px 2px #000, 1px -1px 0 #000,
+    -1px -1px 0 #000;
 }
 
 section p {
@@ -277,10 +261,8 @@ section:target p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-shadow: -1px 1px 2px #000,
-  1px 1px 2px #000,
-  1px -1px 0 #000,
-  -1px -1px 0 #000;
+  text-shadow: -1px 1px 2px #000, 1px 1px 2px #000, 1px -1px 0 #000,
+    -1px -1px 0 #000;
   padding: 10px;
 }
 
@@ -295,7 +277,7 @@ section:target p {
 .DropdownContainer .DropdownButton {
   padding: 6px 10px;
   background: #fff;
-  box-shadow: 3px 3px 10px 6px rgba(0,0,0,0.06);
+  box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
   font-weight: bold;
   color: #333;
   display: flex;
@@ -310,28 +292,26 @@ section:target p {
   left: 0;
   padding: 1px;
   background: #fff;
-  box-shadow: 3px 3px 10px 6px rgba(0,0,0,0.06);
+  box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
   font-weight: 500;
   color: #333;
   width: 100%;
 }
 
-.DropdownContainer .DropdownOptions .DropdownItem{
+.DropdownContainer .DropdownOptions .DropdownItem {
   padding: 10px;
   cursor: pointer;
   transition: all 0.2s;
 }
 
-.DropdownContainer .DropdownOptions .DropdownItem:hover{
+.DropdownContainer .DropdownOptions .DropdownItem:hover {
   background: #f4f4f4;
 }
 
 /* ----------Pantry.js Styling ----------*/
 .ingredientResultContainer {
-  text-shadow: -1px 1px 2px #000,
-  1px 1px 2px #000,
-  1px -1px 0 #000,
-  -1px -1px 0 #000;
+  text-shadow: -1px 1px 2px #000, 1px 1px 2px #000, 1px -1px 0 #000,
+    -1px -1px 0 #000;
   padding: 10px;
 }
 
@@ -351,10 +331,8 @@ section:target p {
   padding: 8px;
   width: 150px;
   font-size: 20px;
-  text-shadow: -1px 1px 2px #000,
-  1px 1px 2px #000,
-  1px -1px 0 #000,
-  -1px -1px 0 #000;
+  text-shadow: -1px 1px 2px #000, 1px 1px 2px #000, 1px -1px 0 #000,
+    -1px -1px 0 #000;
 }
 
 .FiltersTitle {
@@ -370,10 +348,8 @@ section:target p {
   align-items: center;
   font-size: 40px;
   margin-top: 20px;
-  text-shadow: -1px 1px 2px #000,
-  1px 1px 2px #000,
-  1px -1px 0 #000,
-  -1px -1px 0 #000;
+  text-shadow: -1px 1px 2px #000, 1px 1px 2px #000, 1px -1px 0 #000,
+    -1px -1px 0 #000;
 }
 
 .allMealSearchResultsContainer {
@@ -414,10 +390,8 @@ section:target p {
   align-items: center;
   font-size: 40px;
   margin-top: 20px;
-  text-shadow: -1px 1px 2px #000,
-  1px 1px 2px #000,
-  1px -1px 0 #000,
-  -1px -1px 0 #000;
+  text-shadow: -1px 1px 2px #000, 1px 1px 2px #000, 1px -1px 0 #000,
+    -1px -1px 0 #000;
 }
 
 .cookingHistoryContainer {
@@ -426,7 +400,7 @@ section:target p {
   justify-content: center;
   flex-wrap: wrap;
   margin-top: 20px;
-  gap: 20px
+  gap: 20px;
 }
 
 .cookingHistoryItem {
@@ -444,10 +418,8 @@ section:target p {
   align-items: center;
   font-size: 40px;
   margin-top: 20px;
-  text-shadow: -1px 1px 2px #000,
-  1px 1px 2px #000,
-  1px -1px 0 #000,
-  -1px -1px 0 #000;
+  text-shadow: -1px 1px 2px #000, 1px 1px 2px #000, 1px -1px 0 #000,
+    -1px -1px 0 #000;
 }
 
 .bookmarksContainer {
@@ -456,7 +428,7 @@ section:target p {
   justify-content: center;
   flex-wrap: wrap;
   margin-top: 20px;
-  gap: 20px
+  gap: 20px;
 }
 
 .bookmarkItem {
@@ -467,35 +439,100 @@ section:target p {
   margin-bottom: 30px;
 }
 
+/* ---------- My Account Page Styling ----------*/
 
-* ---------- My Account Page Styling ----------*/
-
-.myProfile{
+.myProfile {
   height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 2px solid red;
 }
 
-.profileForms{
+.myProfileHeading{
+  margin: 2em;
+  font-size: 25px;
+  text-shadow: 2px 2px 2px black;
+}
+
+.error{
+  text-shadow: 2px 2px 2px black;
+  color: #161822;
+}
+
+.profileForms {
   display: flex;
-  margin: 2rem;
+  border: 2px solid red;
+  justify-content: space-evenly;
+  height: 75%;
+  width: 60%;
+  background: transparent;
+  border: 2px solid #161822;
+  border-radius: 10px;
+  box-shadow:
+  2.5px 2.6px 1.4px -27px rgba(0, 0, 0, 0.115),
+  5.9px 6.3px 3.4px -27px rgba(0, 0, 0, 0.166),
+  11.1px 11.8px 6.4px -27px rgba(0, 0, 0, 0.205),
+  19.9px 21px 11.4px -27px rgba(0, 0, 0, 0.244),
+  37.2px 39.3px 21.3px -27px rgba(0, 0, 0, 0.295),
+  89px 94px 51px -27px rgba(0, 0, 0, 0.41)
+;
 }
 
-.userInfoForm{
+.userInfoForm,
+.passwordForm {
   display: flex;
   flex-direction: column;
-  margin: 2rem;
-  padding: 2rem;
-  border: 2px solid red;
+  max-height: 60%;
+  margin: 1rem;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 30.6px 30.6px 3.3px rgba(0, 0, 0, 0.024),
+    41.2px 41.2px 8px rgba(0, 0, 0, 0.032),
+    47.8px 47.8px 15px rgba(0, 0, 0, 0.038),
+    54.4px 54.4px 26.8px rgba(0, 0, 0, 0.044),
+    65.2px 65.2px 50.1px rgba(0, 0, 0, 0.052),
+    100px 100px 120px rgba(0, 0, 0, 0.07);
+  border: 1px solid #161822;
+  border-radius: 10px;
 }
 
-.passwordForm{
-  display: flex;
-  flex-direction: column;
-  margin: 2rem;
-  padding: 2rem;
-  border: 2px solid red;
+.editInput::placeholder {
+  color: #161822;
+}
+
+.editInput,
+textarea {
+  background-color: transparent;
+  border: 0;
+  margin: 0.5em;
+  padding: 0.5em;
+  border-radius: 3px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #161822;
+  border: 2px solid #161822;
+}
+
+.editInput:hover {
+  border-radius: 3px;
+  background: #4f9d4d;
+  box-shadow: inset 5px 5px 10px #2c582b,
+              inset -5px -5px 10px #72e26f;
+  color: #c0c0c0;
+  cursor: pointer;
+}
+
+textarea {
+  margin-top: 24px;
+  resize: none;
+  overflow: hidden;
+  min-height: 14px;
+  max-height: 100px;
+  font-size: 14px;
+}
+
+textarea:focus {
+  outline: 5px auto Highlight; /* Firefox */
+  outline: 5px auto -webkit-focus-ring-color; /* Chrome, Safari */
 }
