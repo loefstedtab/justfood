@@ -43,6 +43,10 @@ a:link {
   text-decoration: none;
   color: white;
   font-weight: bold;
+  text-shadow: -1px 1px 2px #000,
+  1px 1px 2px #000,
+  1px -1px 0 #000,
+  -1px -1px 0 #000;
 
 }
 
@@ -153,7 +157,7 @@ html, body {
 .mealCard .mealHeader .mealBookmarkIcon a .fa-heart-o {
   position: absolute;
   left: 85%;
-  bottom: 63%;
+  top: 30%;
   background: #3a943d;
   color: #fff;
   font-size: 1.3em;
