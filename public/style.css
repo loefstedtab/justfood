@@ -43,6 +43,10 @@ a:link {
   text-decoration: none;
   color: white;
   font-weight: bold;
+  text-shadow: -1px 1px 2px #000,
+  1px 1px 2px #000,
+  1px -1px 0 #000,
+  -1px -1px 0 #000;
 
 }
 
@@ -64,7 +68,8 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 56px;
+  font-size: 64px;
+  margin-bottom: 10px;
   text-shadow: -1px 1px 2px #000,
   1px 1px 2px #000,
   1px -1px 0 #000,
@@ -75,6 +80,7 @@ html, body {
   display: flex;
   justify-content: space-evenly;
 	font-size: 32px;
+  margin-bottom: 10px;
 	text-shadow: -1px 1px 2px #000,
 				  1px 1px 2px #000,
 				  1px -1px 0 #000,
@@ -153,7 +159,7 @@ html, body {
 .mealCard .mealHeader .mealBookmarkIcon a .fa-heart-o {
   position: absolute;
   left: 85%;
-  bottom: 63%;
+  top: 30%;
   background: #3a943d;
   color: #fff;
   font-size: 1.3em;
@@ -357,8 +363,112 @@ section:target p {
   align-items: center;
 }
 
+/* ----------allRecipes.js Styling ----------*/
+.allMealSearchResultsTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 40px;
+  margin-top: 20px;
+  text-shadow: -1px 1px 2px #000,
+  1px 1px 2px #000,
+  1px -1px 0 #000,
+  -1px -1px 0 #000;
+}
 
-/* ---------- My Account Page Styling ----------*/
+.allMealSearchResultsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.mealResult {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+  margin-bottom: 30px;
+}
+
+.mealResultName {
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.allMealSearchResultsButtonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ----------CookingHistory.js Styling ----------*/
+.cookingHistoryTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 40px;
+  margin-top: 20px;
+  text-shadow: -1px 1px 2px #000,
+  1px 1px 2px #000,
+  1px -1px 0 #000,
+  -1px -1px 0 #000;
+}
+
+.cookingHistoryContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  gap: 20px
+}
+
+.cookingHistoryItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+/* ----------Bookmarks.js Styling ----------*/
+.bookmarkTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 40px;
+  margin-top: 20px;
+  text-shadow: -1px 1px 2px #000,
+  1px 1px 2px #000,
+  1px -1px 0 #000,
+  -1px -1px 0 #000;
+}
+
+.bookmarksContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  gap: 20px
+}
+
+.bookmarkItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+
+* ---------- My Account Page Styling ----------*/
 
 .myProfile{
   height: 100vh;
@@ -389,5 +499,3 @@ section:target p {
   padding: 2rem;
   border: 2px solid red;
 }
-
-

@@ -10,16 +10,17 @@ const CookingHistory = () => {
 
   return (
     <div>
-      <h1>Cooking History</h1>
-      {recipes.map((meal) => (
-        <div className="cooking-history-list">
-          <h2>
-          <a href={`/recipe?recipeId=${meal.id}`}>{meal.title}</a>
-            </h2>
-            <h2>Cooked On: {meal.createdAt}</h2>
-          <img src={meal.image} alt={meal.title} />
+      <h1 className="cookingHistoryTitle">Cooking History</h1>
+        <div className="cookingHistoryContainer">
+          {recipes.map((meal) => (
+            <div className="cookingHistoryItem">
+              <h2>
+              <a href={`/recipe?recipeId=${meal.id}`}>{meal.title}</a>
+              </h2>
+              <img src={meal.image} alt={meal.title} />
+            </div>
+          ))}
         </div>
-      ))}
     </div>
   );
 };

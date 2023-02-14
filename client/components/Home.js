@@ -65,9 +65,9 @@ const Home = () => {
       {suggestions.length > 0 && (
         <ul className="mealResultContainer">
           {suggestions.map((suggestion) => (
-            <li className="mealResults">
+            <li>
               {" "}
-              <a href={`/recipe?recipeId=${suggestion.id}`} key={suggestion.id}>
+              <a className="mealResults" href={`/recipe?recipeId=${suggestion.id}`} key={suggestion.id}>
                 {suggestion.title}{" "}
               </a>
             </li>

@@ -10,16 +10,17 @@ const Bookmarked = () => {
 
   return (
     <div>
-      <h1>Bookmarked Meals</h1>
-      {recipes.map((meal) => (
-        <div className="bookmark-list">
-          <h2>
-          <a href={`/recipe?recipeId=${meal.id}`}>{meal.title}</a>
-          {meal.title}
-          </h2>
-          <img src={meal.image} alt={meal.title} />
+      <h1 className="bookmarkTitle">Bookmarked Meals</h1>
+        <div className="bookmarksContainer">
+          {recipes.map((meal) => (
+            <div className="bookmarkItem">
+              <h2>
+              <a href={`/recipe?recipeId=${meal.id}`}>{meal.title}</a>
+              </h2>
+              <img src={meal.image} alt={meal.title} />
+            </div>
+          ))}
         </div>
-      ))}
     </div>
   );
 };
