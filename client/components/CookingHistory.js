@@ -7,13 +7,14 @@ const CookingHistory = () => {
   const { user } = useSelector(selectUser);
   const { recipes } = user;
 
+  let cooked = recipes.filter((recipe) => recipe.isCooked ? recipe : null)
 
   return (
     <div>
       <h1 className="cookingHistoryTitle">Cooking History</h1>
         <div className="cookingHistoryContainer">
-          {recipes.map((meal) => (
-            <div className="cookingHistoryItem">
+          {cooked.map((meal) => (
+            <div key={meal.id} className="cookingHistoryItem">
               <h2>
               <a href={`/recipe?recipeId=${meal.id}`}>{meal.title}</a>
               </h2>

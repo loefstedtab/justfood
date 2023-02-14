@@ -8,12 +8,14 @@ const Bookmarked = () => {
   console.log("this is the user on the bookmark page", user)
   const { recipes } = user;
 
+  let bookmarked = recipes.filter((recipe) => recipe.isBookmarked ? recipe : null)
+
   return (
     <div>
       <h1 className="bookmarkTitle">Bookmarked Meals</h1>
         <div className="bookmarksContainer">
-          {recipes.map((meal) => (
-            <div className="bookmarkItem">
+          {bookmarked.map((meal) => (
+            <div key={meal.id} className="bookmarkItem">
               <h2>
               <a href={`/recipe?recipeId=${meal.id}`}>{meal.title}</a>
               </h2>
