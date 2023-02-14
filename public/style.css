@@ -360,3 +360,46 @@ section:target p {
   flex-direction: column;
   align-items: center;
 }
+
+/* ----------allRecipes.js Styling ----------*/
+.allMealSearchResultsTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 40px;
+  margin-top: 20px;
+  text-shadow: -1px 1px 2px #000,
+  1px 1px 2px #000,
+  1px -1px 0 #000,
+  -1px -1px 0 #000;
+}
+
+.allMealSearchResultsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.mealResult {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+  margin-bottom: 30px;
+}
+
+.mealResultName {
+  font-size: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.allMealSearchResultsButtonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
