@@ -6,32 +6,12 @@ import { selectUser } from "../slices/userSlice";
 const CookingHistory = () => {
   const { user } = useSelector(selectUser);
   const { recipes } = user;
-  console.log(rec)
-  const [meals, setMeals] = useState([]);
 
-  useEffect(() => {
-    const fetchCookingHistory = async () => {
-      if (!recipes) return;
-      const mealPromises = recipes
-        .filter((recipe) => recipe.isCooked)
-        .map(async (recipe) => {
-          const response = await axios.get(
-            `https://api.spoonacular.com/recipes/${recipe.mealId}/information?includeNutrition=false&apiKey=1b7501f3e2a744ac95ac18898a19f22b`
-          );
-          return response.data;
-        });
-      const mealsData = await Promise.all(mealPromises);
-      setMeals(mealsData);
-    };
-    fetchCookingHistory();
-  }, [recipes]);
-
-  let orderedMeals = meals.sort((a,b) => b.date.localeCompare(a.date))
 
   return (
     <div>
       <h1>Cooking History</h1>
-      {orderedMeals.map((meal) => (
+      {recipes.map((meal) => (
         <div className="cooking-history-list">
           <h2>
           <a href={`/recipe?recipeId=${meal.id}`}>{meal.title}</a>
