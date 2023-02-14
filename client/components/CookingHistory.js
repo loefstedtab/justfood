@@ -8,7 +8,7 @@ const CookingHistory = () => {
   const { recipes } = user;
 
   let cooked = recipes.filter((recipe) => recipe.isCooked ? recipe : null)
-
+  
   return (
     <div>
       <h1 className="cookingHistoryTitle">Cooking History</h1>
