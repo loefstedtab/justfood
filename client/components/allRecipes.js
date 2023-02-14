@@ -6,7 +6,7 @@ const AllMeals = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [searchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
+  const itemsPerPage = 9;
   const getSearchResultsByMeal = async () => {
     const res = await axios.get(
       `https://api.spoonacular.com/recipes/complexSearch?query=${searchParams.get(
@@ -39,43 +39,44 @@ const AllMeals = () => {
 
   return (
     <div>
-      <h1>Search Results</h1>
-      {suggestions.length > 0 ? (
-        <>
-          <ul>
-            {suggestions
-              .slice(
-                (currentPage - 1) * itemsPerPage,
-                currentPage * itemsPerPage
-              )
-              .map((suggestion) => (
-                <li key={suggestion.id}>
-                  <a href={`/recipe?recipeId=${suggestion.id}`}>
-                    {suggestion.title}
-                  </a>
-                  <img src={suggestion.image} />
-                </li>
-              ))}
-          </ul>
-          <div>
-            <button
-              onClick={() => setCurrentPage(currentPage - 1)}
-              disabled={currentPage === 1}
-            >
-              Previous
-            </button>
-            <button
-              onClick={() => setCurrentPage(currentPage + 1)}
-              disabled={currentPage * itemsPerPage >= suggestions.length}
-            >
-              Next
-            </button>
-          </div>
-        </>
-      ) : (
-        <p>No items matched your search results</p>
-      )}
-    </div>
+      <h1 className="allMealSearchResultsTitle">Meal Search Results</h1>
+          {suggestions.length > 0 ? (
+            <>
+              <ul className="allMealSearchResultsContainer">
+                {suggestions
+                  .slice(
+                    (currentPage - 1) * itemsPerPage,
+                    currentPage * itemsPerPage
+                  )
+                  .map((suggestion) => (
+                    <li key={suggestion.id} className='mealResult'>
+                      <a className='mealResultName' href={`/recipe?recipeId=${suggestion.id}`}>
+                        {suggestion.title}
+                        <img src={suggestion.image} />
+                      </a>
+                    </li>
+                  ))}
+              </ul>
+              
+              <div className="allMealSearchResultsButtonContainer">
+                <button
+                  onClick={() => setCurrentPage(currentPage - 1)}
+                  disabled={currentPage === 1}
+                >
+                  Previous
+                </button>
+                <button
+                  onClick={() => setCurrentPage(currentPage + 1)}
+                  disabled={currentPage * itemsPerPage >= suggestions.length}
+                >
+                  Next
+                </button>
+              </div>
+            </>
+          ) : (
+            <p>No items matched your search results</p>
+          )}
+        </div>  
   );
 };
 
