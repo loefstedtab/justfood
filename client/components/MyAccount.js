@@ -43,21 +43,35 @@ const EditUser = () => {
     setPhone(user.phoneNumber);
   }, [user]);
 
-  useEffect(() => {
-    if(status === "editUser Updated"){
-      toast.error('Dumbass', {
-        onClose: navigate('/home')
-      })
-    }
-  }, [status])
+  // useEffect(() => {
+  //   if(status === "editUser Updated"){
+  //     toast.error('Dumbass', {
+  //       onClose: navigate('/home')
+  //     })
+  //   }
+  // }, [status])
 
-  const handleSubmit = (evt) => {
+
+  const handleSubmit = async (evt) => {
     evt.preventDefault();
     if (user.googleId) {
-      dispatch(editGoogleUser(updatedGoogleUser)).then(navigate("/home"));
+      await toast.promise(
+        dispatch(editGoogleUser(updatedGoogleUser)),
+        {
+          pending:'Updating User',
+          success: 'User Info Updated',
+          error:"User Info Not Updated"
+        }
+      )
     } else {
-      dispatch(editUser(updatedUser))
-      //.then(navigate("/home"));
+       await toast.promise(
+        dispatch(editUser(updatedUser)),
+        {
+          pending:'Updating User',
+          success: 'User Info Updated',
+          error:"User Info Not Updated"
+        }
+      )
     }
   };
 
