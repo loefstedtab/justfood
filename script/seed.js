@@ -29,6 +29,12 @@ async function seed() {
     }),
   ]);
 
+  Recipe.create({
+    mealId: 71235,
+    isBookmarked: true,
+    isCooked: true
+  })
+
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);
   return {
