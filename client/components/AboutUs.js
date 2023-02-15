@@ -34,10 +34,7 @@ With Just Food, you can say goodbye to the stress and frustration of meal planni
         </a>
         {activeIndex === 1 && (
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt vel
-            beatae consequatur suscipit vero magnam nulla molestias alias
-            praesentium atque, commodi error quis, unde aliquam distinctio
-            blanditiis! Beatae, temporibus reprehenderit!
+            Arthur came to coding after a career sleeping in holes and walking in the woods. Upon the realization that chairs are comfortable, he quickly signed up for a career which emphasized the use of chairs and air conditioning. Arthur spends his time exploring his new career as well as flying Blackhawks in the Army Reserve.
           </p>
         )}
       </section>
@@ -47,7 +44,7 @@ With Just Food, you can say goodbye to the stress and frustration of meal planni
         </a>
         {activeIndex === 2 && (
           <p>
-Hi! My name is Stephanie, & I’m a front-end developer with a passion for building user-friendly applications. My expertise in HTML, CSS, and JavaScript, along with my experience working with front-end frameworks such as React, has enabled me to create a polished and intuitive user interface that makes it easy for users to find the recipes they want.          </p>        )}
+Hi! My name is Stephanie, and I’m a front-end developer with a passion for building user-friendly applications. My expertise in HTML, CSS, and JavaScript, along with my experience working with front-end frameworks such as React, has enabled me to create a polished and intuitive user interface that makes it easy for users to find the recipes they want.          </p>        )}
       </section>
       <section id="item4">
         <a href="#item4" onClick={() => handleClick(3)}>
@@ -55,10 +52,7 @@ Hi! My name is Stephanie, & I’m a front-end developer with a passion for build
         </a>
         {activeIndex === 3 && (
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt vel
-            beatae consequatur suscipit vero magnam nulla molestias alias
-            praesentium atque, commodi error quis, unde aliquam distinctio
-            blanditiis! Beatae, temporibus reprehenderit!
+            Hi! My name is Salvador & I recently graduated from a software bootcamp. I’m excited to continue my education in the field of software development. In my time in the bootcamp, I gained practical experience in a variety of programming languages, tools and technologies, which I am eager to put into practice. I’m passionate about learning new things and enjoy taking on challenges that allow me to grow.
           </p>
         )}
       </section>
@@ -68,10 +62,7 @@ Hi! My name is Stephanie, & I’m a front-end developer with a passion for build
         </a>
         {activeIndex === 4 && (
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt vel
-            beatae consequatur suscipit vero magnam nulla molestias alias
-            praesentium atque, commodi error quis, unde aliquam distinctio
-            blanditiis! Beatae, temporibus reprehenderit!
+            A newly minted father, Lionel’s coding journey began on his final day as a carpenter when he fell off a roof while earning a low wage. As if he needed more of a sign, an email from Fullstack Academy was waiting for him at lunch time. He enjoys keeping livestock, gardening, plotting to corner his local chicken market and now challenging himself in the web development realm.
           </p>
         )}
       </section>
