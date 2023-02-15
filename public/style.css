@@ -145,7 +145,7 @@ body {
 .mealCard .mealHeader .mealBookmarkIcon a .fa-heart-o {
   position: absolute;
   left: 85%;
-  top: 30%;
+  top: 300px;
   background: #3a943d;
   color: #fff;
   font-size: 1.3em;
@@ -539,4 +539,25 @@ textarea {
 textarea:focus {
   outline: 5px auto Highlight; /* Firefox */
   outline: 5px auto -webkit-focus-ring-color; /* Chrome, Safari */
+}
+/* ----------AboutUs Mission Styling ----------*/
+.missionTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 40px;
+  margin-top: 20px;
+  text-shadow: -1px 1px 2px #000,
+  1px 1px 2px #000,
+  1px -1px 0 #000,
+  -1px -1px 0 #000;
+}
+
+.missionStatement{
+  font-size: 22px;
+  text-shadow: -1px 1px 2px #000,
+  1px 1px 2px #000,
+  1px -1px 0 #000,
+  -1px -1px 0 #000;
+  padding: 20px;
 }
