@@ -5,9 +5,7 @@ const { User, Recipe } = require("../db");
 const { registerUser, getMe, updateRecipe } = require("../auth/jwtAuth");
 
 //JWT routes
-router.route("/jwtUser")
-.get(protect, getMe)
-.put(protect, updateUser);
+router.route("/jwtUser").get(protect, getMe).put(protect, updateUser);
 
 router.post("/jwtRegister", registerUser);
 
@@ -29,13 +27,15 @@ router.get("/googleUser", isAuth, async (req, res, next) => {
 });
 
 router.put("/editGoogle", async (req, res, next) => {
-  try{
-    let updatedUser = await User.findOne({where:{googleId: req.user.googleId}})
-    res.json(await updatedUser.update(req.body))
-  } catch(err){
-    next(err)
+  try {
+    let updatedUser = await User.findOne({
+      where: { googleId: req.user.googleId },
+    });
+    res.json(await updatedUser.update(req.body));
+  } catch (err) {
+    next(err);
   }
-})
+});
 
 //Update the recipe
 router.put("/updateRecipe", updateRecipe);

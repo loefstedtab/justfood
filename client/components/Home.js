@@ -44,10 +44,9 @@ const Home = () => {
 
   return (
     <div>
-
       <HomeDropdown selected={selected} setSelected={setSelected} />
       <CheckboxFilter filters={filters} setFilters={setFilters} />
-      
+
       <div className="searchMealInput">
         {selected == "Search Directly for a Meal!" && (
           <form onSubmit={handleFormSubmit}>
@@ -67,7 +66,11 @@ const Home = () => {
           {suggestions.map((suggestion) => (
             <li>
               {" "}
-              <a className="mealResults" href={`/recipe?recipeId=${suggestion.id}`} key={suggestion.id}>
+              <a
+                className="mealResults"
+                href={`/recipe?recipeId=${suggestion.id}`}
+                key={suggestion.id}
+              >
                 {suggestion.title}{" "}
               </a>
             </li>
@@ -75,12 +78,15 @@ const Home = () => {
         </ul>
       )}
 
-      <div className='searchIngredientInput'>
-        {selected=="Search for a Meal by Ingredients!" && <Pantry ingredients = {ingredients} setIngredients = {setIngredients} handleFormSubmit = {handleFormSubmit} />}
+      <div className="searchIngredientInput">
+        {selected == "Search for a Meal by Ingredients!" && (
+          <Pantry
+            ingredients={ingredients}
+            setIngredients={setIngredients}
+            handleFormSubmit={handleFormSubmit}
+          />
+        )}
       </div>
-
-      
-
     </div>
   );
 };

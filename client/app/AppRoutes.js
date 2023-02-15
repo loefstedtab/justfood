@@ -27,7 +27,6 @@ const AppRoutes = () => {
         <Route path="/allrecipes" element={<AllMeals />} />
         <Route path="/recipe" element={<MealDetail />} />
       </Routes>
-      
     </div>
   );
 };

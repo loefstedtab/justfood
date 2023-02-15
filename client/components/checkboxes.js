@@ -29,7 +29,18 @@ const Restrictions = ({ filters, setFilters }) => {
   return (
     <div className="restrictions">
       <CheckboxFilter
-        filters={["High Protein", "Vegan", "Low Fat", "Low Carb", "Low Sodium", "Gluten Free", "Dairy Free","Paleo", "Whole30","Vegetarian" ]}
+        filters={[
+          "High Protein",
+          "Vegan",
+          "Low Fat",
+          "Low Carb",
+          "Low Sodium",
+          "Gluten Free",
+          "Dairy Free",
+          "Paleo",
+          "Whole30",
+          "Vegetarian",
+        ]}
         handleFilterChange={handleFilterChange}
       />
     </div>

@@ -22,7 +22,7 @@ const recipeSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(editRecipe.fulfilled, (state, action) => {
       state.status = "Recipe Loaded!";
-      state.recipe = action.payload
+      state.recipe = action.payload;
     });
     builder.addCase(editRecipe.pending, (state, action) => {
       state.status = "Recipe Loading";

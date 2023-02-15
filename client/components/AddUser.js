@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createUser, selectUser } from "../slices/userSlice";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 const AddUser = () => {
   const [password, setPassword] = useState("");
@@ -33,8 +33,7 @@ const AddUser = () => {
       email: email,
       phoneNumber: phone,
     };
-    dispatch(createUser(newUser))
-    //.then(navigate("/home"));
+    dispatch(createUser(newUser));
   };
 
   return (

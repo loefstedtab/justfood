@@ -89,15 +89,35 @@ const EditUser = () => {
         >
           {!user.googleId ? (
             <>
-              <EditForm value={email} setValue={setEmail} placeholder={email} type={"text"}/>
+              <EditForm
+                value={email}
+                setValue={setEmail}
+                placeholder={email}
+                type={"text"}
+              />
             </>
           ) : null}
 
-          <EditForm value={firstName} setValue={setFirstName} placeholder={firstName} type={"text"}/>
+          <EditForm
+            value={firstName}
+            setValue={setFirstName}
+            placeholder={firstName}
+            type={"text"}
+          />
 
-          <EditForm value={lastName} setValue={setLastName} placeholder={lastName} type={"text"}/>
+          <EditForm
+            value={lastName}
+            setValue={setLastName}
+            placeholder={lastName}
+            type={"text"}
+          />
 
-          <EditForm value={phone} setValue={setPhone} placeholder={phone} type={"text"}/>
+          <EditForm
+            value={phone}
+            setValue={setPhone}
+            placeholder={phone}
+            type={"text"}
+          />
 
           <br />
 
@@ -110,9 +130,19 @@ const EditUser = () => {
 
         {!user.googleId ? (
           <form className="passwordForm" onSubmit={handlePasswordSubmit}>
-          <EditForm value={password} setValue={setPassword} placeholder={"Password"} type={"password"}/>
+            <EditForm
+              value={password}
+              setValue={setPassword}
+              placeholder={"Password"}
+              type={"password"}
+            />
 
-          <EditForm value={password} setValue={setPassword} placeholder={"Confirm Password"} type={"password"}/>
+            <EditForm
+              value={password}
+              setValue={setPassword}
+              placeholder={"Confirm Password"}
+              type={"password"}
+            />
 
             <button
               type="submit"
@@ -120,9 +150,9 @@ const EditUser = () => {
             >
               Update Password
             </button>
-            {password !== "" && confirmPassword !== "" && !checkedPassword ? 
+            {password !== "" && confirmPassword !== "" && !checkedPassword ? (
               <p className="error">Passwords Do Not Match!</p>
-             : null}
+            ) : null}
           </form>
         ) : null}
       </section>

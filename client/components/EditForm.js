@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export const EditForm = ({ value, setValue, placeholder, type}) => {
+export const EditForm = ({ value, setValue, placeholder, type }) => {
   const [editingValue, setEditingValue] = useState(value);
 
   const onChange = (event) => setEditingValue(event.target.value);
@@ -21,7 +21,7 @@ export const EditForm = ({ value, setValue, placeholder, type}) => {
 
   return (
     <input
-    className="editInput"
+      className="editInput"
       type={type}
       aria-label="Field name"
       value={editingValue}
@@ -32,6 +32,3 @@ export const EditForm = ({ value, setValue, placeholder, type}) => {
     />
   );
 };
-
-
-

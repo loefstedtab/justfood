@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { authenticate, selectUser } from "../slices/userSlice";
-import { toast, onClose } from "react-toastify";
+import { toast } from "react-toastify";
 
 const AuthForm = () => {
   const { error, status } = useSelector(selectUser);
@@ -36,8 +36,6 @@ const AuthForm = () => {
         <input name="password" type="password" id="password" />
 
         <button type="submit">Login!</button>
-
-        {/* {error && <div> {error} </div>} */}
       </form>
     </div>
   );

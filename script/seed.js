@@ -2,11 +2,6 @@
 const bcrypt = require("bcrypt");
 
 const { db, User, Recipe } = require("../server/db");
-//const User = require('../server/db/models/User');
-/**
- * seed - this function clears the database, updates tables to
- *      match the models, and populates the database.
- */
 async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
   console.log("db synced!");
@@ -32,8 +27,8 @@ async function seed() {
   Recipe.create({
     mealId: 71235,
     isBookmarked: true,
-    isCooked: true
-  })
+    isCooked: true,
+  });
 
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);
