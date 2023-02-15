@@ -145,7 +145,7 @@ body {
 .mealCard .mealHeader .mealBookmarkIcon a .fa-heart-o {
   position: absolute;
   left: 85%;
-  top: 30%;
+  top: 300px;
   background: #3a943d;
   color: #fff;
   font-size: 1.3em;
