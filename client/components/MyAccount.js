@@ -79,7 +79,7 @@ const EditUser = () => {
   return (
     <div className="myProfile">
       <section className="myProfileHeading">
-        <h3>PROFILE INFO:</h3>
+        <h1>Profile Info:</h1>
       </section>
       <section className="profileForms">
         <form
