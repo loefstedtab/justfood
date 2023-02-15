@@ -29,45 +29,45 @@ const Recipe = db.define("recipe", {
   servings: {
     type: sequelize.INTEGER,
   },
-  readyInMinutes:{
+  readyInMinutes: {
     type: sequelize.INTEGER,
   },
-  dairyFree:{
+  dairyFree: {
     type: sequelize.BOOLEAN,
   },
-  glutenFree:{
+  glutenFree: {
     type: sequelize.BOOLEAN,
   },
-  ketogenic:{
+  ketogenic: {
     type: sequelize.BOOLEAN,
   },
-  sustainable:{
+  sustainable: {
     type: sequelize.BOOLEAN,
   },
-  vegan:{
+  vegan: {
     type: sequelize.BOOLEAN,
   },
-  vegetarian:{
+  vegetarian: {
     type: sequelize.BOOLEAN,
   },
-  veryHealthy:{
+  veryHealthy: {
     type: sequelize.BOOLEAN,
   },
-  veryPopular:{
+  veryPopular: {
     type: sequelize.BOOLEAN,
   },
-  whole30:{
+  whole30: {
     type: sequelize.BOOLEAN,
   },
-  summary:{
-    type: sequelize.ARRAY(Sequelize.JSONB)
+  summary: {
+    type: sequelize.ARRAY(Sequelize.JSONB),
   },
-  instructions:{
-    type: sequelize.ARRAY(Sequelize.JSONB)
+  instructions: {
+    type: sequelize.ARRAY(Sequelize.JSONB),
   },
-  cuisines:{
-    type: sequelize.ARRAY(Sequelize.JSONB)
-  }
+  cuisines: {
+    type: sequelize.ARRAY(Sequelize.JSONB),
+  },
 });
 
 module.exports = Recipe;

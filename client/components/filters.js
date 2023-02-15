@@ -20,18 +20,24 @@ const Filter = () => {
   };
 
   return (
-    <div className='FilterContainer2'>
+    <div className="FilterContainer2">
       <div>
-        {filters && filters.map((filter, index) => (
-          <label key={index}>
-            <input type="checkbox" name={filter.name} id={filter.id} onChange={() => handleFilterChange(filter.id)} />
-            {filter.name}
-          </label>
-        ))}
+        {filters &&
+          filters.map((filter, index) => (
+            <label key={index}>
+              <input
+                type="checkbox"
+                name={filter.name}
+                id={filter.id}
+                onChange={() => handleFilterChange(filter.id)}
+              />
+              {filter.name}
+            </label>
+          ))}
       </div>
 
-      <div className='ToggleFilters'>
-        <label htmlFor="slider" >
+      <div className="ToggleFilters">
+        <label htmlFor="slider">
           Missing Ingredients
           <input
             type="range"

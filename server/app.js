@@ -4,7 +4,6 @@ const morgan = require("morgan");
 const app = express();
 const passport = require("passport");
 const session = require("express-session");
-const cors = require("cors");
 require("./auth/googleAuth");
 
 // logging middleware

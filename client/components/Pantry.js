@@ -37,7 +37,6 @@ const Pantry = ({ ingredients, setIngredients, handleFormSubmit }) => {
 
   return (
     <div className="ingredientResultContainer">
-
       <form onSubmit={handleFormSubmit}>
         <input
           type="text"
@@ -58,7 +57,9 @@ const Pantry = ({ ingredients, setIngredients, handleFormSubmit }) => {
           </div>
         ))}
       </form>
-      <ul className="PantryContainer"> Ingredients in your Pantry:
+      <ul className="PantryContainer">
+        {" "}
+        Ingredients in your Pantry:
         {ingredients.map((ingredient) => (
           <li key={ingredient.name}>
             {ingredient.name}

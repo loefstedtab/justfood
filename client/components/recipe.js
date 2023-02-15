@@ -3,8 +3,8 @@ import axios from "axios";
 import { useSearchParams } from "react-router-dom";
 import Bookmarked from "./Bookmarks";
 import { useSelector, useDispatch } from "react-redux";
-import { selectUser, getMe, fetchGoogleUser } from "../slices/userSlice";
-import { editRecipe, selectRecipe } from "../slices/recipeSlice";
+import { selectUser } from "../slices/userSlice";
+import { editRecipe } from "../slices/recipeSlice";
 
 const getWinePairing = async (meal) => {
   const res = await axios.get(
@@ -24,9 +24,9 @@ const MealDetail = ({}) => {
       mealId: meal.id,
       userId: user.id,
       isBookmarked: true,
-      summary:[meal.summary],
-      instructions:[meal.instructions],
-      cuisines:[meal.cuisines]
+      summary: [meal.summary],
+      instructions: [meal.instructions],
+      cuisines: [meal.cuisines],
     };
     dispatch(editRecipe(updatedRecipe));
   };
@@ -37,9 +37,9 @@ const MealDetail = ({}) => {
       mealId: meal.id,
       userId: user.id,
       isCooked: true,
-      summary:[meal.summary],
-      instructions:[meal.instructions],
-      cuisines:[meal.cuisines]
+      summary: [meal.summary],
+      instructions: [meal.instructions],
+      cuisines: [meal.cuisines],
     };
     dispatch(editRecipe(updatedRecipe));
   };
@@ -70,11 +70,11 @@ const MealDetail = ({}) => {
     <div className="mealCard">
       <div className="mealHeader">
         <img src={meal.image} alt={meal.title} />
-          <div className="mealBookmarkIcon">
-            <a href="#">
-              <i className="fa fa-heart-o" onClick={handleBookmark}></i>
-            </a>
-          </div>
+        <div className="mealBookmarkIcon">
+          <a href="#">
+            <i className="fa fa-heart-o" onClick={handleBookmark}></i>
+          </a>
+        </div>
       </div>
 
       <div className="mealFooter">

@@ -6,7 +6,6 @@ const Cooked = require("./models/Cooked");
 const Pantry = require("./models/Pantry");
 const Recipe = require("./models/Recipe");
 
-//associations could go here!
 User.hasMany(Recipe);
 Recipe.belongsTo(User);
 
