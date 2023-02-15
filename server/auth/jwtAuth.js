@@ -146,6 +146,8 @@ const generateToken = (id) => {
   return jwt.sign(id, process.env.JWT_SECRET);
 };
 
+Recipe.afterUpdate((recipe) => recipe.isBookmarked === false && !recipe.isCooked ? recipe.destroy() : null)
+
 module.exports = {
   registerUser,
   loginUser,

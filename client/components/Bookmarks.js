@@ -1,28 +1,49 @@
-import axios from "axios";
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { selectUser } from "../slices/userSlice";
+import { editRecipe } from "../slices/recipeSlice";
 
 const Bookmarked = () => {
   const { user } = useSelector(selectUser);
-  console.log("this is the user on the bookmark page", user)
   const { recipes } = user;
 
-  let bookmarked = recipes.filter((recipe) => recipe.isBookmarked ? recipe : null)
+  const dispatch = useDispatch();
+
+  const handleRemove = async (meal) => {
+    let updatedRecipe = {
+      ...meal,
+      mealId: meal.id,
+      userId: user.id,
+      isBookmarked: false,
+      summary: [meal.summary],
+      instructions: [meal.instructions],
+      cuisines: [meal.cuisines],
+    };
+    dispatch(editRecipe(updatedRecipe));
+  };
+
+  let bookmarked = recipes
+    ? recipes.filter((recipe) => recipe.isBookmarked)
+    : null;
 
   return (
     <div>
       <h1 className="bookmarkTitle">Bookmarked Meals</h1>
-        <div className="bookmarksContainer">
-          {bookmarked.map((meal) => (
-            <div key={meal.id} className="bookmarkItem">
-              <h2>
-              <a href={`/recipe?recipeId=${meal.id}`}>{meal.title}</a>
-              </h2>
-              <img src={meal.image} alt={meal.title} />
-            </div>
-          ))}
-        </div>
+      <div className="bookmarksContainer">
+        {bookmarked
+          ? bookmarked.map((meal) => (
+              <div key={meal.id} className="bookmarkItem">
+                <h2>
+                  <a href={`/recipe?recipeId=${meal.id}`}>{meal.title}</a>
+                </h2>
+                <img src={meal.image} alt={meal.title} />
+                <button onClick={() => handleRemove(meal)}>
+                  Remove Bookmark
+                </button>
+              </div>
+            ))
+          : null}
+      </div>
     </div>
   );
 };

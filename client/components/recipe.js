@@ -19,7 +19,6 @@ const MealDetail = ({}) => {
   const dispatch = useDispatch();
 
   const handleBookmark = async () => {
-
     let updatedRecipe = {
       ...meal,
       mealId: meal.id,
