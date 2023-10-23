@@ -44,8 +44,11 @@ const Home = () => {
 
   return (
     <div>
+    <div>
+    <CheckboxFilter filters={filters} setFilters={setFilters} />
+    </div>
+    <div>
       <HomeDropdown selected={selected} setSelected={setSelected} />
-      <CheckboxFilter filters={filters} setFilters={setFilters} />
 
       <div className="searchMealInput">
         {selected == "Search Directly for a Meal!" && (
@@ -87,6 +90,7 @@ const Home = () => {
           />
         )}
       </div>
+    </div>
     </div>
   );
 };

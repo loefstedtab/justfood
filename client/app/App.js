@@ -6,7 +6,10 @@ const App = () => {
   return (
     <div>
       <Navbar />
+      <div className="mainBox">
       <AppRoutes />
+      </div>
+
     </div>
   );
 };

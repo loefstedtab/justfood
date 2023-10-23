@@ -1,4 +1,7 @@
+import { Checkbox } from "@mui/material";
+import { pink } from "@mui/material/colors"
 import React, { useState } from "react";
+
 
 const CheckboxFilter = ({ filters, handleFilterChange }) => {
   return (
@@ -6,7 +9,12 @@ const CheckboxFilter = ({ filters, handleFilterChange }) => {
       <div className="FiltersTitle">Filters: </div>
       {filters.map((filter) => (
         <label key={filter}>
-          <input type="checkbox" value={filter} onChange={handleFilterChange} />
+          <Checkbox type="checkbox" value={filter} onChange={handleFilterChange}  sx={{
+          color: '#FBEEC1',
+          '&.Mui-checked': {
+            color: '#FBEEC1',
+          },
+        }} />
           {filter}
         </label>
       ))}
@@ -25,6 +33,8 @@ const Restrictions = ({ filters, setFilters }) => {
       setFilters([...filters, newFilter]);
     }
   };
+
+
 
   return (
     <div className="restrictions">

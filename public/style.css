@@ -1,4 +1,4 @@
-/* ----------GLOBAL TAG Styling ----------*/
+/* ----------GLOBAL TAG Styling ---------- */
 * {
   margin: 0;
   padding: 0;
@@ -11,16 +11,14 @@
 }
 
 body {
-  background: url(JustFoodBackground.webp);
-  background-size: cover;
-  font-family: "Itim", cursive;
-  color: white;
+  background-color: #659DBD;
+  background: url('JustFoodBackground.webp');
+  color: #659DBD;
+  /* grid-template-rows: auto, 3fr, auto; */
 }
-
 button {
   padding: 5px;
   margin: 5px;
-  background-color: #3a943d;
   color: white;
   font-size: 14px;
   text-shadow: -1px 1px 2px #000, 1px 1px 2px #000, 1px -1px 0 #000,
@@ -38,11 +36,7 @@ button:active {
 }
 
 a:link {
-  text-decoration: none;
-  color: white;
   font-weight: bold;
-  text-shadow: -1px 1px 2px #000, 1px 1px 2px #000, 1px -1px 0 #000,
-    -1px -1px 0 #000;
 }
 
 a:visited {
@@ -66,17 +60,12 @@ body {
   align-items: center;
   font-size: 64px;
   margin-bottom: 10px;
-  text-shadow: -1px 1px 2px #000, 1px 1px 2px #000, 1px -1px 0 #000,
-    -1px -1px 0 #000;
+    color: white;
 }
 
 .NavbarLinks {
   display: flex;
   justify-content: space-evenly;
-  font-size: 32px;
-  margin-bottom: 10px;
-  text-shadow: -1px 1px 2px #000, 1px 1px 2px #000, 1px -1px 0 #000,
-    -1px -1px 0 #000;
 }
 
 .WelcomeElement {
@@ -206,37 +195,14 @@ body {
   margin: auto;
 }
 
-section a {
-  background: #3a943d;
-  color: #000;
-  text-decoration: none;
-  text-align: center;
-  padding: 10px;
-  display: block;
-  font-size: 1.3em;
-  letter-spacing: 3px;
-  overflow: hidden;
-  border-bottom: 3px solid black;
-  text-shadow: -1px 1px 2px #000, 1px 1px 2px #000, 1px -1px 0 #000,
-    -1px -1px 0 #000;
+.accordionWrapper{
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
 }
 
-section p {
-  padding: 10px;
-  overflow: hidden;
-  height: 0;
-  opacity: 0;
-  background: gray;
-  color: #fff;
-  overflow: hidden;
-  letter-spacing: 2px;
-  transition: 2s;
-}
-
-section:target p {
-  height: 10em;
-  opacity: 1;
-  padding: 20px;
+.accordion{
+  width: 70%;
 }
 
 /* -----------------------------------LANDING PAGE STYLING -----------------------------------*/
@@ -320,6 +286,12 @@ section:target p {
   font-size: 20px;
   left: 75%;
   top: 240px;
+  border: 2px solid #659DBD;
+  color: #659DBD;
+  width: 25%;
+  min-height: 10%;
+  border-radius: 20px;
+
 }
 
 /* ----------checkboxes.js filters.js Styling ----------*/
@@ -333,10 +305,15 @@ section:target p {
   font-size: 20px;
   text-shadow: -1px 1px 2px #000, 1px 1px 2px #000, 1px -1px 0 #000,
     -1px -1px 0 #000;
+  border: 2px solid #659DBD;
+  color: #659DBD;
+  width: 25%;
+  border-radius: 20px;
 }
 
 .FiltersTitle {
   display: flex;
+  text-decoration: underline;
   flex-direction: column;
   align-items: center;
 }

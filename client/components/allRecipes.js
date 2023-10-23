@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 
@@ -28,7 +28,7 @@ const AllMeals = () => {
     setSuggestions(res.data.results);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (searchParams.get("searchTerm")) {
       getSearchResultsByMeal();
     }

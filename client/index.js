@@ -7,6 +7,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Context from "./components/UserContext.js";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ThemeProvider } from "@emotion/react";
 
 const root = createRoot(document.getElementById("app"));
 
